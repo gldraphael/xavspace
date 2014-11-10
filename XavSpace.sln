@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XavSpace.Entities", "XavSpace.Entities\XavSpace.Entities.csproj", "{020F23B4-169A-4525-A0CF-E1322CCB702D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XavSpace.DataAccess", "XavSpace.DataAccess\XavSpace.DataAccess.csproj", "{36CFAE4A-D260-494A-9083-E56D17F78C38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XavSpace.Facade", "XavSpace.Facade\XavSpace.Facade.csproj", "{6D151F2F-C1AD-4FCB-AF3C-A39FB9742040}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XavSpace.Website", "XavSpace.Website\XavSpace.Website.csproj", "{6E35319A-32E2-4D6D-95F0-45C567C63BEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FA416375-2F57-4046-906B-EE8AE17EA5F6}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://gldraphael.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = XavSpace.Entities\\XavSpace.Entities.csproj
+		SccProjectName1 = XavSpace.Entities
+		SccLocalPath1 = XavSpace.Entities
+		SccProjectUniqueName2 = XavSpace.DataAccess\\XavSpace.DataAccess.csproj
+		SccProjectName2 = XavSpace.DataAccess
+		SccLocalPath2 = XavSpace.DataAccess
+		SccProjectUniqueName3 = XavSpace.Facade\\XavSpace.Facade.csproj
+		SccProjectName3 = XavSpace.Facade
+		SccLocalPath3 = XavSpace.Facade
+		SccProjectUniqueName4 = XavSpace.Website\\XavSpace.Website.csproj
+		SccProjectName4 = XavSpace.Website
+		SccLocalPath4 = XavSpace.Website
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{020F23B4-169A-4525-A0CF-E1322CCB702D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020F23B4-169A-4525-A0CF-E1322CCB702D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020F23B4-169A-4525-A0CF-E1322CCB702D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020F23B4-169A-4525-A0CF-E1322CCB702D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36CFAE4A-D260-494A-9083-E56D17F78C38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36CFAE4A-D260-494A-9083-E56D17F78C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36CFAE4A-D260-494A-9083-E56D17F78C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36CFAE4A-D260-494A-9083-E56D17F78C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D151F2F-C1AD-4FCB-AF3C-A39FB9742040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D151F2F-C1AD-4FCB-AF3C-A39FB9742040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D151F2F-C1AD-4FCB-AF3C-A39FB9742040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D151F2F-C1AD-4FCB-AF3C-A39FB9742040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E35319A-32E2-4D6D-95F0-45C567C63BEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E35319A-32E2-4D6D-95F0-45C567C63BEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E35319A-32E2-4D6D-95F0-45C567C63BEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E35319A-32E2-4D6D-95F0-45C567C63BEA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
