@@ -1,17 +1,19 @@
-﻿using IdentitySample.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
-using XavSpace.Facade.Identity;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+
+using XavSpace.Website.ViewModels;
+using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
 
-namespace IdentitySample.Controllers
+namespace XavSpace.Website.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class RolesAdminController : Controller

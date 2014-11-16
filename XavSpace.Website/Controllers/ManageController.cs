@@ -1,15 +1,17 @@
-﻿using IdentitySample.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using XavSpace.Entities.Users;
-using XavSpace.Facade.Identity;
 
-namespace IdentitySample.Controllers
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+
+using XavSpace.Website.ViewModels;
+using XavSpace.Entities.Users;
+using XavSpace.Facade.Identity.Managers;
+
+namespace XavSpace.Website.Controllers
 {
     [Authorize]
     public class ManageController : Controller

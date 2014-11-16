@@ -2,14 +2,14 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using IdentitySample.Models;
+using XavSpace.Website.ViewModels;
 using Owin;
 using System;
 using XavSpace.DataAccess.DbContexts;
-using XavSpace.Facade.Identity;
+using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
 
-namespace IdentitySample
+namespace XavSpace.Website
 {
     public partial class Startup
     {

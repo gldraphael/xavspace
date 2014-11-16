@@ -1,18 +1,20 @@
 ﻿using System.Globalization;
-using IdentitySample.Models;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using XavSpace.Facade.Identity;
+
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+
+using XavSpace.Website.ViewModels;
+using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
 
-namespace IdentitySample.Controllers
+namespace XavSpace.Website.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -157,8 +159,11 @@ namespace IdentitySample.Controllers
                 {
                     var code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+#if !DEBUG
+                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", callbackUrl);
+#else
                     ViewBag.Link = callbackUrl;
+#endif
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
@@ -207,8 +212,11 @@ namespace IdentitySample.Controllers
 
                 var code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
                 var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking here: <a href=\"" + callbackUrl + "\">link</a>");
+#if !DEBUG
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", callbackUrl);
+#else
                 ViewBag.Link = callbackUrl;
+#endif
                 return View("ForgotPasswordConfirmation");
             }
 

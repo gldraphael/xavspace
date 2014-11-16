@@ -1,14 +1,15 @@
-﻿@model IdentitySample.Models.RegisterViewModel
+﻿@model XavSpace.Website.ViewModels.RegisterViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Register for a XavSpace account";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>Create a new account</h4>
+    <p class="text-info">Add something here to encourage users to use facebook log in rather than a local account.</p>
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">

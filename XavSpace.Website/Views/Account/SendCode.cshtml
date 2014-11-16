@@ -1,9 +1,9 @@
-﻿@model IdentitySample.Models.SendCodeViewModel
+﻿@model XavSpace.Website.ViewModels.SendCodeViewModel
 @{
     ViewBag.Title = "Send Verification Code";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("SendCode", "Account", new { ReturnUrl = Model.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
     @Html.AntiForgeryToken()

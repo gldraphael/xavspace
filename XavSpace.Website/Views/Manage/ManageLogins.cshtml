@@ -1,10 +1,10 @@
-﻿@model IdentitySample.Models.ManageLoginsViewModel
+﻿@model XavSpace.Website.ViewModels.ManageLoginsViewModel
 @using Microsoft.Owin.Security
 @{
     ViewBag.Title = "Manage your external logins";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 @if (Model.CurrentLogins.Count > 0)
@@ -41,7 +41,7 @@
 }
 @if (Model.OtherLogins.Count > 0)
 {
-    <h4>Add another service to log in.</h4>
+    <h4>Add another service to log in</h4>
     <hr />
     using (Html.BeginForm("LinkLogin", "Manage"))
     {

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace IdentitySample
+namespace XavSpace.Website
 {
     public class FilterConfig
     {

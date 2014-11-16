@@ -20,28 +20,37 @@ namespace XavSpace.DataAccess.DbInitializers
             base.Seed(context);
         }
 
-        //Create User=Admin@Admin.com with password=Admin@123456 in the Admin role        
+        private static void InitializeRoles(RoleManager<IdentityRole> roleManager)
+        {
+            string[] roles = { "Admin", "Moderator", "Staff", "CR", "Student" };
+
+            foreach (var roleName in roles)
+            {
+                //Create Role roleName if it does not exist
+                var role = roleManager.FindByName(roleName);
+                if (role == null)
+                {
+                    role = new IdentityRole(roleName);
+                    var roleresult = roleManager.Create(role);
+                }
+            }
+        }
+
         public static void InitializeIdentityForEF(ApplicationDbContext db)
         {
-            // var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            // var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
+            //var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var roleManager = HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
 
             var roleStore = new RoleStore<IdentityRole>(db);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
             var userStore = new UserStore<ApplicationUser>(db);
             var userManager = new UserManager<ApplicationUser>(userStore);
 
-            const string name = "admin@example.com";
-            const string password = "Admin@123456";
+            const string name = "admin@xavspace.com";
+            const string password = "galdinpassword";
             const string roleName = "Admin";
 
-            //Create Role Admin if it does not exist
-            var role = roleManager.FindByName(roleName);
-            if (role == null)
-            {
-                role = new IdentityRole(roleName);
-                var roleresult = roleManager.Create(role);
-            }
+            InitializeRoles(roleManager);
 
             var user = userManager.FindByName(name);
             if (user == null)
@@ -51,12 +60,13 @@ namespace XavSpace.DataAccess.DbInitializers
                 result = userManager.SetLockoutEnabled(user.Id, false);
             }
 
-            // Add user admin to Role Admin if not already added
             var rolesForUser = userManager.GetRoles(user.Id);
+            var role = roleManager.FindByName(roleName);
             if (!rolesForUser.Contains(role.Name))
             {
                 var result = userManager.AddToRole(user.Id, role.Name);
             }
         }
+
     }
 }

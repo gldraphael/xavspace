@@ -1,6 +1,6 @@
 ﻿using Owin;
 
-namespace IdentitySample
+namespace XavSpace.Website
 {
     public partial class Startup
     {
