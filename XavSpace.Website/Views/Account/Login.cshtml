@@ -1,4 +1,4 @@
-﻿@model XavSpace.Website.ViewModels.LoginViewModel
+﻿@model XavSpace.Website.ViewModels.Account.LoginViewModel
 @{
     ViewBag.Title = "Log in";
 }
@@ -50,7 +50,7 @@
     </div>
     <div class="col-md-4">
         <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+            @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
     </div>
 </div>

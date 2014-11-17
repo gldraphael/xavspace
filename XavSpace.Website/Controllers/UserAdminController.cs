@@ -14,6 +14,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using XavSpace.Website.ViewModels;
 using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
+using XavSpace.Website.ViewModels.Account;
+using XavSpace.Website.ViewModels.Admin;
 
 namespace XavSpace.Website.Controllers
 {

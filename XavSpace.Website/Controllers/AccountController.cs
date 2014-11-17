@@ -13,6 +13,7 @@ using Microsoft.Owin.Security;
 using XavSpace.Website.ViewModels;
 using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
+using XavSpace.Website.ViewModels.Account;
 
 namespace XavSpace.Website.Controllers
 {
