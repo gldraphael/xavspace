@@ -1,19 +1,23 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.AspNet.Identity.EntityFramework;
+
 using XavSpace.DataAccess.DbInitializers;
+using XavSpace.Entities.Data;
 using XavSpace.Entities.Users;
+using XavSpace.Entities.Relationships;
 
 namespace XavSpace.DataAccess.DbContexts
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("XSLocal", throwIfV1Schema: false)
         {
         }
 
@@ -28,5 +32,15 @@ namespace XavSpace.DataAccess.DbContexts
         {
             return new ApplicationDbContext();
         }
+
+        // Data
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<NoticeBoard> NoticeBoards { get; set; }
+        public DbSet<Notice> Notices { get; set; }
+
+        // Relationship mappings
+        public DbSet<NoticeTag> NoticeTagRelationship { get; set; }
+        public DbSet<UserNoticeBoardFollow> UserBoardFollowingRelationship { get; set; }
+        public DbSet<UserNoticePost> UserNoticePostRelationship { get; set; }
     }
 }

@@ -64,5 +64,15 @@ namespace XavSpace.Facade.Identity.Managers
             }
             return manager;
         }
+
+        public IQueryable<Staff> Students { get { return Users.OfType<Staff>(); } }
+        public IQueryable<Staff> Staff { get { return Users.OfType<Staff>(); } }
+        public IQueryable<Staff> Moderators { get { return Users.OfType<Staff>(); } }
+
+        public bool IsOfType<T>(ApplicationUser user)
+            where T : ApplicationUser
+        {
+            return user as T != null;
+        }
     }
 }

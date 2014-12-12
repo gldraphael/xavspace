@@ -22,7 +22,7 @@ namespace XavSpace.DataAccess.DbInitializers
 
         private static void InitializeRoles(RoleManager<IdentityRole> roleManager)
         {
-            string[] roles = { "Admin", "Moderator", "Staff", "CR", "Student" };
+            string[] roles = { "Admin" };
 
             foreach (var roleName in roles)
             {
@@ -67,6 +67,5 @@ namespace XavSpace.DataAccess.DbInitializers
                 var result = userManager.AddToRole(user.Id, role.Name);
             }
         }
-
     }
 }
