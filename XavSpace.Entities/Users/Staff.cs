@@ -8,6 +8,6 @@ namespace XavSpace.Entities.Users
 {
     public class Staff : ApplicationUser
     {
-
+        public string Post { get; set; }
     }
 }

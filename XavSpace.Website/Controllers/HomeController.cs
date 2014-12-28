@@ -6,10 +6,11 @@ namespace XavSpace.Website.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if(User.Identity.IsAuthenticated)
+                return View();
+            return RedirectToAction("About");
         }
 
-        [Authorize]
         public ActionResult About()
         {
             return View();

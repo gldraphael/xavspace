@@ -1,0 +1,51 @@
+﻿@model IEnumerable<XavSpace.Entities.Data.NoticeBoard>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsOfficial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMandatory)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsOfficial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsMandatory)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NoticeBoardId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NoticeBoardId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NoticeBoardId })
+        </td>
+    </tr>
+}
+
+</table>

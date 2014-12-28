@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XavSpace.Entities.Users
 {
-    public class Moderator : ApplicationUser
+    public class Moderator : Staff
     {
 
     }

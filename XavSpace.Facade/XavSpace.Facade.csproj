@@ -87,16 +87,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\DbContextFactory.cs" />
+    <Compile Include="Managers\Base\DbContextManager.cs" />
     <Compile Include="Identity\Managers\ApplicationRoleManager.cs" />
     <Compile Include="Identity\Managers\ApplicationSignInManager.cs" />
     <Compile Include="Identity\Managers\ApplicationUserManager.cs" />
     <Compile Include="Identity\Services\EmailService.cs" />
     <Compile Include="Identity\Services\SmsService.cs" />
     <Compile Include="KeyRepository.cs" />
+    <Compile Include="Managers\Base\IAsyncManager.cs" />
+    <Compile Include="Managers\Base\IManager.cs" />
+    <Compile Include="Managers\NoticeBoardManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Managers\" />
     <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
