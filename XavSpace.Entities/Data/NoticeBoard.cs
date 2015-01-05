@@ -17,7 +17,7 @@ namespace XavSpace.Entities.Data
         public int NoticeBoardId { get; set; }
 
         /// <summary>
-        /// The Notice
+        /// The Notice Board
         /// </summary>
         public string Title { get; set; }
 

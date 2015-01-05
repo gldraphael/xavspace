@@ -40,5 +40,11 @@ namespace XavSpace.Facade.Managers
             DbContext.NoticeBoards.Remove(noticeBoard);
             return await DbContext.SaveChangesAsync();
         }
+
+        public async Task<int> PostNotice(Notice notice)
+        {
+            DbContext.Notices.Add(notice);
+            return await DbContext.SaveChangesAsync();
+        }
     }
 }

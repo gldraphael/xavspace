@@ -70,6 +70,10 @@
     <Compile Include="Migrations\201412281443052_Middle-Name-Removed.Designer.cs">
       <DependentUpon>201412281443052_Middle-Name-Removed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501021133077_UIdAdded.cs" />
+    <Compile Include="Migrations\201501021133077_UIdAdded.Designer.cs">
+      <DependentUpon>201501021133077_UIdAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -89,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201412281443052_Middle-Name-Removed.resx">
       <DependentUpon>201412281443052_Middle-Name-Removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501021133077_UIdAdded.resx">
+      <DependentUpon>201501021133077_UIdAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

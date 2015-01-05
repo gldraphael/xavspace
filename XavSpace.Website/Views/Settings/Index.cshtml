@@ -1,6 +1,6 @@
-﻿@model XavSpace.Website.ViewModels.Manage.IndexViewModel
+﻿@model XavSpace.Website.ViewModels.Settings.IndexViewModel
 @{
-    ViewBag.Title = "Manage Account";
+    ViewBag.Title = "Account Settings";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -9,7 +9,7 @@
     <div class="col-md-8">
         <div> @*A common settings pane needs to be made that will contain all of these options*@
             <p>
-                @if (Model.HasPassword)
+                @if (Model.HasPassword) // User.Identity.HasPassword() can be used here
                 {
                     @Html.ActionLink("Change your password", "ChangePassword")
                 }

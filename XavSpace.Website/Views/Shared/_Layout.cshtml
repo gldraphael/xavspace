@@ -2,11 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title | XavSpace</title>
+    <meta name="description" content="The Xavier's Notification System" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,8 +22,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
                     @if (Request.IsAuthenticated)
                     {
@@ -32,13 +30,19 @@
                             <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
                             <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                         }
+
+                        <li>@Html.ActionLink("Boards", "Index", "Boards")</li>
+
                         if (User.Identity.IsModerator())
                         {
-                            <li>@Html.ActionLink("Boards", "Index", "Boards")</li>
+                            <li>@Html.ActionLink("Notices", "Index", "Notices")</li>
+                        }
+                        if (User.Identity.IsStaff())
+                        {
+                            <li>@Html.ActionLink("Tags", "Index", "Tags")</li>
                         }
                     }
                 </ul>
-
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -47,7 +51,11 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - XavSpace</p>
+            <p>
+                &copy; @DateTime.Now.Year - XavSpace 
+                &middot; @Html.ActionLink("About", "Index", "About") 
+                &middot; @Html.ActionLink("Contact", "Contact", "About") 
+            </p>
         </footer>
     </div>
 

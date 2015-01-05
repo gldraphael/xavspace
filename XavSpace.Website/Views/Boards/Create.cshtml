@@ -1,11 +1,10 @@
 ﻿@model XavSpace.Entities.Data.NoticeBoard
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Notice Board";
 }
 
-<h2>Create</h2>
-
+<h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm()) 
 {
@@ -60,7 +59,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("All Notice Boards", "Index")
 </div>
 
 @section Scripts {

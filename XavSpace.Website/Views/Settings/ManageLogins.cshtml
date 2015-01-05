@@ -1,11 +1,10 @@
-﻿@model XavSpace.Website.ViewModels.Manage.ManageLoginsViewModel
+﻿@model XavSpace.Website.ViewModels.Settings.ManageLoginsViewModel
 @using Microsoft.Owin.Security
 @{
     ViewBag.Title = "Manage your external logins";
 }
 
 <h2>@ViewBag.Title</h2>
-
 <p class="text-success">@ViewBag.StatusMessage</p>
 @if (Model.CurrentLogins.Count > 0)
 {
@@ -19,7 +18,7 @@
                     <td>
                         @if (ViewBag.ShowRemoveButton)
                         {
-                            using (Html.BeginForm("RemoveLogin", "Manage"))
+                            using (Html.BeginForm("RemoveLogin", "Settings"))
                             {
                                 @Html.AntiForgeryToken()
                                 <div>
@@ -43,7 +42,7 @@
 {
     <h4>Add another service to log in</h4>
     <hr />
-    using (Html.BeginForm("LinkLogin", "Manage"))
+    using (Html.BeginForm("LinkLogin", "Settings"))
     {
         @Html.AntiForgeryToken()
         <div id="socialLoginList">

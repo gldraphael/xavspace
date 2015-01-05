@@ -10,18 +10,18 @@ using Microsoft.Owin.Security;
 using XavSpace.Website.ViewModels;
 using XavSpace.Entities.Users;
 using XavSpace.Facade.Identity.Managers;
-using XavSpace.Website.ViewModels.Manage;
+using XavSpace.Website.ViewModels.Settings;
 
 namespace XavSpace.Website.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class SettingsController : Controller
     {
-        public ManageController()
+        public SettingsController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager)
+        public SettingsController(ApplicationUserManager userManager)
         {
             UserManager = userManager;
         }
@@ -134,7 +134,7 @@ namespace XavSpace.Website.Controllers
         {
             var rememberBrowserIdentity = AuthenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
             AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, rememberBrowserIdentity);
-            return RedirectToAction("Index", "Manage");
+            return RedirectToAction("Index", "Settings");
         }
 
         //
@@ -143,7 +143,7 @@ namespace XavSpace.Website.Controllers
         public ActionResult ForgetBrowser()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
-            return RedirectToAction("Index", "Manage");
+            return RedirectToAction("Index", "Settings");
         }
 
         //
@@ -157,7 +157,7 @@ namespace XavSpace.Website.Controllers
             {
                 await SignInAsync(user, isPersistent: false);
             }
-            return RedirectToAction("Index", "Manage");
+            return RedirectToAction("Index", "Settings");
         }
 
         //
@@ -171,7 +171,7 @@ namespace XavSpace.Website.Controllers
             {
                 await SignInAsync(user, isPersistent: false);
             }
-            return RedirectToAction("Index", "Manage");
+            return RedirectToAction("Index", "Settings");
         }
 
         //
@@ -320,7 +320,7 @@ namespace XavSpace.Website.Controllers
         public ActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Settings"), User.Identity.GetUserId());
         }
 
         //

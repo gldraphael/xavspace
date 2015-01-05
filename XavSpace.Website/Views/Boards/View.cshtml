@@ -1,19 +1,24 @@
-﻿@model XavSpace.Entities.Data.NoticeBoard
+﻿@model XavSpace.Website.ViewModels.Boards.NoticeBoardViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.Title;
 }
 
-<h2>Details</h2>
-
+<h2>@Model.Title</h2>
+<p>
+    @if (User.Identity.IsModerator())
+    {
+        @: @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    }
+    @Html.ActionLink("All Notice Boards", "Index")
+</p>
 <div>
-    <h4>NoticeBoard</h4>
-    <hr />
+    @*<h4>NoticeBoard</h4>*@
+    @*<hr />*@
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Title)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Title)
         </dd>
@@ -21,7 +26,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.IsOfficial)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.IsOfficial)
         </dd>
@@ -29,7 +33,6 @@
         <dt>
             @Html.DisplayNameFor(model => model.IsMandatory)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.IsMandatory)
         </dd>
@@ -37,14 +40,21 @@
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.NoticeBoardId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
+    {
+        <input type="submit" value="Post Notice" class="form-control"/>
+    }
 </p>
+<hr />
+@foreach (var notice in Model.Notices)
+{
+    <p>
+        @notice.Title
+    </p>
+}

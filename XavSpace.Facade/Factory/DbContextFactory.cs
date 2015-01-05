@@ -33,11 +33,11 @@ namespace XavSpace.Facade.Factory
         {
             get
             {
-                if (ref_count == 0)
-                {
-                    context = new ApplicationDbContext();
-                }
-                Interlocked.Increment(ref ref_count);
+                //if (ref_count == 0)
+                //{
+                //    context = new ApplicationDbContext();
+                //}
+                //Interlocked.Increment(ref ref_count);
                 return context;
             }
         }

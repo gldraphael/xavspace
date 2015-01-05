@@ -6,7 +6,7 @@ using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace XavSpace.Website.ViewModels.Manage
+namespace XavSpace.Website.ViewModels.Settings
 {
     public class ManageLoginsViewModel
     {

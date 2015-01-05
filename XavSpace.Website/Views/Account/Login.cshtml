@@ -49,9 +49,36 @@
         </section>
     </div>
     <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        <section>
+            <h4>Test Credentials</h4>
+            <hr />
+            <div>
+                <p><strong>ADMIN</strong></p>
+                <p><strong>Id:</strong> admin@@xavspace.com</p>
+                <p><strong>Password:</strong> adminpassword</p>
+            </div>
+            <br />
+            <div>
+                <p><strong>MODERATOR</strong></p>
+                <p><strong>Id:</strong> moderator@@xavspace.com</p>
+                <p><strong>Password:</strong> moderatorpassword</p>
+            </div>
+            <br />
+            <div>
+                <p><strong>STAFF</strong></p>
+                <p><strong>Id:</strong> staff@@xavspace.com</p>
+                <p><strong>Password:</strong> staffpassword</p>
+            </div>
+            <br />
+            <div>
+                <p><strong>USER</strong></p>
+                <p><strong>Id:</strong> user@@xavspace.com</p>
+                <p><strong>Password:</strong> userpassword</p>
+            </div>
         </section>
+        @*<section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>*@
     </div>
 </div>
 @section Scripts {

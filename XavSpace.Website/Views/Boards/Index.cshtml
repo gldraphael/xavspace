@@ -1,10 +1,10 @@
-﻿@model IEnumerable<XavSpace.Entities.Data.NoticeBoard>
+﻿@model IEnumerable<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Notice Boards";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -15,37 +15,35 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsOfficial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsMandatory)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th></th>
+        @if (User.Identity.IsModerator())
+        {
+            <th></th>
+        }
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsOfficial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsMandatory)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NoticeBoardId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NoticeBoardId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NoticeBoardId })
-        </td>
-    </tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("View", new { id=item.Id })">
+                    @Html.DisplayFor(modelItem => item.Title)
+                </a>
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            @if (User.Identity.IsModerator())
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            }
+        </tr>
+    }
 
 </table>

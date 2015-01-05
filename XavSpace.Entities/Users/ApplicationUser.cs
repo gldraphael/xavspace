@@ -30,6 +30,11 @@ namespace XavSpace.Entities.Users
         public Name Name { get; set; }
 
         /// <summary>
+        /// The UId provided by the organization
+        /// </summary>
+        public int UId { get; set; }
+
+        /// <summary>
         /// The Gender of the user
         /// </summary>
         public Gender Gender { get; set; }

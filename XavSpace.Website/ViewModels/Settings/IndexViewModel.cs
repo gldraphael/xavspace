@@ -5,7 +5,7 @@ using System.Web;
 
 using Microsoft.AspNet.Identity;
 
-namespace XavSpace.Website.ViewModels.Manage
+namespace XavSpace.Website.ViewModels.Settings
 {
     public class IndexViewModel
     {

@@ -30,14 +30,19 @@ namespace XavSpace.Website.Extensions
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             return userManager.FindById<ApplicationUser, string>(id);
         }
+
+        // Checks if the current user has a local password
         public static bool HasPassword(this IIdentity identity)
         {
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var user = userManager.FindById(identity.GetUserId());
             if (user != null)
             {
+                // check if the user has a password
                 return user.PasswordHash != null;
             }
+
+            // user doesn't exists
             return false;
         }
 
