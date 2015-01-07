@@ -1,0 +1,67 @@
+﻿@using XavSpace.Entities.User;
+@using Microsoft.AspNet.Identity
+
+@model XavSpace.Entities.NoticeBoardSystem.GlobalNotice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+    <br>
+
+
+    <div class="row">
+        
+        @*<div class="table-responsive col-lg-12" >
+            
+            <table class="table table-hover">
+               <tbody>
+                <tr>
+                   <th class="col-md-2">@Html.DisplayNameFor(model => model.Title)</th>
+                   <th class="col-md-3">@Html.DisplayNameFor(model => model.Description)</th>
+                    <th class="col-md-2">@Html.DisplayNameFor(model => model.Date)</th>
+                </tr> 
+                <tr>
+                       <td class="col-md-2">@Html.DisplayFor(model => model.Title)</td>
+                       <td class="col-md-3">@Html.DisplayFor(model => model.Description)</td>
+                        <td class="col-md-2">@Html.DisplayFor(model => model.Date)</td>
+                </tr>
+                   
+               </tbody> 
+                </table>
+            *@  
+        
+        
+        <div class="well col-lg-12"> 
+            <h3>@Html.DisplayFor(model => model.Title)</h3> 
+            <br>
+            <h4>@Html.DisplayFor(model=> model.Description)</h4>
+            </div>         
+            <br>
+
+
+
+            <p>
+                @if (Request.IsAuthenticated)
+                {
+                    if(User.Identity.GetApplicationUser().UserName == "admin@xavspace.com")
+                    {
+                        @: @Html.ActionLink("Edit", "Edit", new { id = Model.GlobalNoticeId }) |
+                        @: @Html.ActionLink("Back to List", "Index")
+                        }
+                }
+                
+            </p>
+
+
+            
+        </div>
+        
+            
+            
+        
+        
+
