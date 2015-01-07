@@ -181,6 +181,10 @@
       <DependentUpon>variables.css</DependentUpon>
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\devices-white.png" />
+    <Content Include="Content\images\facebook icon3.png" />
+    <Content Include="Content\images\Facebook_icon.png" />
+    <Content Include="Content\images\LOGO.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
