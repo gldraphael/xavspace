@@ -1,6 +1,4 @@
 ﻿@import url("//fonts.googleapis.com/css?family=Open+Sans:400,700");
-@import 'variables.less';
-@import 'bootstrap/bootstrap.less';
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
@@ -61,14 +59,6 @@ h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
-
-#aboutbody1 {
-    width:100%;
-    height:600px;
-    
-    
-    }
-
 mark {
   background: #ff0;
   color: #000;
@@ -3965,17 +3955,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  /*padding: 11px 15px;*/
+  padding: 11px 15px;
   font-size: 17px;
   line-height: 18px;
   height: 40px;
-  width:40px;
-  opacity:0.6;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
-  opacity:1;
 }
 .navbar-brand > img {
   display: block;
@@ -6439,38 +6426,7 @@ label {
     display: none !important;
   }
 }
-body {
-  padding-top: 50px;
-  padding-bottom: 20px;
+#aboutbody1 {
+  background-color: #f57f72;
 }
-/* Set padding to keep content from hitting the edges */
-.body-content {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-  max-width: 280px;
-}
-/* styles for validation helpers */
-.field-validation-error {
-  color: #b94a48;
-}
-.field-validation-valid {
-  display: none;
-}
-input.input-validation-error {
-  border: 1px solid #b94a48;
-}
-input[type="checkbox"].input-validation-error {
-  border: 0 none;
-}
-.validation-summary-errors {
-  color: #b94a48;
-}
-.validation-summary-valid {
-  display: none;
-}
-/*# sourceMappingURL=Site.css.map */
+/*# sourceMappingURL=style.css.map */

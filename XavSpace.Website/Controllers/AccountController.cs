@@ -17,7 +17,6 @@ using XavSpace.Website.ViewModels.Account;
 
 namespace XavSpace.Website.Controllers
 {
-    [Authorize]
     public class AccountController : Controller
     {
         public AccountController()

@@ -17,6 +17,7 @@ namespace XavSpace.Website.ViewModels.Boards
         [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }
 
+        [Display(Name="Official?")]
         public bool IsOfficial { get; set; }
         public bool IsMandatory { get; set; }
     }
