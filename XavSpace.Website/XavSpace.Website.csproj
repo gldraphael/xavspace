@@ -194,8 +194,10 @@
     </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\devices-white.png" />
+    <Content Include="Content\images\devices.png" />
     <Content Include="Content\images\facebook icon3.png" />
     <Content Include="Content\images\Facebook_icon.png" />
+    <Content Include="Content\images\fb.png" />
     <Content Include="Content\images\LOGO.png" />
     <Content Include="Content\images\LOGOxs.png" />
     <Content Include="Content\Site.css">
