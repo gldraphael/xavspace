@@ -206,6 +206,12 @@
     <Content Include="Content\Site.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
+    <Content Include="Content\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
     <Content Include="Content\variables.css">
       <DependentUpon>variables.less</DependentUpon>
     </Content>
@@ -311,6 +317,9 @@
     <Content Include="Content\variables.less" />
     <Content Include="Content\variables.css.map">
       <DependentUpon>variables.css</DependentUpon>
+    </Content>
+    <Content Include="Content\style.css.map">
+      <DependentUpon>style.css</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\XavSpace Test Site.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />

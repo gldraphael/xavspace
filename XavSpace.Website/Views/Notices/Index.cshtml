@@ -9,56 +9,81 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.NoticeBoard.Title)*@
-            Notice Board
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateApproved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HighPriority)
-        </th>
-        <th></th>
-    </tr>
+<div class="panel panel-info" >
+    <div class="panel-heading">
+        Notices
+        </div>
+    
+        <table class="table">
+            <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.NoticeBoard.Title)*@
+                    Notice Board
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateCreated)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateApproved)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HighPriority)
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NoticeBoard.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateApproved)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HighPriority)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", new { id = item.NoticeId })">
+                            <i class="glyphicon glyphicon-pencil"title="Edit Post"></i>
+                            
+                        </a>
+                        <a href="@Url.Action("Details", new { id = item.NoticeId })">
+                            <i class="glyphicon glyphicon-list"title="Details"></i>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NoticeBoard.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateApproved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HighPriority)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NoticeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NoticeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NoticeId })
-        </td>
-    </tr>
-}
+                        </a>
+                        <a href="@Url.Action("Delete", new { id = item.NoticeId })">
+                            <i class="glyphicon glyphicon-remove" title="Delete Post"></i>
 
-</table>
+                        </a>
+                        
+                    </td>
+                </tr>
+                    
+            }
+            </tbody>
+
+        </table>
+</div>
+    
+   
+
