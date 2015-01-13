@@ -64,6 +64,7 @@
     <Compile Include="Data\Notice.cs" />
     <Compile Include="Data\NoticeBoard.cs" />
     <Compile Include="Data\Tag.cs" />
+    <Compile Include="Logs\ErrorLog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Relationships\NoticeTag.cs" />
     <Compile Include="Relationships\UserNoticeBoardFollow.cs" />

@@ -11,6 +11,7 @@ using XavSpace.DataAccess.DbInitializers;
 using XavSpace.Entities.Data;
 using XavSpace.Entities.Users;
 using XavSpace.Entities.Relationships;
+using XavSpace.Entities.Logs;
 
 namespace XavSpace.DataAccess.DbContexts
 {
@@ -55,6 +56,10 @@ namespace XavSpace.DataAccess.DbContexts
         public DbSet<Tag> Tags { get; set; }
         public DbSet<NoticeBoard> NoticeBoards { get; set; }
         public DbSet<Notice> Notices { get; set; }
+
+
+        public DbSet<ErrorLog> ErrorLogs { get; set; }
+
 
         // Relationship mappings
         public DbSet<NoticeTag> NoticeTagRelationship { get; set; }

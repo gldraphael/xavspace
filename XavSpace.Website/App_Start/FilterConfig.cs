@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using XavSpace.Website.Filters;
 
 namespace XavSpace.Website
 {
@@ -6,7 +7,7 @@ namespace XavSpace.Website
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleAndLogErrorAttribute());
             filters.Add(new AuthorizeAttribute());
         }
     }

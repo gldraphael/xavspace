@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Error";
+}
+<h2>Error @Response.StatusCode</h2>
+
+@switch (Response.StatusCode)
+{
+    case 404:
+        <p>File not Found</p>
+        break;
+
+    case 403:
+        if (Request.IsAuthenticated)
+        {
+            <p>Access Denied.</p>
+        }
+        else
+        {
+            <p>Please log in first.</p>
+        }
+        break;
+
+    case 502:
+    <p>The server is temporarily unavailable.</p>
+        break;
+}

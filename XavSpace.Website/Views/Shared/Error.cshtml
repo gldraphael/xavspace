@@ -1,10 +1,39 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
-
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = "Error 500 | Something's gone wrong";
+    Response.StatusCode = 500;
 }
-
-<hgroup>
-    <h1 class="text-error">Error.</h1>
-    <h2 class="text-error">An error occurred while processing your request.</h2>
-</hgroup>
+<h2>Something's gone wrong</h2>
+<div class="list-sfs-holder">
+    <div class="alert alert-danger">
+        Error 500. An unexpected error occured. 
+    </div>
+    @*@if (Model != null && (HttpContext.Current.IsDebuggingEnabled || User.IsInRole("Tester")))
+    {*@
+        <div>
+            <div>
+                @if (Model.Exception.InnerException == null)
+                {
+                    <strong>Exception:</strong> @Model.Exception.Message<br />
+                }
+                else
+                {
+                    var ex = Model.Exception;
+                    @: <strong>Exception: </strong> @ex.Message <br />
+                    while (ex.InnerException != null)
+                    {
+                        <strong>Inner Exception: </strong>@ex.InnerException.Message <br />
+                        ex = ex.InnerException;
+                    }
+                }
+                <strong>Controller:</strong> @Model.ControllerName<br />
+                <strong>Action:</strong> @Model.ActionName
+            </div>
+            <hr />
+            <br />
+            <pre>
+@Model.Exception.StackTrace
+                </pre>
+        </div>
+    @*}*@
+</div>

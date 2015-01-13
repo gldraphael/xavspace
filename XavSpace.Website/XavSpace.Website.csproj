@@ -321,6 +321,7 @@
     <Content Include="Content\style.css.map">
       <DependentUpon>style.css</DependentUpon>
     </Content>
+    <Content Include="ConnectionString.config" />
     <None Include="Properties\PublishProfiles\XavSpace Test Site.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -342,6 +343,7 @@
     <Content Include="Views\Tags\Edit.cshtml" />
     <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Boards\Post.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -412,6 +414,7 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BoardsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
@@ -421,7 +424,9 @@
     <Compile Include="Extensions\HtmlLayoutExtension.cs" />
     <Compile Include="Extensions\HtmlUserExtension.cs" />
     <Compile Include="Extensions\IdentityApplicationUserExtension.cs" />
+    <Compile Include="Filters\HandleAndLogErrorAttribute.cs" />
     <Compile Include="Filters\ModeratorOnlyAttribute.cs" />
+    <Compile Include="Filters\PreventDirectAccessToErrorActionAttribute.cs" />
     <Compile Include="Filters\StaffOnlyAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

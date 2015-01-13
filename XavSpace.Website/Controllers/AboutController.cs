@@ -20,5 +20,10 @@ namespace XavSpace.Website.Controllers
         {
             return View();
         }
+
+        public ActionResult ThrowException()
+        {
+            throw new Exception("Throw an exception");
+        }
     }
 }
