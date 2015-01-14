@@ -38,25 +38,38 @@ namespace XavSpace.Entities.Data
         public DateTime DateCreated { get; set; }
 
         /// <summary>
+        /// Gets or sets whether the post is a high priority post
+        /// </summary>
+        public bool HighPriority { get; set; }
+
+        /// <summary>
         /// Gets or Sets the date when the notice was approved. Null if the notice has not been approved.
         /// </summary>
         public DateTime? DateApproved { get; set; }
 
         /// <summary>
-        /// Gets or sets whether the post is a high priority post
+        /// If the notice has been approved
         /// </summary>
-        public bool HighPriority { get; set; }
+        public bool IsApproved { get; set; }
+
+        /// <summary>
+        /// If the approval of the current notice is pending
+        /// </summary>
+        [NotMapped]
+        public bool IsPendingApproval { get { return DateApproved == null; } }
+
+        /// <summary>
+        /// Comment by the moderator to the notice's Author
+        /// </summary>
+        public string ModeratorComment { get; set; }
 
         public Notice()
         {
             DateCreated = DateTime.UtcNow;
             DateApproved = null;
+            IsApproved = false;
+            ModeratorComment = null;
         }
-
-        /// <summary>
-        /// True if the notice has been approved
-        /// </summary>
-        public bool IsApproved { get { return !(DateApproved == null); } }
 
         /// <summary>
         /// Approves the notice
@@ -64,11 +77,16 @@ namespace XavSpace.Entities.Data
         public void Approve()
         {
             DateApproved = DateTime.UtcNow;
+            IsApproved = true;
         }
 
         /// <summary>
-        /// The notice's tags
+        /// Disapproves the notice
         /// </summary>
-        public virtual IEnumerable<Tag> Tags { get; set; }
+        public void Disapprove()
+        {
+            DateApproved = DateTime.UtcNow;
+            IsApproved = false;
+        }
     }
 }

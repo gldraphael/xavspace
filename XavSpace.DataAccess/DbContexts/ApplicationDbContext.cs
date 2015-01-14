@@ -53,16 +53,13 @@ namespace XavSpace.DataAccess.DbContexts
         //}
 
         // Data
-        public DbSet<Tag> Tags { get; set; }
         public DbSet<NoticeBoard> NoticeBoards { get; set; }
         public DbSet<Notice> Notices { get; set; }
-
 
         public DbSet<ErrorLog> ErrorLogs { get; set; }
 
 
         // Relationship mappings
-        public DbSet<NoticeTag> NoticeTagRelationship { get; set; }
         public DbSet<UserNoticeBoardFollow> UserBoardFollowingRelationship { get; set; }
         public DbSet<UserNoticePost> UserNoticePostRelationship { get; set; }
     }

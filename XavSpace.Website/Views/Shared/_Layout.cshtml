@@ -34,8 +34,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img alt="XavSpace" src="~/Content/images/LOGOxs.png" style="height:100%; width:100%">
-                    </a>
+                    <img alt="XavSpace" src="~/Content/images/LOGOxs.png" style="height:100%; width:100%">
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -45,20 +45,17 @@
                     {
                         if (User.IsInRole("Admin"))
                         {
-                        <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                        <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                            <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                            <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
                         }
-                    
+
 
                         <li>@Html.ActionLink("Boards", "Index", "Boards")</li>
 
                         if (User.Identity.IsModerator())
                         {
                             <li>@Html.ActionLink("Notices", "Index", "Notices")</li>
-                        }
-                        if (User.Identity.IsStaff())
-                        {
-                            <li>@Html.ActionLink("Tags", "Index", "Tags")</li>
+                            <li>@Html.ActionLink("Pending Approvals", "Index", "Pending")</li>
                         }
                     }
                 </ul>
@@ -66,32 +63,32 @@
             </div>
         </div>
     </div>
-    @if (Html.IsAboutPage(Context)) 
-    { 
+    @if (Html.IsAboutPage(Context))
+    {
         <div>
             @RenderBody()
         </div>
         <div>
-            
+
             <footer class="container body-content">
                 <hr />
                 <p>&copy; @DateTime.Now.Year - XavSpace</p>
             </footer>
-    </div>
+        </div>
     }
     else
     {
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>
-                &copy; @DateTime.Now.Year - XavSpace 
-                &middot; @Html.ActionLink("About", "Index", "About") 
-                &middot; @Html.ActionLink("Contact", "Contact", "About") 
-            </p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>
+                    &copy; @DateTime.Now.Year - XavSpace
+                    &middot; @Html.ActionLink("About", "Index", "About")
+                    &middot; @Html.ActionLink("Contact", "Contact", "About")
+                </p>
+            </footer>
+        </div>
     }
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

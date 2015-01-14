@@ -78,6 +78,10 @@
     <Compile Include="Migrations\201501131651054_Error-log-added.Designer.cs">
       <DependentUpon>201501131651054_Error-log-added.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501142109363_notice-updated-and-tags-removed.cs" />
+    <Compile Include="Migrations\201501142109363_notice-updated-and-tags-removed.Designer.cs">
+      <DependentUpon>201501142109363_notice-updated-and-tags-removed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -103,6 +107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501131651054_Error-log-added.resx">
       <DependentUpon>201501131651054_Error-log-added.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501142109363_notice-updated-and-tags-removed.resx">
+      <DependentUpon>201501142109363_notice-updated-and-tags-removed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

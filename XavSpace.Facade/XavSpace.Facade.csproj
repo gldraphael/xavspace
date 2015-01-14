@@ -99,6 +99,7 @@
     <Compile Include="Managers\Base\IManager.cs" />
     <Compile Include="Managers\ErrorLogManager.cs" />
     <Compile Include="Managers\NoticeBoardManager.cs" />
+    <Compile Include="Managers\NoticeManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

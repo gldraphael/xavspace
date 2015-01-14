@@ -337,13 +337,9 @@
     <Content Include="Views\Notices\Details.cshtml" />
     <Content Include="Views\Notices\Edit.cshtml" />
     <Content Include="Views\Notices\Index.cshtml" />
-    <Content Include="Views\Tags\Create.cshtml" />
-    <Content Include="Views\Tags\Delete.cshtml" />
-    <Content Include="Views\Tags\Details.cshtml" />
-    <Content Include="Views\Tags\Edit.cshtml" />
-    <Content Include="Views\Tags\Index.cshtml" />
     <Content Include="Views\Boards\Post.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Pending\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -417,9 +413,9 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
+    <Compile Include="Controllers\PendingController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
-    <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Extensions\HtmlLayoutExtension.cs" />
     <Compile Include="Extensions\HtmlUserExtension.cs" />
