@@ -63,7 +63,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HighPriority, "High Priority", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
+                <div class="checkbox-ctm">
                     @Html.EditorFor(model => model.HighPriority)
                     @Html.ValidationMessageFor(model => model.HighPriority, "", new { @class = "text-danger" })
                 </div>

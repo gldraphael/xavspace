@@ -9,40 +9,41 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="panel panel-info" >
+<div class="panel panel-info">
     <div class="panel-heading">
         Notices
-        </div>
-    
+    </div>
+    <div class="table-responsive">
         <table class="table">
+
             <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @*@Html.DisplayNameFor(model => model.NoticeBoard.Title)*@
-                    Notice Board
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateCreated)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DateApproved)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.HighPriority)
-                </th>
-                <th></th>
-            </tr>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @*@Html.DisplayNameFor(model => model.NoticeBoard.Title)*@
+                        Notice Board
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateCreated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DateApproved)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.HighPriority)
+                    </th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model)
+                @foreach (var item in Model)
             {
-                
+
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Title)
@@ -62,28 +63,31 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.HighPriority)
                     </td>
-                    <td>
+                    <td class="col-md-1">
                         <a href="@Url.Action("Edit", new { id = item.NoticeId })">
-                            <i class="glyphicon glyphicon-pencil"title="Edit Post"></i>
-                            
-                        </a>
+                            <i class="glyphicon glyphicon-pencil" title="Edit Post"></i>
+
+                        </a>&nbsp;
                         <a href="@Url.Action("Details", new { id = item.NoticeId })">
-                            <i class="glyphicon glyphicon-list"title="Details"></i>
+                            <i class="glyphicon glyphicon-list" title="Details"></i>
 
-                        </a>
+                        </a>&nbsp;
                         <a href="@Url.Action("Delete", new { id = item.NoticeId })">
-                            <i class="glyphicon glyphicon-remove" title="Delete Post"></i>
+                            <i class="glyphicon glyphicon-trash" title="Delete Post"></i>
 
                         </a>
-                        
+
                     </td>
                 </tr>
-                    
+
             }
             </tbody>
 
         </table>
+
+    </div>
 </div>
-    
-   
+
+
+
 

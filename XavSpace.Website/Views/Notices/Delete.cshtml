@@ -10,24 +10,28 @@
 <div>
 
     <hr />
-    
 
-   
+
+
     <div class="panel panel-delete">
         <div class="panel-heading" style="display:flex">
-            <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8"style="text-align:left">
-                @Html.DisplayFor(model => model.Title)
+            <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:left">
+                @if (Model.HighPriority)
+                {
+                    <i class="glyphicon glyphicon-exclamation-sign" title="High Priority"> </i>
+                }
+                &nbsp;@Html.DisplayFor(model => model.Title)
             </div>
             <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:right">
                 Created on @Html.DisplayFor(model => model.DateCreated)
             </div>
-            </div>
+        </div>
         <div class="panel-body">
             <div class="col-md-12">
-            @Html.DisplayFor(model => model.Description)
+                @Html.DisplayFor(model => model.Description)
             </div>
         </div>
-        </div>
+    </div>
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()

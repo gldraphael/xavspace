@@ -6202,10 +6202,37 @@ h1 {
 }
 .radio input[type="radio"],
 .radio-inline input[type="radio"],
-.checkbox input[type="checkbox"],
+.checkbox-ctm input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
   position: absolute;
   margin-top: 4px \9;
+}
+.radio + .radio,
+.checkbox-ctm + .checkbox-ctm {
+  margin-top: -5px;
+}
+.radio label,
+.checkbox-ctm label {
+  min-height: 18px;
+  padding-left: 20px;
+  margin-bottom: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+.form-inline .radio,
+.form-inline .checkbox-ctm {
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+.form-horizontal .radio,
+.form-horizontal .checkbox-ctm,
+.form-horizontal .radio-inline,
+.form-horizontal .checkbox-inline {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 9px;
 }
 .panel-delete {
   border-color: #006264;
@@ -6243,6 +6270,26 @@ h1 {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff02a5de', endColorstr='#ff028fc0', GradientType=0);
   filter: none;
   border: 1px solid #003031;
+}
+.table-responsive-ctm {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  border: 1px solid #ddd;
+  -webkit-overflow-scrolling: touch;
+}
+.table-responsive-ctm > .table {
+  margin-bottom: 0;
+}
+.table-responsive-ctm > .table > thead > tr > th,
+.table-responsive-ctm > .table > tbody > tr > th,
+.table-responsive-ctm > .table > tfoot > tr > th,
+.table-responsive-ctm > .table > thead > tr > td,
+.table-responsive-ctm > .table > tbody > tr > td,
+.table-responsive-ctm > .table > tfoot > tr > td {
+  white-space: nowrap;
 }
 .clearfix:before,
 .clearfix:after,
