@@ -9,47 +9,81 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<div class="table-responsive">
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        @if (User.Identity.IsModerator())
-        {
-            <th></th>
-        }
-    </tr>
 
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <a href="@Url.Action("View", new { id=item.Id })">
-                    @Html.DisplayFor(modelItem => item.Title)
-                </a>
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            @if (User.Identity.IsModerator())
+
+
+@{int width= Request.Browser.ScreenPixelsWidth; 
+if (width<360)
+{
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                @if (User.Identity.IsModerator())
+                {
+                    <th></th>
+                }
+            </tr>
+
+
+            @foreach (var item in Model)
             {
-                <td class="col-md-1">
-                    <a href="@Url.Action("Edit", new { id = item.Id })">
-                        <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                    </a>&nbsp;
-                    <a href="@Url.Action("Delete", new { id = item.Id })">
-                        <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                    </a>
-                </td>
-            }
-        </tr>
-    }
+                <tr>
+                    <td>
+                        <a href="@Url.Action("View", new { id=item.Id })">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </td>
 
-</table>
-</div>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    @if (User.Identity.IsModerator())
+                    {
+                        <td class="col-md-1">
+                            <a href="@Url.Action("Edit", new { id = item.Id })">
+                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
+                            </a>&nbsp;
+                            <a href="@Url.Action("Delete", new { id = item.Id })">
+                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                            </a>
+                        </td>
+                    }
+                </tr>
+            }
+
+        </table>
+    </div>
+
+}
+else
+{
+    <div class="body-content">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+
+                <div class="col-lg-4" style="display:inline-block">
+                    <div class="col-md-2" id="boards" style="height:200px; width:350px; font-size:large; display:table; text-align:center;">
+                        <div style="display:table-cell; vertical-align:middle">
+                            <h1>
+                                <a href="@Url.Action("View", new { id=item.Id })">
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </a>
+                            </h1>
+                            <h4>  @Html.DisplayFor(modelItem => item.Description)</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+}

@@ -155,4 +155,11 @@
 .table-responsive-ctm > .table > tfoot > tr > td {
   white-space: nowrap;
 }
+#boards {
+  background-image: url('images/NB2.jpg');
+  background-size: 100% 100%;
+}
+#boards a {
+  color: #e7e7ef;
+}
 /*# sourceMappingURL=style.css.map */

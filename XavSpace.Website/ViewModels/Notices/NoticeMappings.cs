@@ -16,8 +16,11 @@ namespace XavSpace.Website.ViewModels.Notices
                 NoticeId = vm.Id,
                 Title = vm.Title,
                 NoticeBoardId = vm.NoticeBoardId,
-                Description = vm.Description
+                Description = vm.Description,
+                HighPriority=vm.isHighPriority
             };
+            if (vm.DateCreated.HasValue)
+                n.DateCreated = vm.DateCreated.Value;
             return n;
         }
         public static NoticeViewModel ToNoticeViewModel(Notice n)
@@ -27,7 +30,9 @@ namespace XavSpace.Website.ViewModels.Notices
                 Id = n.NoticeId,
                 Title = n.Title,
                 NoticeBoardId = n.NoticeBoardId,
-                Description = n.Description
+                Description = n.Description,
+                DateCreated = n.DateCreated,
+                isHighPriority=n.HighPriority
             };
             return vm;
         }

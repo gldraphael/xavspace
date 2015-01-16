@@ -11,9 +11,9 @@ namespace XavSpace.Website.ViewModels.Boards
     {
         [HiddenInput]
         public int Id { get; set; }
-
+        
         public string Title { get; set; }
-
+        
         [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }
 
