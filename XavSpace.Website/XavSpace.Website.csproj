@@ -200,6 +200,7 @@
     <Content Include="Content\images\fb.png" />
     <Content Include="Content\images\LOGO.png" />
     <Content Include="Content\images\LOGOxs.png" />
+    <Content Include="Content\images\NB2.jpg" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
