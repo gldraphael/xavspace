@@ -11,7 +11,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>NoticeViewModel</h4>
+        <br>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.NoticeBoardId)
@@ -41,7 +41,8 @@
 }
 
 <div>
-    @Html.ActionLink("Back to Board", "View", new { id = Model.NoticeBoardId })
+    
+    @Html.ActionLink("Back to the Notice Board", "View", new { id = Model.NoticeBoardId })
 </div>
 
 @section Scripts {

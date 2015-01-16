@@ -4,57 +4,53 @@
     ViewBag.Title = Model.Title;
 }
 
-<h2>@Model.Title</h2>
+
+
+@{var Title = Html.DisplayFor(model => model.Title); }
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-md-8">
+            @if (Title.ToString().Contains("Board"))
+            {
+                <h1>@Html.DisplayFor(model => model.Title)</h1>
+            }
+            else
+            {
+                <h1>@Html.DisplayFor(model => model.Title) Notice Board</h1>
+            }
+            <h3>@Html.DisplayFor(model => model.Description)</h3>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="body-content">
+
+@using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
+{
+    <input type="submit" value="Post Notice" class="btn btn-primary" />
+}
+    </div>
+
+<hr />
+<div class="body-content">
+    @foreach (var notice in Model.Notices)
+    {
+        <div class="well">
+
+            <p><h3>@notice.Title</h3></p>
+           <p> @notice.Description</p>
+        </div>
+    }
+</div>
+
+
 <p>
     @if (User.Identity.IsModerator())
     {
         @: @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     }
-    @Html.ActionLink("All Notice Boards", "Index")
+    @Html.ActionLink("Back to Notice Boards", "Index")
 </p>
-<div>
-    @*<h4>NoticeBoard</h4>*@
-    @*<hr />*@
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsOfficial)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsOfficial)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsMandatory)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsMandatory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
-<p>
-    @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
-    {
-        <input type="submit" value="Post Notice" class="form-control"/>
-    }
-</p>
-<hr />
-@foreach (var notice in Model.Notices)
-{
-    <p>
-        @notice.Title
-    </p>
-}
