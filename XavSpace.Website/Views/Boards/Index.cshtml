@@ -13,10 +13,7 @@
 
 
 
-@{int width= Request.Browser.ScreenPixelsWidth; 
-if (width<360)
-{
-    <div class="table-responsive">
+    @*<div class="table-responsive">
         <table class="table">
             <tr>
                 <th>
@@ -59,31 +56,45 @@ if (width<360)
             }
 
         </table>
-    </div>
+    </div>*@
 
-}
-else
-{
+
+
+
     <div class="body-content">
         <div class="row">
             @foreach (var item in Model)
             {
 
-                <div class="col-lg-4" style="display:inline-block">
-                    <div class="col-md-2" id="boards" style="height:200px; width:350px; font-size:large; display:table; text-align:center;">
-                        <div style="display:table-cell; vertical-align:middle">
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    
+                       <div class="well"> 
                             <h1>
-                                <a href="@Url.Action("View", new { id=item.Id })">
+                                <a href="@Url.Action("View", new { id=item.Id })" style="">
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </a>
                             </h1>
                             <h4>  @Html.DisplayFor(modelItem => item.Description)</h4>
+                           
+                           @if (User.Identity.IsModerator())
+                           {
+                               <div class="row">
+                               <div class="col-lg-2" style="width:100%">
+                                   <a href="@Url.Action("Edit", new { id = item.Id })">
+                                       <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
+                                   </a>
+                                   <a href="@Url.Action("Delete", new { id = item.Id })">
+                                       <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                                   </a>
+                               </div>
+                                   </div>
+                           }
                         </div>
                     </div>
-                </div>
+                
             }
         </div>
 
     </div>
-}
-}
+
+
