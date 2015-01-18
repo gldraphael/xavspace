@@ -1,4 +1,5 @@
-﻿@model XavSpace.Entities.Data.NoticeBoard
+﻿@model XavSpace.Website.ViewModels.Boards.NoticeBoardEditViewModel
+
 
 @{
     ViewBag.Title = "Create Notice Board";
@@ -42,7 +43,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsMandatory, "Mandatory?",htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IsMandatory, "Mandatory",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox-ctm">
                     @Html.EditorFor(model => model.IsMandatory)

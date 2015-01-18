@@ -6207,7 +6207,6 @@ label {
 .radio-inline input[type="radio"],
 .checkbox-ctm input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  position: absolute;
   margin-top: 4px \9;
 }
 .radio + .radio,
