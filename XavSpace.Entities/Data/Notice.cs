@@ -6,15 +6,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using XavSpace.Entities.Data;
-
 namespace XavSpace.Entities.Data
 {
+    /// <summary>
+    /// The status of the notice
+    /// </summary>
+    public enum NoticeStatus
+    {
+        /// <summary>
+        /// The notice hasn't been reviewed yet
+        /// </summary>
+        PendingApproval,
+        /// <summary>
+        /// The notice has been approved
+        /// </summary>
+        Approved,
+        /// <summary>
+        /// The notice has been disapproved
+        /// </summary>
+        Disapproved
+    }
+
     /// <summary>
     /// Represents a notice
     /// </summary>
     public class Notice
-    {
+    {   
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NoticeId { get; set; }
@@ -45,18 +62,18 @@ namespace XavSpace.Entities.Data
         /// <summary>
         /// Gets or Sets the date when the notice was approved. Null if the notice has not been approved.
         /// </summary>
-        public DateTime? DateApproved { get; set; }
+        public DateTime? DateReviewed { get; set; }
 
         /// <summary>
         /// If the notice has been approved
         /// </summary>
-        public bool IsApproved { get; set; }
+        public NoticeStatus Status { get; set; }
 
         /// <summary>
         /// If the approval of the current notice is pending
         /// </summary>
         [NotMapped]
-        public bool IsPendingApproval { get { return DateApproved == null; } }
+        public bool IsPendingApproval { get { return DateReviewed == null; } }
 
         /// <summary>
         /// Comment by the moderator to the notice's Author
@@ -66,8 +83,8 @@ namespace XavSpace.Entities.Data
         public Notice()
         {
             DateCreated = DateTime.UtcNow;
-            DateApproved = null;
-            IsApproved = false;
+            DateReviewed = null;
+            Status = NoticeStatus.PendingApproval;
             ModeratorComment = null;
         }
 
@@ -76,8 +93,8 @@ namespace XavSpace.Entities.Data
         /// </summary>
         public void Approve()
         {
-            DateApproved = DateTime.UtcNow;
-            IsApproved = true;
+            DateReviewed = DateTime.UtcNow;
+            Status = NoticeStatus.Approved;
         }
 
         /// <summary>
@@ -85,8 +102,8 @@ namespace XavSpace.Entities.Data
         /// </summary>
         public void Disapprove()
         {
-            DateApproved = DateTime.UtcNow;
-            IsApproved = false;
+            DateReviewed = DateTime.UtcNow;
+            Status = NoticeStatus.Disapproved;
         }
     }
 }

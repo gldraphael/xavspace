@@ -24,9 +24,14 @@ namespace XavSpace.Facade.Managers
             return await DbContext.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// Returns the requested NoticeBoard if available
+        /// </summary>
         public async Task<NoticeBoard> GetAsync(int id)
         {
-            return await DbContext.NoticeBoards.FindAsync(id);
+            var nb = await DbContext.NoticeBoards.FindAsync(id);
+            nb.Notices = nb.Notices.Where(x => x.Status == NoticeStatus.Approved).ToList();
+            return nb;
         }
 
         public async Task<IEnumerable<NoticeBoard>> GetAsync()

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using XavSpace.Facade.Managers;
 using XavSpace.Website.Filters;
+using XavSpace.Website.ViewModels.Notices;
 
 namespace XavSpace.Website.Controllers
 {
@@ -17,7 +18,25 @@ namespace XavSpace.Website.Controllers
         // GET: Pending
         public async Task<ActionResult> Index()
         {
-            return View(await db.GetPendingAsync());
+            var pending_notices = await db.GetPendingAsync();
+            List<PendingNoticeViewModel> vmlist = new List<PendingNoticeViewModel>();
+            foreach(var n in pending_notices)
+                vmlist.Add(NoticeMappings.To<PendingNoticeViewModel>(n));
+            return View(vmlist);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Approve(int id)
+        {
+            await db.Approve(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Disapprove(int id)
+        {
+            await db.Disapprove(id);
+            return RedirectToAction("Index");
         }
     }
 }

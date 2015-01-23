@@ -44,7 +44,6 @@ namespace XavSpace.Facade.Managers
             return await DbContext.Notices.FindAsync(id);
         }
 
-        
         /// <summary>
         /// Returns all the notices on all notice boards
         /// </summary>
@@ -54,11 +53,14 @@ namespace XavSpace.Facade.Managers
         }
 
         /// <summary>
-        /// Returns all of the pending notices for all notice boards in common
+        /// Returns all of the pending notices for all official notice boards in common
         /// </summary>
         public async Task<IEnumerable<Notice>> GetPendingAsync()
         {
-            return await DbContext.Notices.Where(x => x.DateApproved == null).ToListAsync();
+            var l = from x in DbContext.Notices
+                    where x.NoticeBoard.IsOfficial && x.Status == NoticeStatus.PendingApproval
+                    select x;
+            return await l.Include(n=>n.NoticeBoard).ToListAsync();
         }
 
         /// <summary>

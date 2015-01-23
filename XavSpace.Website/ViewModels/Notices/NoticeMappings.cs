@@ -47,6 +47,40 @@ namespace XavSpace.Website.ViewModels.Notices
             throw new NotImplementedException();
         }
 
+        public static Notice From(PendingNoticeViewModel vm)
+        {
+            Notice n = new Notice
+            {
+                NoticeId = vm.Id,
+                Title = vm.Title,
+                NoticeBoardId = vm.NoticeBoardId,
+                Description = vm.Description,
+                DateCreated = vm.DateCreated,
+                HighPriority = vm.IsHighPriority,
+                ModeratorComment = vm.Comment,
+                Status = vm.Status,
+                DateReviewed = vm.DateReviewed
+            };
+            return n;
+        }
+        public static PendingNoticeViewModel ToPendingNoticeViewModel(Notice notice)
+        {
+            PendingNoticeViewModel vm = new PendingNoticeViewModel
+            {
+                Id = notice.NoticeId,
+                Title = notice.Title,
+                NoticeBoardId = notice.NoticeBoardId,
+                Description = notice.Description,
+                DateCreated = notice.DateCreated,
+                IsHighPriority = notice.HighPriority,
+                Comment = notice.ModeratorComment,
+                Status = notice.Status,
+                DateReviewed = notice.DateReviewed,
+                NoticeBoardName = notice.NoticeBoard.Title
+            };
+            return vm;
+        }
+
         public static T To<T>(Notice nb)
             where T : class
         {
@@ -55,6 +89,9 @@ namespace XavSpace.Website.ViewModels.Notices
 
             else if (typeof(T) == typeof(DetailedNoticeViewModel))
                 return ToDetailedNoticeViewModel(nb) as T;
+
+            else if (typeof(T) == typeof(PendingNoticeViewModel))
+                return ToPendingNoticeViewModel(nb) as T;
 
             else
                 throw new InvalidOperationException("T is not valid");
