@@ -1,6 +1,52 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.NoticeViewModel>
+
+@{
+    ViewBag.Title = "Home";
+}
+<h1>@ViewBag.Title</h1>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoticeBoardId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isHighPriority)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoticeBoardId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isHighPriority)
+        </td>
+    </tr>
 }
 
-<h1>@ViewBag.Title</h1>
+</table>
+
+<hr />
+Links <br />
 <a href="http://mehdi.me/ambient-dbcontext-in-ef6/">Ambient DbContext in EF6</a>
