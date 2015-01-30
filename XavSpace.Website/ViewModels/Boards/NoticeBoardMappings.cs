@@ -37,8 +37,7 @@ namespace XavSpace.Website.ViewModels.Boards
                 NoticeBoardId = vm.Id,
                 Title = vm.Title,
                 Description = vm.Description,
-                IsMandatory = vm.IsMandatory,
-                IsOfficial = vm.IsOfficial
+                IsMandatory = vm.IsMandatory
             };
             return noticeBoard;
         }
@@ -49,8 +48,7 @@ namespace XavSpace.Website.ViewModels.Boards
                 Id = nb.NoticeBoardId,
                 Title = nb.Title,
                 Description = nb.Description,
-                IsMandatory = nb.IsMandatory,
-                IsOfficial = nb.IsOfficial
+                IsMandatory = nb.IsMandatory
             };
             return vm;
         }

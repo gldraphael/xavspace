@@ -1,0 +1,52 @@
+﻿@model XavSpace.Website.ViewModels.Boards.NoticeBoardViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+@{var Title = Html.DisplayFor(model => model.Title); }
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="col-md-8">
+            @if (Title.ToString().Contains("Board"))
+            {
+                <h1>@Html.DisplayFor(model => model.Title)</h1>
+            }
+            else
+            {
+                <h1>@Html.DisplayFor(model => model.Title) Notice Board</h1>
+            }
+            <h3>@Html.DisplayFor(model => model.Description)</h3>
+        </div>
+    </div>
+</div>
+
+<div class="body-content">
+    @using (Html.BeginForm("Post", "Unofficial", new { id = Model.Id }))
+    {
+        <input type="submit" value="Post Notice" class="btn btn-primary" />
+    }
+</div>
+
+<hr />
+<div class="body-content">
+    @foreach (var notice in Model.Notices)
+    {
+        <div class="well">
+
+            <h3>@notice.Title <small><em> - Posted on @notice.DateCreated</em></small></h3>
+
+
+            <p> @notice.Description</p>
+
+        </div>
+    }
+</div>
+
+<p>
+    @if (User.Identity.IsModerator())
+    {
+        @: @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    }
+    @Html.ActionLink("Back to Notice Boards", "Index")
+</p>

@@ -1,21 +1,20 @@
-﻿@model XavSpace.Website.ViewModels.Boards.NoticeBoardEditViewModel
+﻿@model XavSpace.Website.ViewModels.Notices.NoticeViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Post Notice";
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("ConfirmPost", "Unofficial", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <br>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.NoticeBoardId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -25,8 +24,6 @@
             </div>
         </div>
 
-        
-
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -35,36 +32,27 @@
             </div>
         </div>
 
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.IsOfficial,"Official", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox-ctm">
-                    @Html.EditorFor(model => model.IsOfficial)
-                    @Html.ValidationMessageFor(model => model.IsOfficial, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>*@
-
         <div class="form-group">
-            @Html.LabelFor(model => model.IsMandatory,"Mandatory", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.isHighPriority, "High Priority", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox-ctm">
-                    @Html.EditorFor(model => model.IsMandatory)
-                    @Html.ValidationMessageFor(model => model.IsMandatory, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.isHighPriority)
+                    @Html.ValidationMessageFor(model => model.isHighPriority, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to Notice Boards", "Index")
+    
+    @Html.ActionLink("Back to the Notice Board", "View", new { id = Model.NoticeBoardId })
 </div>
 
 @section Scripts {

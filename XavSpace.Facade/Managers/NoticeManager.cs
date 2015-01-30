@@ -19,6 +19,10 @@ namespace XavSpace.Facade.Managers
         /// <returns>1 if success</returns>
         public async Task<int> AddAsync(Notice notice)
         {
+            var nb = await new NoticeBoardManager().GetAsync(notice.NoticeBoardId);
+            if (!nb.IsOfficial)
+                notice.Approve();                   // unofficial notices are approved by default
+
             DbContext.Notices.Add(notice);
             return await DbContext.SaveChangesAsync();
         }

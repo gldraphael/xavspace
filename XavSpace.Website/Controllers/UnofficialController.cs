@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
-using XavSpace.DataAccess.DbContexts;
 using XavSpace.Entities.Data;
 using XavSpace.Facade.Managers;
 using XavSpace.Website.Filters;
@@ -17,14 +13,14 @@ using XavSpace.Website.ViewModels.Notices;
 
 namespace XavSpace.Website.Controllers
 {
-    public class BoardsController : Controller
+    public class UnofficialController : Controller
     {
         private NoticeBoardManager db = new NoticeBoardManager();
 
         // GET: Boards
         public async Task<ActionResult> Index()
         {
-            var x = await db.GetOfficialBoardsAsync();
+            var x = await db.GetUnofficialBoardsAsync();
             var list = new List<NoticeBoardIndexViewModel>();
             foreach (var i in x)
             {
@@ -40,7 +36,7 @@ namespace XavSpace.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NoticeBoard noticeBoard = await db.GetOfficialBoardAsync(id.Value);
+            NoticeBoard noticeBoard = await db.GetUnofficialBoardAsync(id.Value);
             if (noticeBoard == null)
             {
                 return HttpNotFound();
@@ -64,7 +60,7 @@ namespace XavSpace.Website.Controllers
             if (ModelState.IsValid)
             {
                 var notice = NoticeBoardMappings.From(vm);
-                notice.IsOfficial = true;
+                notice.IsOfficial = false;
                 await db.AddAsync(notice);
                 return RedirectToAction("Index");
             }
@@ -80,7 +76,7 @@ namespace XavSpace.Website.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            NoticeBoard noticeBoard = await db.GetOfficialBoardAsync(id.Value);
+            NoticeBoard noticeBoard = await db.GetUnofficialBoardAsync(id.Value);
             if (noticeBoard == null)
             {
                 return HttpNotFound();
@@ -98,7 +94,7 @@ namespace XavSpace.Website.Controllers
             if (ModelState.IsValid)
             {
                 var notice = NoticeBoardMappings.From(vm);
-                notice.IsOfficial = true;
+                notice.IsOfficial = false;
                 await db.UpdateAsync(notice);
                 return RedirectToAction("Index");
             }
@@ -113,7 +109,7 @@ namespace XavSpace.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NoticeBoard noticeBoard = await db.GetOfficialBoardAsync(id.Value);
+            NoticeBoard noticeBoard = await db.GetUnofficialBoardAsync(id.Value);
             if (noticeBoard == null)
             {
                 return HttpNotFound();

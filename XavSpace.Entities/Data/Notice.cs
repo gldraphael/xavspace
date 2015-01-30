@@ -24,7 +24,11 @@ namespace XavSpace.Entities.Data
         /// <summary>
         /// The notice has been disapproved
         /// </summary>
-        Disapproved
+        Disapproved,
+        /// <summary>
+        /// The notice has been flagged by the moderator
+        /// </summary>
+        Flagged
     }
 
     /// <summary>

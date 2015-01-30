@@ -342,6 +342,12 @@
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Pending\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Unofficial\Create.cshtml" />
+    <Content Include="Views\Unofficial\Delete.cshtml" />
+    <Content Include="Views\Unofficial\Edit.cshtml" />
+    <Content Include="Views\Unofficial\Index.cshtml" />
+    <Content Include="Views\Unofficial\Post.cshtml" />
+    <Content Include="Views\Unofficial\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -417,6 +423,7 @@
     <Compile Include="Controllers\PendingController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
+    <Compile Include="Controllers\UnofficialController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Extensions\HtmlLayoutExtension.cs" />
     <Compile Include="Extensions\HtmlUserExtension.cs" />
