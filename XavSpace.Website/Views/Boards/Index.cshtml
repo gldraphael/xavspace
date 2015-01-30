@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
-
+@using System.Linq
 @{
     ViewBag.Title = "Notice Boards";
 }
@@ -13,7 +13,7 @@
 
 
 
-    @*<div class="table-responsive">
+@*<div class="table-responsive">
         <table class="table">
             <tr>
                 <th>
@@ -61,40 +61,50 @@
 
 
 
-    <div class="body-content">
-        <div class="row">
-            @foreach (var item in Model)
-            {
+<div class="body-content">
+    <div class="row">
+        @foreach (var item in Model.OrderBy(i =>i.Title))
+        {
 
-                <div class="col-lg-3 col-md-4 col-sm-5">
-                    
-                       <div class="well"style="height:180px;"> 
-                            <h1>
-                                <a href="@Url.Action("View", new { id=item.Id })" style="">
-                                    @Html.DisplayFor(modelItem => item.Title)
+            <div class="col-lg-3 col-md-4 col-sm-5">
+
+                <div class="well" style="height:180px;">
+                    <h1>
+                        <a href="@Url.Action("View", new { id=item.Id })" style="">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                    </h1>
+                    @{string des = @Html.DisplayFor(model => item.Description).ToString();}
+                    @if (des.Length > 75)
+                    {
+                        <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 50)...</h4>
+                    }
+                    else
+                    {
+                        <h4>  @Html.DisplayFor(model => item.Description)</h4>
+                    }
+
+
+
+                    @if (User.Identity.IsModerator())
+                    {
+                        <div class="row">
+                            <div class="col-lg-2" style="width:100%">
+                                <a href="@Url.Action("Edit", new { id = item.Id })">
+                                    <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
                                 </a>
-                            </h1>
-                            <h4>  @Html.DisplayFor(modelItem => item.Description)</h4>
-                           
-                           @if (User.Identity.IsModerator())
-                           {
-                               <div class="row">
-                               <div class="col-lg-2" style="width:100%">
-                                   <a href="@Url.Action("Edit", new { id = item.Id })">
-                                       <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                                   </a>
-                                   <a href="@Url.Action("Delete", new { id = item.Id })">
-                                       <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                                   </a>
-                               </div>
-                                   </div>
-                           }
+                                <a href="@Url.Action("Delete", new { id = item.Id })">
+                                    <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                
-            }
-        </div>
+                    }
+                </div>
+            </div>
 
+        }
     </div>
+
+</div>
 
 

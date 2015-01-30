@@ -13,7 +13,7 @@ namespace XavSpace.Entities.Data
     /// </summary>
     public enum NoticeStatus
     {
-        /// <summary>
+    /// <summary>
         /// The notice hasn't been reviewed yet
         /// </summary>
         PendingApproval,
@@ -35,7 +35,7 @@ namespace XavSpace.Entities.Data
     /// Represents a notice
     /// </summary>
     public class Notice
-    {   
+    {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NoticeId { get; set; }
@@ -83,6 +83,8 @@ namespace XavSpace.Entities.Data
         /// Comment by the moderator to the notice's Author
         /// </summary>
         public string ModeratorComment { get; set; }
+
+        
 
         public Notice()
         {

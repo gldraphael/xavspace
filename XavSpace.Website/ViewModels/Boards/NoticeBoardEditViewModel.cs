@@ -13,7 +13,7 @@ namespace XavSpace.Website.ViewModels.Boards
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
-        [StringLength(75, MinimumLength = 10)]
+        
         [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }
 

@@ -28,24 +28,40 @@
 
 <div class="body-content">
 
-@using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
-{
-    <input type="submit" value="Post Notice" class="btn btn-primary" />
-}
-    </div>
+    @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
+    {
+        <input type="submit" value="Post Notice" class="btn btn-primary" />
+    }
+</div>
 
 <hr />
 <div class="body-content">
     @foreach (var notice in Model.Notices)
     {
-        <div class="well">
-            
-            <h3>@notice.Title <small><em> - Posted on @notice.DateCreated</em></small></h3> 
-                
-            
+        if (notice.isHighPriority)
+        {
+            <div class="well" style="border-color:red">
+
+                <h3>@notice.Title <small><em> - Posted on @notice.DateCreated</em></small></h3>
+
+
                 <p> @notice.Description</p>
-            
+
             </div>
+
+        }
+        else
+        {
+            <div class="well" style="border-color:dodgerblue">
+
+                <h3>@notice.Title <small><em> - Posted on @notice.DateCreated</em></small></h3>
+
+
+                <p> @notice.Description</p>
+
+            </div>
+
+        }
     }
 </div>
 
