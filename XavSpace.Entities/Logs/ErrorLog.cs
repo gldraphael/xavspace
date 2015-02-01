@@ -26,12 +26,9 @@ namespace XavSpace.Entities.Logs
         public string StackTrace { get; set; }
         public int StatusCode { get; set; }
 
-        public bool Resolved { get; set; }
-
         public ErrorLog()
         {
             StatusCode = 500;
-            Resolved = false;
             TimeStampUtc = DateTime.UtcNow;
         }
     }

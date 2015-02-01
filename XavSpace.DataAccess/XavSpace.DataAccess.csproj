@@ -86,6 +86,10 @@
     <Compile Include="Migrations\201501231338211_notice-updated.Designer.cs">
       <DependentUpon>201501231338211_notice-updated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501301739281_resolved-field-removed.cs" />
+    <Compile Include="Migrations\201501301739281_resolved-field-removed.Designer.cs">
+      <DependentUpon>201501301739281_resolved-field-removed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -117,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501231338211_notice-updated.resx">
       <DependentUpon>201501231338211_notice-updated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501301739281_resolved-field-removed.resx">
+      <DependentUpon>201501301739281_resolved-field-removed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

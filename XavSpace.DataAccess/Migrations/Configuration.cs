@@ -47,6 +47,13 @@ namespace XavSpace.DataAccess.Migrations
                 var roleresult = roleManager.Create(role);
             }
 
+            var trole = roleManager.FindByName("Tester");
+            if (trole == null)
+            {
+                trole = new IdentityRole("Tester");
+                var roleresult = roleManager.Create(trole);
+            }
+
 
             // add a user ...
             const string name = "admin@xavspace.com";
@@ -91,6 +98,22 @@ namespace XavSpace.DataAccess.Migrations
             {
                 newUser = new ApplicationUser { UserName = uname, Email = uname };
                 var result = userManager.Create(newUser, pwd);
+            }
+
+
+            uname = "tester@xavspace.com";
+            pwd = "testerpassword";
+            newUser = userManager.FindByName(uname);
+            if (newUser == null)
+            {
+                newUser = new ApplicationUser { UserName = uname, Email = uname };
+                var result = userManager.Create(newUser, pwd);
+            }
+            // add to tester role
+            var rolesForTester = userManager.GetRoles(newUser.Id);
+            if (!rolesForTester.Contains(trole.Name))
+            {
+                var result = userManager.AddToRole(user.Id, trole.Name);
             }
         }
         #endregion

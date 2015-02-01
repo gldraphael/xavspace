@@ -41,18 +41,18 @@ namespace XavSpace.Facade.Managers
             return await DbContext.SaveChangesAsync();
         }
 
-        public async Task<int> MarkResolved(int id)
-        {
-            var log = await this.GetAsync(id);
-            log.Resolved = true;
-            return await this.UpdateAsync(log);
-        }
+        //public async Task<int> MarkResolved(int id)
+        //{
+        //    var log = await this.GetAsync(id);
+        //    log.Resolved = true;
+        //    return await this.UpdateAsync(log);
+        //}
 
-        public async Task<int> MarkUnresolved(int id)
-        {
-            var log = await this.GetAsync(id);
-            log.Resolved = false;
-            return await this.UpdateAsync(log);
-        }
+        //public async Task<int> MarkUnresolved(int id)
+        //{
+        //    var log = await this.GetAsync(id);
+        //    log.Resolved = false;
+        //    return await this.UpdateAsync(log);
+        //}
     }
 }

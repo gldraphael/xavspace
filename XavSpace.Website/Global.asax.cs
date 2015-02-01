@@ -4,10 +4,12 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web;
 using System;
+using System.Web.Http;
 
 using XavSpace.Facade.Managers;
 using XavSpace.Entities.Logs;
 using XavSpace.Website.Controllers;
+
 
 namespace XavSpace.Website
 {
@@ -28,6 +30,7 @@ namespace XavSpace.Website
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
