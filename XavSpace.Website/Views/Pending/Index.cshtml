@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.PendingNoticeViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Pending Notices";
 }
 
 <h2>Index</h2>
@@ -21,155 +21,65 @@
 }
 else
 {
-    @*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NoticeBoardName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsHighPriority)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Comment)
-            </th>
-            <th></th>
-        </tr>
+    foreach (var item in Model)
+    {
+        <div class="well">
+            <h2>@Html.DisplayFor(modelItem => item.Title) <small><em>Created on @Html.DisplayFor(modelItem => item.DateCreated)</em></small> </h2>
+            <h4>@Html.DisplayFor(modelItem => item.Description)</h4>
+            @if (@Html.DisplayFor(modelItem => item.NoticeBoardName).ToString().Contains("Board"))
+            {
+                <h5>- Posted on the<strong> @Html.DisplayFor(modelItem => item.NoticeBoardName)</strong></h5>
+            }
+            else
+            {
+                <h5>- Posted on the<strong> @Html.DisplayFor(modelItem => item.NoticeBoardName) Notice Board.</strong> </h5>
+            }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NoticeBoardName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsHighPriority)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => item.Status)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Comment)
-                </td>
-                <td>
-                    @using (Html.BeginForm("Approve", "Pending"))
-                    {
-                        <input type="hidden" name="id" value="@item.Id" />
-                        <input type="submit" value="Approve" class="btn btn-primary" />
-                    }
-                    @using (Html.BeginForm("Disapprove", "Pending"))
-                    {
-                        <input type="hidden" name="id" value="@item.Id" />
-                        <input type="submit" value="Disapprove" class="btn btn-default" />
-                    }
-                    @using (Html.BeginForm("Comment", "Pending"))
-                    {
-                        @Html.TextBoxFor(modelItem => item.Comment, new { @class = "form-control " })
-                        <input type="hidden" name="id" value="@item.Id" />
-                        <input type="submit" value="Disapprove" class="btn btn-default" />
-                    }
-                </td>
-            </tr>
-        }
-    </table>*@
+            @using (Html.BeginForm("Approve", "Pending"))
+            {
+                <input type="hidden" name="id" value="@item.Id" />
+                <button type="submit" class="btn btn-success">Approve <i class="glyphicon glyphicon-thumbs-up"></i></button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ammend <i class="glyphicon glyphicon-thumbs-down"></i></button>
 
-
-
-foreach (var item in Model)
-{
-    <div class="well">
-        <h2>@Html.DisplayFor(modelItem => item.Title) <small><em>Created on @Html.DisplayFor(modelItem => item.DateCreated)</em></small> </h2>
-        <h4>@Html.DisplayFor(modelItem => item.Description)</h4>
-        @if (@Html.DisplayFor(modelItem => item.NoticeBoardName).ToString().Contains("Board"))
-        {
-            <h5>- Posted on the<strong> @Html.DisplayFor(modelItem => item.NoticeBoardName)</strong></h5>
-        }
-        else
-        {
-            <h5>- Posted on the<strong> @Html.DisplayFor(modelItem => item.NoticeBoardName) Notice Board.</strong> </h5>
-        }
-
-        @using (Html.BeginForm("Approve", "Pending"))
-        {
-            <input type="hidden" name="id" value="@item.Id" />
-            <button type="submit" class="btn btn-success">Approve <i class="glyphicon glyphicon-thumbs-up"></i></button>
-
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ammend <i class="glyphicon glyphicon-thumbs-down"></i></button>
-
-        }
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-             aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close"
-                                data-dismiss="modal" aria-hidden="true">
-                            &times;
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            Send poster a comment
-                        </h4>
-                    </div>
-
-                    <div class="modal-body">
-
-                        @Html.TextAreaFor(modelItem => item.Comment, new { @class = "form-control " })
-
-
-                    </div>
-                    <div class="modal-footer">
-                        @using (Html.BeginForm("Disapprove", "Pending"))
-                        {
-
-
-                            <button type="button" class="btn btn-default"
-                                    data-dismiss="modal">
-                                Cancel
+            }
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close"
+                                    data-dismiss="modal" aria-hidden="true">
+                                &times;
                             </button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                Send poster a comment
+                            </h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            @Html.TextAreaFor(modelItem => item.Comment, new { @class = "form-control " })
 
 
+                        </div>
+                        <div class="modal-footer">
+                            @using (Html.BeginForm("Disapprove", "Pending"))
+                            {
 
-                            <input type="hidden" name="id" value="@item.Id" />
-                            <input type="submit" class="btn btn-primary" value="Disapprove">
 
-
-                        }
+                                <button type="button" class="btn btn-default"
+                                        data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <input type="submit" class="btn btn-primary" value="Disapprove">
+                            }
+                        </div>
 
                     </div>
 
-                </div>
-
-            </div><!-- /.modal-content -->
+                </div><!-- /.modal-content -->
+            </div>
         </div>
-    </div>
-
-
-
-
-
+    }
 }
-}
-
-
-

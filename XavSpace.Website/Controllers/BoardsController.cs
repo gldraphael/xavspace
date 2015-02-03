@@ -25,11 +25,13 @@ namespace XavSpace.Website.Controllers
         public async Task<ActionResult> Index()
         {
             var x = await db.GetOfficialBoardsAsync();
+            
             var list = new List<NoticeBoardIndexViewModel>();
             foreach (var i in x)
             {
                 list.Add(NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i));
             }
+            
             return View(list);
         }
 
@@ -41,6 +43,7 @@ namespace XavSpace.Website.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             NoticeBoard noticeBoard = await db.GetOfficialBoardAsync(id.Value);
+            
             if (noticeBoard == null)
             {
                 return HttpNotFound();

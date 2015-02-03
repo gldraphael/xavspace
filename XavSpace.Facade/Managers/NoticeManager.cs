@@ -19,9 +19,12 @@ namespace XavSpace.Facade.Managers
         /// <returns>1 if success</returns>
         public async Task<int> AddAsync(Notice notice)
         {
-            var nb = await new NoticeBoardManager().GetAsync(notice.NoticeBoardId);
-            if (!nb.IsOfficial)
-                notice.Approve();                   // unofficial notices are approved by default
+            using (var nbm = new NoticeBoardManager())
+            {
+                var nb = await nbm.GetAsync(notice.NoticeBoardId);
+                if (!nb.IsOfficial)
+                    notice.Approve();                   // unofficial notices are approved by default
+            }
 
             DbContext.Notices.Add(notice);
             return await DbContext.SaveChangesAsync();
@@ -53,8 +56,22 @@ namespace XavSpace.Facade.Managers
         /// </summary>
         public async Task<IEnumerable<Notice>> GetAsync()
         {
-            return await DbContext.Notices
-                .Where(x => x.Status == NoticeStatus.Approved).ToListAsync();
+            return await GetAsync(false);
+        }
+
+        /// <summary>
+        /// Returns all the approved notices on all notice boards
+        /// </summary>
+        /// <param name="sortDescendingByDate">Sorts latest first, if true</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Notice>> GetAsync(bool sortDescendingByDate)
+        {
+            var notices = DbContext.Notices
+                .Where(x => x.Status == NoticeStatus.Approved);
+
+            notices = notices.OrderByDescending(n => n.DateCreated);
+
+            return await notices.ToListAsync();
         }
 
         /// <summary>

@@ -11,13 +11,16 @@ namespace XavSpace.Facade.Factory
 {
     public class DbContextFactory : IDisposable
     {
-        private static int ref_count = 0;
-        private static ApplicationDbContext context = null;
+        // private static int ref_count = 0;
+        private /*static*/ ApplicationDbContext context = null;
 
         public DbContextFactory()
         {
-            context = new ApplicationDbContext();
-            Interlocked.Increment(ref ref_count);
+            //if (ref_count == 0)
+            //{
+                context = new ApplicationDbContext();
+            //}
+            //Interlocked.Increment(ref ref_count);
         }
 
         /// <summary>
@@ -33,23 +36,18 @@ namespace XavSpace.Facade.Factory
         {
             get
             {
-                //if (ref_count == 0)
-                //{
-                //    context = new ApplicationDbContext();
-                //}
-                //Interlocked.Increment(ref ref_count);
                 return context;
             }
         }
 
         public void Dispose()
         {
-            Interlocked.Decrement(ref ref_count);
-            if (ref_count == 0)
-            {
+            //Interlocked.Decrement(ref ref_count);
+            //if (ref_count == 0)
+            //{
                 context.Dispose();
-                context = null;
-            }
+            //    context = null;
+            //}
         }
     }
 }

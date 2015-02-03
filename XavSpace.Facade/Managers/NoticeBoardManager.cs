@@ -54,7 +54,9 @@ namespace XavSpace.Facade.Managers
                 return null;
             if (nb.IsOfficial)
             {
-                nb.Notices = nb.Notices.Where(x => x.Status == NoticeStatus.Approved).ToList();
+                    nb.Notices = nb.Notices.Where(x => x.Status == NoticeStatus.Approved)
+                        .OrderByDescending(n=>n.DateCreated)
+                        .ToList();
                 return nb;
             }
             throw new XSException("The requested noticeboard is not an official notice board");
@@ -69,10 +71,11 @@ namespace XavSpace.Facade.Managers
             if (nb == null)
                 return null;
             if (nb.IsOfficial)
-            {
                 throw new XSException("The requested noticeboard is not an unofficial notice board");
-            }
-            nb.Notices = nb.Notices.Where(x => x.Status != NoticeStatus.Flagged).ToList();
+
+            nb.Notices = nb.Notices.Where(x => x.Status != NoticeStatus.Flagged)
+                            .OrderByDescending(n=>n.DateCreated)
+                            .ToList();
             return nb;
         }
 
