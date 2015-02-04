@@ -103,9 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XSException.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

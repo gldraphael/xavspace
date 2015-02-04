@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using XavSpace.Facade.Managers;
 using XavSpace.Website.Filters;
+using XavSpace.Website.Hubs;
 using XavSpace.Website.ViewModels.Notices;
 
 namespace XavSpace.Website.Controllers
@@ -29,6 +30,7 @@ namespace XavSpace.Website.Controllers
         public async Task<ActionResult> Approve(int id)
         {
             await db.Approve(id);
+            NotificationService.Instance.BroadcastNotification();
             return RedirectToAction("Index");
         }
 

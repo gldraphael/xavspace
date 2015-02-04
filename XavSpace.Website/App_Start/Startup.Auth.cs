@@ -64,6 +64,8 @@ namespace XavSpace.Website
             //app.UseGoogleAuthentication(
             //    clientId: "",
             //    clientSecret: "");
+
+            app.MapSignalR();
         }
     }
 }
