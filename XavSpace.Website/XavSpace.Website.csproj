@@ -360,6 +360,7 @@
     <Content Include="Views\Unofficial\Index.cshtml" />
     <Content Include="Views\Unofficial\Post.cshtml" />
     <Content Include="Views\Unofficial\View.cshtml" />
+    <Content Include="Views\Shared\_NewsFeedLayout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
