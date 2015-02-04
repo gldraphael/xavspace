@@ -44,7 +44,17 @@ namespace XavSpace.Website.ViewModels.Notices
         }
         public static DetailedNoticeViewModel ToDetailedNoticeViewModel(Notice notice)
         {
-            throw new NotImplementedException();
+            DetailedNoticeViewModel vm = new DetailedNoticeViewModel
+            {
+                Id = notice.NoticeId,
+                Title = notice.Title,
+                NoticeBoardId = notice.NoticeBoardId,
+                Description = notice.Description,
+                DateCreated = notice.DateCreated,
+                isHighPriority = notice.HighPriority,
+                NoticeBoardName = notice.NoticeBoard.Title
+            };
+            return vm;
         }
 
         public static Notice From(PendingNoticeViewModel vm)

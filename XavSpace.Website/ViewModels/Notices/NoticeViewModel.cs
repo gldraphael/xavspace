@@ -12,6 +12,7 @@ namespace XavSpace.Website.ViewModels.Notices
         [Required]
         public int NoticeBoardId { get; set; }
 
+
         /// <summary>
         /// The Title of the Notice
         /// </summary>

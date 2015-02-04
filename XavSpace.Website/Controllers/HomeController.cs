@@ -15,11 +15,11 @@ namespace XavSpace.Website.Controllers
                 return RedirectToAction("Index", "About");
 
             NoticeManager nm = new NoticeManager();
-            var notices = await nm.GetAsync();
+            var notices = await nm.GetDetailedAsync();
 
-            List<NoticeViewModel> vms = new List<NoticeViewModel>();
+            List<DetailedNoticeViewModel> vms = new List<DetailedNoticeViewModel>();
             foreach (var n in notices)
-                vms.Add(NoticeMappings.ToNoticeViewModel(n));
+                vms.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
             return View(vms);
         }

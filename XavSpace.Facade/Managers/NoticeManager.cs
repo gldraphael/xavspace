@@ -60,6 +60,17 @@ namespace XavSpace.Facade.Managers
         }
 
         /// <summary>
+        /// Returns all the approved notices and the corresponding noticeboard details for all notice boards
+        /// </summary>
+        public async Task<IEnumerable<Notice>> GetDetailedAsync()
+        {
+            return await DbContext.Notices
+                .Where(x => x.Status == NoticeStatus.Approved)
+                .Include(nb => nb.NoticeBoard)
+                .ToListAsync();
+        }
+
+        /// <summary>
         /// Returns all the approved notices on all notice boards
         /// </summary>
         /// <param name="sortDescendingByDate">Sorts latest first, if true</param>

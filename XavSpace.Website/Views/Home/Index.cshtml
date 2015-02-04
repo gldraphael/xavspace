@@ -1,4 +1,4 @@
-﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.NoticeViewModel>
+﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
 @{
     ViewBag.Title = "Your Notices";
     Layout = "~/Views/Shared/_NewsFeedLayout.cshtml";
@@ -12,7 +12,7 @@
             {
                 <div style="border:thin; background-color:white; margin-top:1em; border-radius:.2em; border-bottom-style:inset">
                     <div style="padding:1em">
-                    <h1>Department Number @Html.DisplayFor(modelItem => item.NoticeBoardId)</h1>
+                    <h1>Department Number @Html.DisplayFor(modelItem => item.NoticeBoardName)</h1>
                     <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
                     <h4>@Html.DisplayFor(modelItem => item.Description)</h4>
                     <h4><b>By Order of the Principle</b></h4>
