@@ -5,11 +5,13 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using XavSpace.Entities.Data;
 using XavSpace.Facade.Managers;
 using XavSpace.Website.Filters;
 using XavSpace.Website.ViewModels.Boards;
 using XavSpace.Website.ViewModels.Notices;
+using XavSpace.Website.Extensions;
 
 namespace XavSpace.Website.Controllers
 {
@@ -153,7 +155,7 @@ namespace XavSpace.Website.Controllers
             if (ModelState.IsValid)
             {
                 NoticeManager nm = new NoticeManager();
-                await nm.AddAsync(NoticeMappings.From(vm));
+                await nm.AddAsync(NoticeMappings.From(vm), await this.User.Identity.GetApplicationUserAsync());
                 return RedirectToAction("View", new { id = vm.NoticeBoardId });
             }
             return View(vm);

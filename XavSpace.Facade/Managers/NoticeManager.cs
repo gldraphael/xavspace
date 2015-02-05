@@ -7,6 +7,8 @@ using System.Data.Entity;
 
 using XavSpace.Entities.Data;
 using XavSpace.Facade.Managers.Base;
+using XavSpace.Entities.Users;
+using XavSpace.Entities.Relationships;
 
 namespace XavSpace.Facade.Managers
 {
@@ -19,15 +21,44 @@ namespace XavSpace.Facade.Managers
         /// <returns>1 if success</returns>
         public async Task<int> AddAsync(Notice notice)
         {
+            await Task.FromResult(0);
+            throw new InvalidOperationException("The OP of the notice wasn't specified");
+        }
+
+        /// <summary>
+        /// Adds a notice to the database
+        /// </summary>
+        /// <param name="notice">The notice to be added</param>
+        /// <returns>1 if success</returns>
+        public async Task<int> AddAsync(Notice notice, ApplicationUser user)
+        {
             using (var nbm = new NoticeBoardManager())
             {
                 var nb = await nbm.GetAsync(notice.NoticeBoardId);
                 if (!nb.IsOfficial)
+                {
                     notice.Approve();                   // unofficial notices are approved by default
+                }
             }
 
             DbContext.Notices.Add(notice);
-            return await DbContext.SaveChangesAsync();
+            int result = await DbContext.SaveChangesAsync();
+            if(result > 0)
+            {
+                RelationshipManager rm = new RelationshipManager();
+                if (await rm.AddAsync(new UserNoticePost { NoticeId = notice.NoticeId, UserId = user.Id }) > 0)
+                {
+                    return result;
+                }
+                else
+                {
+                    // could not create a relation ship
+                    DbContext.Notices.Remove(notice);
+                    return await DbContext.SaveChangesAsync();
+                }
+            }
+            
+            return result;
         }
 
         /// <summary>
