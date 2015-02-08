@@ -6300,6 +6300,17 @@ label {
 #boards a {
   color: #e7e7ef;
 }
+.container-ctm {
+  width: 100%;
+}
+.align-left {
+  float: left;
+  width: 50%;
+}
+.align-right {
+  float: right;
+  width: 50%;
+}
 .clearfix:before,
 .clearfix:after,
 .dl-horizontal dd:before,

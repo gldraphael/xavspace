@@ -74,7 +74,15 @@
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </a>
                             </h1>
-                            <h4>  @Html.DisplayFor(modelItem => item.Description)</h4>
+                            @{string des = @Html.DisplayFor(modelItem => item.Description).ToString();}
+                            @if (des.Length > 75)
+                            {
+                                <h4>  @Html.DisplayFor(modelItem => item.Description).ToString().Substring(0, 50)...</h4>
+                            }
+                            else
+                            {
+                                <h4>  @Html.DisplayFor(modelItem => item.Description)</h4>
+                            }
                            
                            @if (User.Identity.IsModerator())
                            {
