@@ -60,7 +60,7 @@ namespace XavSpace.Facade.Managers
 
         public async Task<bool> ExistsAsync(UserNoticeBoardFollow relationship)
         {
-            var unb = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship);
+            var unb = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship.UserId, relationship.NoticeBoardId);
             return unb != null;
         }
     }
