@@ -172,4 +172,8 @@
   float: right;
   width: 50%;
 }
+#editor {
+  overflow: scroll;
+  max-height: 300px;
+}
 /*# sourceMappingURL=style.css.map */

@@ -6311,6 +6311,10 @@ label {
   float: right;
   width: 50%;
 }
+#editor {
+  overflow: scroll;
+  max-height: 300px;
+}
 .clearfix:before,
 .clearfix:after,
 .dl-horizontal dd:before,

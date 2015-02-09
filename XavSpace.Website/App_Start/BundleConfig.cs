@@ -28,6 +28,10 @@ namespace XavSpace.Website
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 //"~/Content/bootstrap.css",
                       "~/Content/site.css")); //,
+
+            bundles.Add(new ScriptBundle("~/bundles/WYSIWYG").Include(
+                      "~/Scripts/bootstrap-wysiwyg.js",
+                      "~/Scripts/jquery.hotkeys.js"));
         }
     }
 }

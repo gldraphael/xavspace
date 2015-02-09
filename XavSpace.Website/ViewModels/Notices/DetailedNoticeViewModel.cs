@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+using System.Web.Mvc;
 namespace XavSpace.Website.ViewModels.Notices
 {
     public class DetailedNoticeViewModel
@@ -26,6 +26,8 @@ namespace XavSpace.Website.ViewModels.Notices
         /// <summary>
         /// Description of the notice
         /// </summary>
+        /// 
+        [AllowHtml]
         [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }
 

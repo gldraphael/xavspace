@@ -14,6 +14,7 @@ namespace XavSpace.Website.ViewModels.Boards
         [Required]
         public string Title { get; set; }
         
+        [AllowHtml]
         [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }
 
