@@ -25,7 +25,7 @@ else
     {
         <div class="well">
             <h2>@Html.DisplayFor(modelItem => item.Title) <small><em>Created on @Html.DisplayFor(modelItem => item.DateCreated)</em></small> </h2>
-            <h4>@Html.DisplayFor(modelItem => item.Description)</h4>
+            <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))</h4>
             @if (@Html.DisplayFor(modelItem => item.NoticeBoardName).ToString().Contains("Board"))
             {
                 <h5>- Posted on the<strong> @Html.DisplayFor(modelItem => item.NoticeBoardName)</strong></h5>
