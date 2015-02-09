@@ -34,5 +34,34 @@ namespace XavSpace.Facade.Managers
             DbContext.UserNoticePostRelationship.Remove(noticeBoard);
             return await DbContext.SaveChangesAsync();
         }
+
+        /// <summary>
+        /// Adds a User's Notice Board Following relationship
+        /// </summary>
+        /// <param name="notice">The relationship to be added</param>
+        /// <returns>1 if success</returns>
+        public async Task<int> AddAsync(UserNoticeBoardFollow relationship)
+        {
+            DbContext.UserBoardFollowingRelationship.Add(relationship);
+            return await DbContext.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Deletes a User's NoticeBoard Following relationship
+        /// </summary>
+        /// <param name="id">The relationship to be deleted</param>
+        /// <returns>1 if success</returns>
+        public async Task<int> DeleteAsync(UserNoticeBoardFollow relationship)
+        {
+            UserNoticeBoardFollow noticeBoard = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship);
+            DbContext.UserBoardFollowingRelationship.Remove(noticeBoard);
+            return await DbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistsAsync(UserNoticeBoardFollow relationship)
+        {
+            var unb = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship);
+            return unb != null;
+        }
     }
 }

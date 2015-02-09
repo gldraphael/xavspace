@@ -2,13 +2,12 @@ namespace XavSpace.DataAccess.Migrations
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-
     using XavSpace.DataAccess.DbContexts;
+    using XavSpace.Entities.Data;
     using XavSpace.Entities.Users;
 
     internal sealed class Configuration : DbMigrationsConfiguration<XavSpace.DataAccess.DbContexts.ApplicationDbContext>

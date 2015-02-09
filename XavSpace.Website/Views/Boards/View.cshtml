@@ -4,8 +4,6 @@
     ViewBag.Title = Model.Title;
 }
 
-
-
 @{var Title = Html.DisplayFor(model => model.Title); }
 <div class="jumbotron">
     <div class="container">
@@ -20,8 +18,6 @@
             }
             <h3>@Html.DisplayFor(model => model.Description)</h3>
         </div>
-
-
     </div>
 </div>
 
@@ -30,7 +26,12 @@
 
     @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
     {
-        <input type="submit" value="Post Notice" class="btn btn-primary" />
+        <input type="submit" value="Post Notice" class="btn btn-default" />
+    }
+
+    @using (Html.BeginForm("Subscribe", "Boards", new { id = Model.Id }, FormMethod.Post, new { @id="btnSubscribe" }))
+    {
+        <input type="submit" value="Subscribe" class="btn btn-primary" />
     }
 </div>
 
@@ -73,3 +74,7 @@
     }
     @Html.ActionLink("Back to Notice Boards", "Index")
 </p>
+
+@section scripts{
+
+}

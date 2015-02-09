@@ -101,6 +101,12 @@ namespace XavSpace.Facade.Managers
                 .ToListAsync();
         }
 
+
+        internal IQueryable<Notice> GetQueryable()
+        {
+            return DbContext.Notices.AsQueryable();
+        }
+
         /// <summary>
         /// Returns all the approved notices on all notice boards
         /// </summary>
@@ -170,5 +176,16 @@ namespace XavSpace.Facade.Managers
             n.Disapprove();
             return await this.UpdateAsync(n);
         }
+
+
+        public async Task<List<Notice>> SearchAsync(string searchString)
+        {
+            var res = DbContext.Notices.Where(x => x.Title.Contains(searchString))
+                .Union(DbContext.Notices.Where(y => y.Description.Contains(searchString)));
+
+            res = res.Take(5);
+            return await res.ToListAsync();
+        }
+
     }
 }

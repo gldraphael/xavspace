@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.Owin;
 
 using XavSpace.Entities.Users;
 using XavSpace.Facade.Identity.Managers;
+using XavSpace.Facade.Managers;
+using XavSpace.Entities.Relationships;
 
 namespace XavSpace.Website.Extensions
 {
@@ -29,6 +31,19 @@ namespace XavSpace.Website.Extensions
         {
             var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
             return userManager.FindById<ApplicationUser, string>(id);
+        }
+
+        public static async Task<bool> IsSubscribedTo(this IIdentity identity, int noticeBoardId)
+        {
+            var id = identity.GetUserId();
+            using (RelationshipManager rm = new RelationshipManager())
+            {
+                if (await rm.ExistsAsync(new UserNoticeBoardFollow { NoticeBoardId = noticeBoardId, UserId = id }))
+                {
+                    return true;
+                }
+                return false;
+            }
         }
 
         // Checks if the current user has a local password

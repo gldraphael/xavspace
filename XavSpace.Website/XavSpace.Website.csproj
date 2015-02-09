@@ -379,12 +379,19 @@
     <None Include="Properties\PublishProfiles\XavSpace Test Site.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap-wysiwyg.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Scripts\jquery.hotkeys.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
+    <Content Include="Scripts\layout\search.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Views\Boards\Create.cshtml" />
     <Content Include="Views\Boards\Delete.cshtml" />
     <Content Include="Views\Boards\View.cshtml" />
@@ -406,6 +413,7 @@
     <Content Include="Views\Unofficial\Post.cshtml" />
     <Content Include="Views\Unofficial\View.cshtml" />
     <Content Include="Views\Shared\_NewsFeedLayout.cshtml" />
+    <Content Include="Views\Search\Results.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -482,10 +490,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\PendingController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Hubs\NHub.cs" />
     <Compile Include="Hubs\NotificationService.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Search\SearchItemJVM.cs" />
     <Compile Include="WebApi\BoardsController.cs" />
     <Compile Include="WebApi\TestController.cs" />
     <Compile Include="Controllers\UnofficialController.cs" />
@@ -547,9 +557,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\JsonViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -561,7 +569,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>52277</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

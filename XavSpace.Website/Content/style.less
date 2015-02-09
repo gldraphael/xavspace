@@ -1,11 +1,57 @@
-﻿
-@theme-color:#d9230f;
-@theme-color-blue:#c6cfd6;
-@theme-color-gray:#e7e7ef;
-@theme-color-teal:#003031;
-@theme-color-teal-lt:lighten(@theme-color-teal,10%);
-@theme-color-gray-dk:#606060;
+﻿@import (multiple) 'variables.less';
 
+/* ----- BOOTSTRAP TYPEAHEAD.JS STYLE FOR SEARCH ----- */
+/*-------------------------------------------------------
+-------------------------------------------------------*/
+
+/*.tt-input,
+.tt-hint {
+    width: 396px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 24px;
+    line-height: 30px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+}*/
+
+/*.tt-input {
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}*/
+
+.tt-hint {
+    color: #999;
+}
+
+.tt-dropdown-menu {
+    width: 422px;
+    margin-top: 12px;
+    padding: 8px 0;
+    background-color: #fff;
+    /*border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, 0.2);*/
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.tt-suggestion {
+    padding: 3px 20px;
+    font-size: 18px;
+    line-height: 24px;
+
+    .tt-cursor {
+        color: #fff;
+        background-color: #0097cf;
+    }
+    p {
+        margin: 0 5px;
+    }
+}
+
+/*-------------------------------------------------------
+--------------------------------------------------------*/
+/* ----BOOTSTRAP TYPEAHEAD.JS STYLE FOR SEARCH END ---- */
 
 
 #aboutbody1 {

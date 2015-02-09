@@ -122,5 +122,15 @@ namespace XavSpace.Facade.Managers
             DbContext.NoticeBoards.Remove(noticeBoard);
             return await DbContext.SaveChangesAsync();
         }
+
+        public async Task<List<NoticeBoard>> SearchAsync(string searchString)
+        {
+            var res = DbContext.NoticeBoards.Where(x => x.Title.Contains(searchString))
+                .Union(DbContext.NoticeBoards.Where(y => y.Description.Contains(searchString)));
+
+            res = res.Take(5);
+
+            return await res.ToListAsync();
+        }
     }
 }

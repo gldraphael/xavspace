@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 using XavSpace.DataAccess.DbContexts;
 using XavSpace.Entities.Data;
+using XavSpace.Entities.Relationships;
 using XavSpace.Facade.Managers;
 using XavSpace.Website.Filters;
 using XavSpace.Website.ViewModels.Boards;
@@ -26,13 +27,13 @@ namespace XavSpace.Website.Controllers
         public async Task<ActionResult> Index()
         {
             var x = await db.GetOfficialBoardsAsync();
-            
+
             var list = new List<NoticeBoardIndexViewModel>();
             foreach (var i in x)
             {
                 list.Add(NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i));
             }
-            
+
             return View(list);
         }
 
@@ -44,11 +45,14 @@ namespace XavSpace.Website.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             NoticeBoard noticeBoard = await db.GetOfficialBoardAsync(id.Value);
-            
+
             if (noticeBoard == null)
             {
                 return HttpNotFound();
             }
+            if (await User.Identity.IsSubscribedTo(id.Value))
+                ViewBag.Subscribed = true;
+            else ViewBag.Subscribed = false;
             return View(NoticeBoardMappings.To<NoticeBoardViewModel>(noticeBoard));
         }
 
@@ -165,6 +169,23 @@ namespace XavSpace.Website.Controllers
                 return RedirectToAction("View", new { id = vm.NoticeBoardId });
             }
             return View(vm);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Subscribe(int noticeboardId)
+        {
+            var board = await db.GetAsync(noticeboardId);
+            RelationshipManager rm = new RelationshipManager();
+            int result = await rm.AddAsync(
+                    new UserNoticeBoardFollow
+                    {
+                        NoticeBoardId = noticeboardId,
+                        UserId = (await User.Identity.GetApplicationUserAsync()).Id
+                    }
+                );
+            if(result > 0)
+                return Json(new { status = "success" });
+            return Json(new { status = "error" });
         }
     }
 }
