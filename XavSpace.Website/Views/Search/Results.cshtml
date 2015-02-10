@@ -5,3 +5,18 @@
 
 <h2>@ViewBag.Title</h2>
 
+@foreach (var item in Model.Item2)
+{ 
+    
+    @item.Title
+   @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))
+
+}
+
+@foreach (var item in Model.Item1)
+{
+    //@item.Notices
+    @item.Title
+    @item.Description
+
+}

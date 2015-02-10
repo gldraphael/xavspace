@@ -225,6 +225,8 @@
     <Content Include="Content\images\LOGO.png" />
     <Content Include="Content\images\LOGOxs.png" />
     <Content Include="Content\images\NB2.jpg" />
+    <Content Include="Content\images\search-dark.png" />
+    <Content Include="Content\images\search-white.png" />
     <Content Include="Content\Site.css">
       <DependentUpon>Site.less</DependentUpon>
     </Content>
@@ -307,7 +309,6 @@
     <Content Include="Content\font-awesome-4.3.0\scss\_rotated-flipped.scss" />
     <Content Include="Content\font-awesome-4.3.0\scss\_stacked.scss" />
     <Content Include="Content\font-awesome-4.3.0\scss\_variables.scss" />
-    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -360,25 +361,6 @@
     <Content Include="Content\bootstrap\mixins\border-radius.less" />
     <Content Include="Content\bootstrap\mixins\background-variant.less" />
     <Content Include="Content\bootstrap\mixins\alerts.less" />
-    <Content Include="Content\bootstrap\mixins.less" />
-    <Content Include="Content\bootstrap\media.less" />
-    <Content Include="Content\bootstrap\list-group.less" />
-    <Content Include="Content\bootstrap\labels.less" />
-    <Content Include="Content\bootstrap\jumbotron.less" />
-    <Content Include="Content\bootstrap\input-groups.less" />
-    <Content Include="Content\bootstrap\grid.less" />
-    <Content Include="Content\bootstrap\glyphicons.less" />
-    <Content Include="Content\bootstrap\forms.less" />
-    <Content Include="Content\bootstrap\dropdowns.less" />
-    <Content Include="Content\bootstrap\component-animations.less" />
-    <Content Include="Content\bootstrap\code.less" />
-    <Content Include="Content\bootstrap\close.less" />
-    <Content Include="Content\bootstrap\carousel.less" />
-    <Content Include="Content\bootstrap\buttons.less" />
-    <Content Include="Content\bootstrap\button-groups.less" />
-    <Content Include="Content\bootstrap\breadcrumbs.less" />
-    <Content Include="Content\bootstrap\badges.less" />
-    <Content Include="Content\bootstrap\alerts.less" />
     <None Include="Properties\PublishProfiles\XavSpace Test Site.pubxml" />
     <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bloodhound.js" />

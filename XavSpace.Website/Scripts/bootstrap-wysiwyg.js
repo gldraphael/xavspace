@@ -191,7 +191,7 @@
 		},
 		toolbarSelector: '[data-role=editor-toolbar]',
 		commandRole: 'edit',
-		activeToolbarClass: 'btn-info',
+		activeToolbarClass: 'btn-primary',
 		selectionMarker: 'edit-focus-marker',
 		selectionColor: 'darkgrey',
 		dragAndDropImages: true,
