@@ -30,7 +30,7 @@ namespace XavSpace.Facade.Managers
         /// <returns>1 if success</returns>
         public async Task<int> DeleteAsync(UserNoticePost relationship)
         {
-            UserNoticePost noticeBoard = await DbContext.UserNoticePostRelationship.FindAsync(relationship);
+            UserNoticePost noticeBoard = await DbContext.UserNoticePostRelationship.FindAsync(relationship.UserId, relationship.NoticeId);
             DbContext.UserNoticePostRelationship.Remove(noticeBoard);
             return await DbContext.SaveChangesAsync();
         }
@@ -53,7 +53,7 @@ namespace XavSpace.Facade.Managers
         /// <returns>1 if success</returns>
         public async Task<int> DeleteAsync(UserNoticeBoardFollow relationship)
         {
-            UserNoticeBoardFollow noticeBoard = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship);
+            UserNoticeBoardFollow noticeBoard = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship.UserId, relationship.NoticeBoardId);
             DbContext.UserBoardFollowingRelationship.Remove(noticeBoard);
             return await DbContext.SaveChangesAsync();
         }

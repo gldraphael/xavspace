@@ -16,6 +16,7 @@ using XavSpace.Website.Filters;
 using XavSpace.Website.ViewModels.Boards;
 using XavSpace.Website.ViewModels.Notices;
 using XavSpace.Website.Extensions;
+using XavSpace.Website.ViewModels.JsonViewModels.Base;
 
 namespace XavSpace.Website.Controllers
 {
@@ -50,9 +51,11 @@ namespace XavSpace.Website.Controllers
             {
                 return HttpNotFound();
             }
+
             if (await User.Identity.IsSubscribedTo(id.Value))
                 ViewBag.Subscribed = true;
             else ViewBag.Subscribed = false;
+
             return View(NoticeBoardMappings.To<NoticeBoardViewModel>(noticeBoard));
         }
 
@@ -171,6 +174,7 @@ namespace XavSpace.Website.Controllers
             return View(vm);
         }
 
+        // POST: Boards/Subscribe?noticeboardId=5
         [HttpPost]
         public async Task<JsonResult> Subscribe(int noticeboardId)
         {
@@ -184,8 +188,33 @@ namespace XavSpace.Website.Controllers
                     }
                 );
             if(result > 0)
-                return Json(new { status = "success" });
-            return Json(new { status = "error" });
+                return Json(JsonViewModel.Success, JsonRequestBehavior.DenyGet);
+            return Json(JsonViewModel.Error, JsonRequestBehavior.DenyGet);
+        }
+
+        // POST: Boards/Unsubscribe?noticeboardId=5
+        [HttpPost]
+        public async Task<JsonResult> Unsubscribe(int noticeboardId)
+        {
+            try
+            {
+                var board = await db.GetAsync(noticeboardId);
+                RelationshipManager rm = new RelationshipManager();
+                int result = await rm.DeleteAsync(
+                        new UserNoticeBoardFollow
+                        {
+                            NoticeBoardId = noticeboardId,
+                            UserId = (await User.Identity.GetApplicationUserAsync()).Id
+                        }
+                    );
+                if (result > 0)
+                    return Json(JsonViewModel.Success, JsonRequestBehavior.DenyGet);
+            }
+            catch
+            {
+                return Json(JsonViewModel.Error, JsonRequestBehavior.DenyGet);
+            }
+            return Json(JsonViewModel.Error, JsonRequestBehavior.DenyGet);
         }
     }
 }
