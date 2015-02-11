@@ -1,123 +1,18 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title | XavSpace</title>
-    <meta name="description" content="The Xavier's Notification System" />
-    <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
-    <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
-    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-    <meta name="msapplication-TileColor" content="#d9230f">
-    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
-    <link rel="stylesheet" href="~/Content/font-awesome-4.3.0/css/font-awesome.min.css">
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Html.Partial("LayoutPartials/_head")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                    <img alt="XavSpace" src="~/Content/images/LOGOxs.png" style="height:100%; width:100%">
-                </a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                   
-
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-
-                    @if (Request.IsAuthenticated)
-                    {
-
-                        if (User.IsInRole("Admin"))
-                        {
-                            <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
-                            <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
-                        }
-
-
-                        <li>@Html.ActionLink("Boards", "Index", "Boards")</li>
-                        <li>@Html.ActionLink("Unofficial", "Index", "Unofficial")</li>
-
-                        if (User.Identity.IsModerator())
-                        {
-                            <li>@Html.ActionLink("Notices", "Index", "Notices")</li>
-                            <li>@Html.ActionLink("Pending Approvals", "Index", "Pending")</li>
-                        }
-
-                        <li>@using (Html.BeginForm("Results", "Search", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
-                        {
-                            <div class="input-group">
-                                    @Html.TextBox("q", value: null, htmlAttributes: new { @placeholder = "Search", @type = "text", @class = "form-control typeahead", @id = "search" })
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div>
-
-                            @*<input id="" class="demo-2" type="search" placeholder="Search">*@
-
-
-
-
-
-                        }</li>
-
-                    }
-                </ul>
-
-
-                
-                @Html.Partial("_LoginPartial")
-            </div>
-        </div>
-    </div>
-    @if (Html.IsAboutPage(Context))
-    {
-        <div>
-            @RenderBody()
-        </div>
-        <div>
-
-            <footer class="container body-content">
-                <hr />
-                <p>&copy; @DateTime.Now.Year - XavSpace</p>
-            </footer>
-        </div>
-    }
-    else
-    {
+    @Html.Partial("LayoutPartials/_navbar")
         <div class="container body-content">
             <br>
             <br>
             @RenderBody()
             <hr />
-            <footer>
-                <p>
-                    &copy; @DateTime.Now.Year - XavSpace
-                    &middot; @Html.ActionLink("About", "Index", "About")
-                    &middot; @Html.ActionLink("Contact", "Contact", "About")
-                </p>
-            </footer>
+        @Html.Partial("LayoutPartials/_footer")
         </div>
-    }
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/ta")

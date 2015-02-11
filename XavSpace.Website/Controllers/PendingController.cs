@@ -11,7 +11,7 @@ using XavSpace.Website.ViewModels.Notices;
 
 namespace XavSpace.Website.Controllers
 {
-    [ModeratorOnly]
+    [RestrictAccessTo(UserTypes="moderator")]
     public class PendingController : Controller
     {
         NoticeManager db = new NoticeManager();

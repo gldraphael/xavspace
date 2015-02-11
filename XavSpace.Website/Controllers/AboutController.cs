@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using XavSpace.Website.Filters;
+
 namespace XavSpace.Website.Controllers
 {
     [AllowAnonymous]
@@ -21,9 +23,10 @@ namespace XavSpace.Website.Controllers
             return View();
         }
 
-        public ActionResult ThrowException()
+        [RestrictAccessTo(UserTypes="moderator")]
+        public string Test()
         {
-            throw new Exception("Throw an exception");
+            return "This is a test";
         }
     }
 }

@@ -47,7 +47,7 @@ namespace XavSpace.Website.Controllers
         }
 
         // GET: Boards/Create
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes="staff,moderator")]
         public ActionResult Create()
         {
             return View();
@@ -55,7 +55,7 @@ namespace XavSpace.Website.Controllers
 
         // POST: Boards/Create
         [HttpPost]
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Title,IsMandatory,Description")] NoticeBoardEditViewModel vm)
         {
@@ -70,7 +70,7 @@ namespace XavSpace.Website.Controllers
         }
 
         // GET: Boards/Edit/5
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,7 +90,7 @@ namespace XavSpace.Website.Controllers
         // POST: Boards/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Title,IsMandatory,Description")] NoticeBoardEditViewModel vm)
         {
             if (ModelState.IsValid)
@@ -104,7 +104,7 @@ namespace XavSpace.Website.Controllers
         }
 
         // GET: Boards/Delete/5
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -120,7 +120,7 @@ namespace XavSpace.Website.Controllers
         }
 
         // POST: Boards/Delete/5
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

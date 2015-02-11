@@ -1,0 +1,12 @@
+﻿<footer>
+    <p>
+        &copy; @DateTime.Now.Year - XavSpace
+        &middot; @Html.ActionLink("About", "Index", "About")
+        &middot; @Html.ActionLink("Contact", "Contact", "About")
+        @if (User.IsInRole("Admin"))
+        {
+            @: &middot; @Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")
+            @: &middot; @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")
+        }
+    </p>
+</footer>

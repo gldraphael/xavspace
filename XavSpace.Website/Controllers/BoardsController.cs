@@ -25,6 +25,9 @@ namespace XavSpace.Website.Controllers
         private NoticeBoardManager db = new NoticeBoardManager();
 
         // GET: Boards
+        /// <summary>
+        /// Displays all the official notice boards on XavSpace
+        /// </summary>
         public async Task<ActionResult> Index()
         {
             var x = await db.GetOfficialBoardsAsync();
@@ -39,6 +42,9 @@ namespace XavSpace.Website.Controllers
         }
 
         // GET: Boards/View/5
+        /// <summary>
+        /// Displays a notice board
+        /// </summary>
         public async Task<ActionResult> View(int? id)
         {
             if (id == null)
@@ -59,16 +65,23 @@ namespace XavSpace.Website.Controllers
             return View(NoticeBoardMappings.To<NoticeBoardViewModel>(noticeBoard));
         }
 
+
         // GET: Boards/Create
-        [ModeratorOnly]
+        /// <summary>
+        /// Create an official notice board
+        /// </summary>
+        [RestrictAccessTo(UserTypes = "moderator")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Boards/Create
+        /// <summary>
+        /// Creates an official notice board
+        /// </summary>
         [HttpPost]
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "moderator")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Title,IsMandatory,Description")] NoticeBoardEditViewModel vm)
         {
@@ -83,7 +96,10 @@ namespace XavSpace.Website.Controllers
         }
 
         // GET: Boards/Edit/5
-        [ModeratorOnly]
+        /// <summary>
+        /// Edits a notice board
+        /// </summary>
+        [RestrictAccessTo(UserTypes = "moderator")]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,7 +119,7 @@ namespace XavSpace.Website.Controllers
         // POST: Boards/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "moderator")]
         public async Task<ActionResult> Edit([Bind(Include = "Id,Title,IsMandatory,Description")] NoticeBoardEditViewModel vm)
         {
             if (ModelState.IsValid)
@@ -117,7 +133,7 @@ namespace XavSpace.Website.Controllers
         }
 
         // GET: Boards/Delete/5
-        [ModeratorOnly]
+        [RestrictAccessTo(UserTypes = "moderator")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,25 +149,20 @@ namespace XavSpace.Website.Controllers
         }
 
         // POST: Boards/Delete/5
-        [ModeratorOnly]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [RestrictAccessTo(UserTypes = "moderator")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             await db.DeleteAsync(id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
+        #region Post Notice
 
         [HttpPost]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         public ActionResult Post(int id)
         {
             NoticeViewModel vm = new NoticeViewModel
@@ -163,6 +174,7 @@ namespace XavSpace.Website.Controllers
 
         [HttpPost]
         [ActionName("ConfirmPost")]
+        [RestrictAccessTo(UserTypes = "staff,moderator")]
         public async Task<ActionResult> Post(NoticeViewModel vm)
         {
             if (ModelState.IsValid)
@@ -174,6 +186,10 @@ namespace XavSpace.Website.Controllers
             return View(vm);
         }
 
+        #endregion
+
+
+        #region Subscribe
         // POST: Boards/Subscribe?noticeboardId=5
         [HttpPost]
         public async Task<JsonResult> Subscribe(int noticeboardId)
@@ -215,6 +231,17 @@ namespace XavSpace.Website.Controllers
                 return Json(JsonViewModel.Error, JsonRequestBehavior.DenyGet);
             }
             return Json(JsonViewModel.Error, JsonRequestBehavior.DenyGet);
+        }
+        #endregion
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

@@ -64,7 +64,10 @@ namespace XavSpace.Website.Filters
                 // String.Format("~/Views/Error/{0}.cshtml", statusCodeName),
                 // "~/Views/Error/General.cshtml",
                 // statusCodeName,
-                                           "Error");
+                                           "~/Views/Error/Error.cshtml");
+
+            if (statusCode == 500)
+                viewName = "Error";
 
             var controllerName = (string)filterContext.RouteData.Values["controller"];
             var actionName = (string)filterContext.RouteData.Values["action"];

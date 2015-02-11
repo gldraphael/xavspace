@@ -403,6 +403,10 @@
     <Content Include="Views\Shared\_NewsFeedLayout.cshtml" />
     <Content Include="Views\Search\Results.cshtml" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Views\Shared\LayoutPartials\_head.cshtml" />
+    <Content Include="Views\Shared\LayoutPartials\_navbar.cshtml" />
+    <Content Include="Views\Shared\_AboutLayout.cshtml" />
+    <Content Include="Views\Shared\LayoutPartials\_footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -492,7 +496,7 @@
     <Compile Include="Filters\HandleAndLogErrorAttribute.cs" />
     <Compile Include="Filters\ModeratorOnlyAttribute.cs" />
     <Compile Include="Filters\PreventDirectAccessToErrorActionAttribute.cs" />
-    <Compile Include="Filters\StaffOnlyAttribute.cs" />
+    <Compile Include="Filters\RestrictAccessToAttribute1.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
