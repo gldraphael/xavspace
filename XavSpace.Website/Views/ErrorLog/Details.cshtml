@@ -1,0 +1,31 @@
+﻿@model XavSpace.Entities.Logs.ErrorLog
+@{
+    ViewBag.Title = "Error Log";
+}
+
+<h2>Details</h2>
+
+<div class="">
+    <div>
+        <strong>Timestamp:</strong>@Model.TimeStampUtc UTC<br />
+        <strong>HTTP Status Code:</strong> @Model.StatusCode<br />
+        <br />
+        <strong>Exeption:</strong> @Model.Name<br />
+        <strong>Message:</strong> @Model.Message<br />
+        <br />
+        <strong>Controller:</strong> @Model.ControllerName<br />
+        <strong>Action:</strong> @Model.ActionName
+    </div>
+    <hr />
+    <br />
+</div>
+
+<div>
+    <pre>
+@Model.StackTrace
+    </pre>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -5,8 +5,12 @@
         &middot; @Html.ActionLink("Contact", "Contact", "About")
         @if (User.IsInRole("Admin"))
         {
-            @: &middot; @Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")
-            @: &middot; @Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")
+            @: &middot; @Html.ActionLink("Users", "Index", "UsersAdmin")
+            @: &middot; @Html.ActionLink("Roles", "Index", "RolesAdmin")
+        }
+        @if (User.IsInRole("Tester"))
+        {
+            @: &middot; @Html.ActionLink("Error Logs", "Index", "ErrorLog")
         }
     </p>
 </footer>

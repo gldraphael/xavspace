@@ -3,6 +3,19 @@
     ViewBag.Title = "Your Notices";
     Layout = "~/Views/Shared/_NewsFeedLayout.cshtml";
 }
+
+@section head{
+    <style>
+        .post img {
+            width: 100% !important;
+        }
+
+        .container img {
+            width: 100%;
+        }
+    </style>
+}
+
 <h1>@ViewBag.Title</h1>
 
 <div class="container">
@@ -51,12 +64,11 @@
 <div id="fb-root"></div>
 @section Scripts{
 <script>
-(function(d, s, id) {
+        (function (d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1569856776576792&version=v2.0";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
 }

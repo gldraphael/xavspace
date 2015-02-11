@@ -203,7 +203,7 @@ namespace XavSpace.Website.Controllers
                         UserId = (await User.Identity.GetApplicationUserAsync()).Id
                     }
                 );
-            if(result > 0)
+            if (result > 0)
                 return Json(JsonViewModel.Success, JsonRequestBehavior.DenyGet);
             return Json(JsonViewModel.Error, JsonRequestBehavior.DenyGet);
         }
@@ -238,21 +238,20 @@ namespace XavSpace.Website.Controllers
         #region
         // Get: Boards/Notice/5
         [AllowAnonymous]
-        public async Task<ActionResult> Notice(int id)
+        public async Task<ActionResult> Notice(int? id)
         {
-            if (ModelState.IsValid)
+            if (!id.HasValue)
+                return HttpNotFound();
+
+            using (NoticeManager nm = new NoticeManager())
             {
-                using(NoticeManager nm = new NoticeManager())
-                {
-                    var n = await nm.GetAsync(id);
+                var n = await nm.GetAsync(id.Value);
 
-                    if (n == null)
-                        return HttpNotFound();
+                if (n == null)
+                    return HttpNotFound();
 
-                    return View(NoticeMappings.To<NoticeViewModel>(n));
-                }
+                return View(NoticeMappings.To<NoticeViewModel>(n));
             }
-            return HttpNotFound();
         }
         #endregion
 

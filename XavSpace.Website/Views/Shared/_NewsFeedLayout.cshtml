@@ -3,6 +3,7 @@
 <head>
     <title>@ViewBag.Title | XavSpace</title>
     @Html.Partial("LayoutPartials/_head")
+    @RenderSection("head", required: false)
 </head>
 <body style="background-color:#e9eaed">
     @Html.Partial("LayoutPartials/_navbar")
