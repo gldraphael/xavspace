@@ -1,0 +1,56 @@
+﻿@model XavSpace.Website.ViewModels.Notices.NoticeViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+<h2>Notice</h2>
+
+<div>
+    <h4>NoticeViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoticeBoardId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoticeBoardId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isHighPriority)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isHighPriority)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -235,6 +235,27 @@ namespace XavSpace.Website.Controllers
         #endregion
 
 
+        #region
+        // Get: Boards/Notice/5
+        [AllowAnonymous]
+        public async Task<ActionResult> Notice(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                using(NoticeManager nm = new NoticeManager())
+                {
+                    var n = await nm.GetAsync(id);
+
+                    if (n == null)
+                        return HttpNotFound();
+
+                    return View(NoticeMappings.To<NoticeViewModel>(n));
+                }
+            }
+            return HttpNotFound();
+        }
+        #endregion
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

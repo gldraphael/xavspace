@@ -407,6 +407,7 @@
     <Content Include="Views\Shared\LayoutPartials\_navbar.cshtml" />
     <Content Include="Views\Shared\_AboutLayout.cshtml" />
     <Content Include="Views\Shared\LayoutPartials\_footer.cshtml" />
+    <Content Include="Views\Boards\Notice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
