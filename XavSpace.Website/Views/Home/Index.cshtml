@@ -15,8 +15,8 @@
                     <div style="padding:1em">
                         <h1>@Html.DisplayFor(modelItem => item.NoticeBoardName)</h1>
                         <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-                        <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))</h4>
-                        
+                      <div style="">  <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))</h4>
+                        </div>
                         <div class='container-ctm'>
                             <div class="align-left">
                                 <h4 style="text-align:left;"><b>@date</b></h4>
@@ -32,11 +32,11 @@
                             <img src="~/Content/images/John_McCain_Signature.PNG" style="width:100px; height:auto" />
 
                         </div>
-                        <a href="@Url.Action("Details","Notices", new { id = item.Id })">
+                        <a href="@Url.Action("Notice","Boards", new { id = item.Id })">
                             <i class="glyphicon glyphicon-list" title="Details"></i>
 
                         </a>
-                        <div class="fb-share-button" data-href="@Url.Action("Details","Notices", new { id = item.Id })" data-layout="button"></div>
+                        <div class="fb-share-button" data-href="@Url.Action("Notice","Boards", new { id = item.Id })" data-layout="button"></div>
                     </div>
                 </div>
             }

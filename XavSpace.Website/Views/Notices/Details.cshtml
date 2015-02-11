@@ -14,7 +14,7 @@
     <div class="panel panel-success">
         <div class="panel-heading" style="display:flex">
             <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:left">
-                @Html.DisplayFor(model =>model.NoticeBoard.Title)
+                @Html.DisplayFor(model => model.NoticeBoard.Title)
                 @if (Model.HighPriority)
                 {
                     <i class="glyphicon glyphicon-exclamation-sign" title="High Priority"> </i>
@@ -28,7 +28,9 @@
         </div>
         <div class="panel-body">
             <div class="col-md-12">
-                @Html.DisplayFor(model => model.Description)
+
+                
+                @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))
             </div>
         </div>
     </div>
