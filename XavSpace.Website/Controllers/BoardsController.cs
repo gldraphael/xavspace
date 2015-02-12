@@ -40,8 +40,6 @@ namespace XavSpace.Website.Controllers
                 list.Add(temp);
             }
 
-            
-
             return View(list);
         }
 

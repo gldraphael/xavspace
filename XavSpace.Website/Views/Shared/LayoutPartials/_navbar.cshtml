@@ -19,12 +19,19 @@
                     <li>@Html.ActionLink("Boards", "Index", "Boards")</li>
                     <li>@Html.ActionLink("Unofficial", "Index", "Unofficial")</li>
 
+                    if (User.Identity.IsStaff())
+                    {
+                        <li>@Html.ActionLink("My Posts", "Index", "MyPosts")</li>
+                    }
+
                     if (User.Identity.IsModerator())
                     {
                         <li>@Html.ActionLink("Pending Approvals", "Index", "Pending")</li>
+                        <li>@Html.ActionLink("My Posts", "Index", "MyPosts")</li>
                     }
                 }
             </ul>
+
             @if (Request.IsAuthenticated)
             {
                 using (Html.BeginForm("Results", "Search", FormMethod.Get, new { @class = "navbar-form navbar-left" }))

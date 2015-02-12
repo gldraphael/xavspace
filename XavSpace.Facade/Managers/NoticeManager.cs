@@ -134,6 +134,17 @@ namespace XavSpace.Facade.Managers
         }
 
         /// <summary>
+        /// Returns all the notices posted by the given user
+        /// </summary>
+        public async Task<IEnumerable<Notice>> GetUserNoticesAsync(string userId)
+        {
+            var l = from x in DbContext.UserNoticePostRelationship
+                    where x.UserId == userId
+                    select x.Notice;
+            return await l.Include(n => n.NoticeBoard).ToListAsync();
+        }
+
+        /// <summary>
         /// Returns all notices on all notice boards
         /// </summary>
         public async Task<IEnumerable<Notice>> GetAllAsync()
@@ -187,5 +198,14 @@ namespace XavSpace.Facade.Managers
             return await res.ToListAsync();
         }
 
+
+        public async Task<ApplicationUser> PostedBy(int noticeId)
+        {
+            var r = await (from rel in DbContext.UserNoticePostRelationship
+                     where rel.NoticeId == noticeId
+                     select rel.User).FirstOrDefaultAsync();
+
+            return r;
+        }
     }
 }

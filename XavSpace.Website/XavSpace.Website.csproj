@@ -411,6 +411,7 @@
     <Content Include="Views\ErrorLog\Index.cshtml" />
     <Content Include="Views\ErrorLog\Details.cshtml" />
     <Content Include="Views\ErrorLog\Delete.cshtml" />
+    <Content Include="Views\MyPosts\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -482,6 +483,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ErrorLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyPostsController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\PendingController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
