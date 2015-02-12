@@ -22,27 +22,37 @@
 </div>
 
 
-<div class="body-content">
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
+                    {
+                        <button type="submit" value="Post Notice" class="btn btn-default">Post</button>
+                    }
 
-    @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
-    {
-        <input type="submit" value="Post Notice" class="btn btn-default" />
-    }
+                </div>
+                <div class="btn-group" id="mydiv">
+                    @if (ViewBag.Subscribed)
+                    {
+                        using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = Model.Id }, FormMethod.Post, new { @id = "formSubscribe" }))
+                        {
+                            <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-delete"><i class="fa fa-minus"></i> UNFOLLOW</button>
 
-    @if (ViewBag.Subscribed)
-    {
-        using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = Model.Id }, FormMethod.Post, new { @id = "formSubscribe" }))
-        {
-            <input type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-delete" />
-        }
-    }
-    else
-    {
-        using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = Model.Id }, FormMethod.Post, new { @id = "formSubscribe" }))
-        {
-            <input type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-primary" />
-        }
-    }
+                        }
+                    }
+                    else
+                    {
+                        using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = Model.Id }, FormMethod.Post, new { @id = "formSubscribe" }))
+                        {
+                            <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
+                        }
+                    }
+                    </div>
+                </div>
+            </div>
+    </div>
 </div>
 
 <hr />
@@ -86,8 +96,12 @@
 </p>
 
 @section scripts{
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/jquery")
+
     <script>
-        $(document).ready(function () {
+
+        function subscribe() {
             $("#formSubscribe").on("submit", function (event) {
                 event.preventDefault();
                 // show some animation 'in progress' animation here
@@ -106,7 +120,11 @@
 
                         if (resp.status == "success") {
                             // add some text saying "you're now subscribed to this board" or something like that
+
                             alert('success');
+                            $('#mydiv').load(document.URL + " #mydiv", function () {
+                                subscribe();
+                            });
                         }
                         else {
                             alert('fail');
@@ -114,6 +132,16 @@
                     }
                 })
             });
-        });
+        }
+
+    $(document).ready(function () {
+        subscribe();
+    });
+
+
+    
+
+   
+
     </script>
 }

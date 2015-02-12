@@ -37,7 +37,7 @@
             <h3>@notice.Title <small><em> - Posted on @notice.DateCreated</em></small></h3>
 
 
-            <p> @notice.Description</p>
+            <p> @Html.Raw(System.Web.HttpUtility.HtmlDecode(notice.Description))</p>
 
         </div>
     }

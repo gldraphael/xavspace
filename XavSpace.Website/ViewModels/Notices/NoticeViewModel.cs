@@ -24,7 +24,7 @@ namespace XavSpace.Website.ViewModels.Notices
         /// Description of the notice
         /// </summary>
         /// 
-        [HiddenInput]
+        
         [AllowHtml]
         [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }

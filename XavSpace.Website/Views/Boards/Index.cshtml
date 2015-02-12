@@ -12,50 +12,120 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
+<div id="mydiv">
+    <div class="body-content">
+        <div class="row">
+            @foreach (var item in Model.OrderBy(i => i.Title))
+            {
+                string s = @Html.DisplayFor(modelItem => item.Title).ToString();
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    <div class="well" style="height:180px;">
+                        <h1>
+                            <a href="@Url.Action("View", new { id=item.Id })" style="">
+                                @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
+                            </a>
+                        </h1>
+                        @{string des = @Html.DisplayFor(model => item.Description).ToString();}
+                        @if (des.Length > 75)
+                        {
+                            <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 50)...</h4>
+                        }
+                        else
+                        {
+                            <h4>  @Html.DisplayFor(model => item.Description)</h4>
+                        }
 
-<div class="body-content">
-    <div class="row">
-        @foreach (var item in Model.OrderBy(i => i.Title))
-        {
-            <div class="col-lg-3 col-md-4 col-sm-5">
-                <div class="well" style="height:180px;">
-                    <h1>
-                        <a href="@Url.Action("View", new { id=item.Id })" style="">
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </a>
-                    </h1>
-                    @{string des = @Html.DisplayFor(model => item.Description).ToString();}
-                    @if (des.Length > 75)
-                    {
-                        <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 50)...</h4>
-                    }
-                    else
-                    {
-                        <h4>  @Html.DisplayFor(model => item.Description)</h4>
-                    }
-                    @if (item.IsSubscribed)
-                    {
-                        <p>Unsubscribe button</p>
-                    }
-                    else
-                    {
-                        <p>Subscribe button</p>
-                    }
-                    @if (isMod)
-                    {
+
+
+
+
                         <div class="row">
-                            <div class="col-lg-2" style="width:100%">
-                                <a href="@Url.Action("Edit", new { id = item.Id })">
-                                    <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                                </a>
-                                <a href="@Url.Action("Delete", new { id = item.Id })">
-                                    <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                                </a>
+                            <div class="col-lg-3" style="width:100%">
+                                <div class="btn-toolbar">
+                                    @if (isMod)
+                                    {
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
+                                            </a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                                            </a>
+                                        </div>
+
+                                    }<div class="btn-group">
+                                        @if (item.IsSubscribed)
+                                        {
+                                            using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                            {
+                                                <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete btnborder"><i class="fa fa-minus"></i> UNFOLLOW</button>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                            {
+                                                <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary btnborder"><i class="fa fa-plus"></i> FOLLOW</button>
+                                            }
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    }
+
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+
+
+
+    <script>
+
+        function subscribe() {
+            $(".subscribeForms").on("submit", function (event) {
+                event.preventDefault();
+                // show some animation 'in progress' animation here
+                var url = $(this).attr("action");
+                var formData = $(this).serialize();
+                console.log(url);
+                console.log(formData);
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function (resp) {
+
+                        // stop showing the 'in progress animation' here
+
+                        if (resp.status == "success") {
+                            // add some text saying "you're now subscribed to this board" or something like that
+                            var string = document.getElementById("");
+                            alert('success');
+                            $('#mydiv').load(document.URL + " #mydiv", function () {
+                                subscribe(".subscribeForms");
+                            });
+                        }
+                        else {
+                            alert('fail');
+                        }
+                    }
+                })
+            });
+        }
+
+        $(document).ready(function () {
+            subscribe();
+        });
+    </script>
+}
