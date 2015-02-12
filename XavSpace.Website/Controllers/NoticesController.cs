@@ -18,6 +18,8 @@ namespace XavSpace.Website.Controllers
 {
     public class NoticesController : Controller
     {
+        // POST: /Notices/Delete?noticeId=5
+        [HttpPost]
         public async Task<JsonResult> Delete(int noticeId)
         {
             using (NoticeManager nm = new NoticeManager())
