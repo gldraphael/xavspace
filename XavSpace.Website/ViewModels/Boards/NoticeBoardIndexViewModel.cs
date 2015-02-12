@@ -12,5 +12,7 @@ namespace XavSpace.Website.ViewModels.Boards
         public string Title { get; set; }
         [AllowHtml]
         public string Description { get; set; }
+
+        public bool IsSubscribed { get; set; }
     }
 }

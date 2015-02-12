@@ -2,72 +2,22 @@
 @using System.Linq
 @{
     ViewBag.Title = "Notice Boards";
+    bool isMod = User.Identity.IsModerator();
 }
 
 <h2>@ViewBag.Title</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-
-
-
-@*<div class="table-responsive">
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                @if (User.Identity.IsModerator())
-                {
-                    <th></th>
-                }
-            </tr>
-
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <a href="@Url.Action("View", new { id=item.Id })">
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </a>
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    @if (User.Identity.IsModerator())
-                    {
-                        <td class="col-md-1">
-                            <a href="@Url.Action("Edit", new { id = item.Id })">
-                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                            </a>&nbsp;
-                            <a href="@Url.Action("Delete", new { id = item.Id })">
-                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                            </a>
-                        </td>
-                    }
-                </tr>
-            }
-
-        </table>
-    </div>*@
-
-
-
+@if (isMod)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 
 <div class="body-content">
     <div class="row">
-        @foreach (var item in Model.OrderBy(i =>i.Title))
+        @foreach (var item in Model.OrderBy(i => i.Title))
         {
-
             <div class="col-lg-3 col-md-4 col-sm-5">
-
                 <div class="well" style="height:180px;">
                     <h1>
                         <a href="@Url.Action("View", new { id=item.Id })" style="">
@@ -83,10 +33,15 @@
                     {
                         <h4>  @Html.DisplayFor(model => item.Description)</h4>
                     }
-
-
-
-                    @if (User.Identity.IsModerator())
+                    @if (item.IsSubscribed)
+                    {
+                        <p>Unsubscribe button</p>
+                    }
+                    else
+                    {
+                        <p>Subscribe button</p>
+                    }
+                    @if (isMod)
                     {
                         <div class="row">
                             <div class="col-lg-2" style="width:100%">
@@ -101,10 +56,6 @@
                     }
                 </div>
             </div>
-
         }
     </div>
-
 </div>
-
-

@@ -33,7 +33,7 @@ namespace XavSpace.Website.Extensions
             return userManager.FindById<ApplicationUser, string>(id);
         }
 
-        public static async Task<bool> IsSubscribedTo(this IIdentity identity, int noticeBoardId)
+        public static async Task<bool> IsSubscribedToAsync(this IIdentity identity, int noticeBoardId)
         {
             var id = identity.GetUserId();
             using (RelationshipManager rm = new RelationshipManager())

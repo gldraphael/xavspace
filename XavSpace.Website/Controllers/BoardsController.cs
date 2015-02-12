@@ -35,8 +35,12 @@ namespace XavSpace.Website.Controllers
             var list = new List<NoticeBoardIndexViewModel>();
             foreach (var i in x)
             {
-                list.Add(NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i));
+                var temp = NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i);
+                temp.IsSubscribed = await User.Identity.IsSubscribedToAsync(temp.Id);
+                list.Add(temp);
             }
+
+            
 
             return View(list);
         }
@@ -58,7 +62,7 @@ namespace XavSpace.Website.Controllers
                 return HttpNotFound();
             }
 
-            if (await User.Identity.IsSubscribedTo(id.Value))
+            if (await User.Identity.IsSubscribedToAsync(id.Value))
                 ViewBag.Subscribed = true;
             else ViewBag.Subscribed = false;
 
