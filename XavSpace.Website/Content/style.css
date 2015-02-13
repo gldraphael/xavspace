@@ -291,4 +291,16 @@ input::-webkit-input-placeholder {
   width: 20px;
   border-radius: 12em;
 }
+.myPostBody {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.myPostBodyOuter {
+  background-color: #e8e8ec;
+  border-radius: 0.5em 0.5em 2em 0.5em;
+  box-shadow: 1px 1px 11px 0px rgba(50, 50, 50, 0.72);
+  /*// background-color:lightseagreen;*/
+}
+.myPostBodyInner {
+  padding: 1em;
+}
 /*# sourceMappingURL=style.css.map */

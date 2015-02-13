@@ -60,7 +60,7 @@
                                         {
                                             using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
                                             {
-                                                <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete btnborder"><i class="fa fa-minus"></i> UNFOLLOW</button>
+                                                <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><i class="fa fa-minus"></i> UNFOLLOW</button>
 
                                             }
                                         }
@@ -68,7 +68,7 @@
                                         {
                                             using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
                                             {
-                                                <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary btnborder"><i class="fa fa-plus"></i> FOLLOW</button>
+                                                <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
                                             }
                                         }
                                     </div>

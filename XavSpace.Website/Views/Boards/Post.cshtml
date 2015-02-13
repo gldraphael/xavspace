@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("ConfirmPost", "Boards", FormMethod.Post))
+@using (Html.BeginForm("ConfirmPost", "Boards", FormMethod.Post, new { @id = "Confirm"}))
 {
     @Html.AntiForgeryToken()
 
@@ -132,9 +132,11 @@
             </div>
             <div class="form-group">
                 <div class="col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" onclick="myFunction()" />
+                    @*<button type="submit" value="Create" class="btn btn-default" onclick="setTimeout(myFunction(),3000)" data-toggle="modal" data-target="#myModal" />*@
+                    <input type="button" value="Create" class="btn btn-primary" onclick="myFunction()" data-toggle="modal" data-target="#myModal" />
                 </div>
             </div>
+
         </div>
 
 
@@ -143,6 +145,41 @@
 
     </div>
 }
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+
+             Thank you for posting. Your post will be sent for moderation.
+
+
+            </div>
+            <div class="modal-footer">
+                
+
+
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                       Close
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="secondFunction()">Confirm Post</button>
+                
+            </div>
+
+        </div>
+
+    </div><!-- /.modal-content -->
+</div>
+
+
+
+
+
+
+
+
 
 <div>
 
@@ -160,9 +197,19 @@
 
         function myFunction() {
             document.getElementById("myhidden").value = document.getElementById("editor").innerHTML;
-
+            
+            
         }
+          
+        function secondFunction() {
+            document.getElementById("Confirm").submit();
+        }
+            
 
+        
+
+        
+        
     </script>
 
 }
