@@ -37,7 +37,6 @@ namespace XavSpace.Website
                       "~/Scripts/bootstrap-wysiwyg.js",
                       "~/Scripts/jquery.hotkeys.js"));
 
-
             #region Typeahead
             // Add @Scripts.Render("~/bundles/typeahead") after jQuery in your _Layout.cshtml view
             BundleTable.Bundles.Add(new ScriptBundle("~/bundles/ta").Include("~/Scripts/typeahead.bundle*", "~/Scripts/layout/search.js"));

@@ -44,6 +44,7 @@
         color: #fff;
         background-color: #0097cf;
     }
+
     p {
         margin: 0 5px;
     }
@@ -55,28 +56,26 @@
 
 
 #aboutbody1 {
-    
-
     width: 100%;
-   height:100vh ;
+    height: 100vh;
     min-width: 200px;
-   //background-color:lighten(@theme-color-teal, 15%);
-   background-color:@theme-color-gray-dk;
-   h1{
+    //background-color:lighten(@theme-color-teal, 15%);
+    background-color: @theme-color-gray-dk;
 
-    font-size:2em;
-}
+    h1 {
+        font-size: 2em;
+    }
 }
 
 #aboutbody2 {
     width: 100%;
     height: 100vh;
     min-width: 200px;
-    background-color:@theme-color-blue;
-    h1{
+    background-color: @theme-color-blue;
 
-    font-size:2em;
-}
+    h1 {
+        font-size: 2em;
+    }
 }
 
 #over {
@@ -121,18 +120,18 @@
 .thumbnail a > img,
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
-  display: block;
-  width: 100%;
-  height: auto;
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .navbar-brand {
-  float: left;
-  font-size: 17px;
-  line-height: 18px;
-  height: 40px;
-  padding:0;
-  }
+    float: left;
+    font-size: 17px;
+    line-height: 18px;
+    height: 40px;
+    padding: 0;
+}
 
 
 
@@ -140,79 +139,83 @@
 .radio-inline input[type="radio"],
 .checkbox-ctm input[type="checkbox"],
 .checkbox-inline input[type="checkbox"] {
-  //position: absolute;
-  margin-top: 4px \9;
-  }
+    //position: absolute;
+    margin-top: 4px \9;
+}
 
 .radio + .radio,
 .checkbox-ctm + .checkbox-ctm {
-  margin-top: -5px;
+    margin-top: -5px;
 }
 
 .radio label,
 .checkbox-ctm label {
-  min-height: 18px;
-  padding-left: 20px;
-  margin-bottom: 0;
-  font-weight: normal;
-  cursor: pointer;
+    min-height: 18px;
+    padding-left: 20px;
+    margin-bottom: 0;
+    font-weight: normal;
+    cursor: pointer;
 }
+
 .form-inline .radio,
-  .form-inline .checkbox-ctm {
+.form-inline .checkbox-ctm {
     display: inline-block;
     margin-top: 0;
     margin-bottom: 0;
     vertical-align: middle;
-  }
+}
 
 .form-horizontal .radio,
 .form-horizontal .checkbox-ctm,
 .form-horizontal .radio-inline,
 .form-horizontal .checkbox-inline {
-  margin-top: 0;
-  margin-bottom: 0;
-  padding-top: 9px;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 9px;
 }
-.panel-delete {
-  border-color:@theme-color-teal-lt ;
-}
-.panel-delete > .panel-heading {
-  color: #ffffff;
-  background-color:@theme-color-teal-lt;
-  border-color: @theme-color-teal-lt;
-}
-.panel-delete > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: @theme-color-teal;
-}
-.panel-delete > .panel-heading .badge {
-  color: @theme-color-teal-lt;
-  background-color: #ffffff;
-}
-.panel-delete > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: @theme-color-teal-lt;
-}
-.btn-delete{
-    background-image: -webkit-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
-  background-image: -o-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
-  background-image: linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff02a5de', endColorstr='#ff028fc0', GradientType=0);
-  filter: none;
-  border: 1px solid darken(@theme-color-teal-lt,10%);
-  color:white;
-  
 
+.panel-delete {
+    border-color: @theme-color-teal-lt;
 }
+
+.panel-delete > .panel-heading {
+    color: #ffffff;
+    background-color: @theme-color-teal-lt;
+    border-color: @theme-color-teal-lt;
+}
+
+.panel-delete > .panel-heading + .panel-collapse > .panel-body {
+    border-top-color: @theme-color-teal;
+}
+
+.panel-delete > .panel-heading .badge {
+    color: @theme-color-teal-lt;
+    background-color: #ffffff;
+}
+
+.panel-delete > .panel-footer + .panel-collapse > .panel-body {
+    border-bottom-color: @theme-color-teal-lt;
+}
+
+.btn-delete {
+    background-image: -webkit-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
+    background-image: -o-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
+    background-image: linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
+    background-repeat: no-repeat;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff02a5de', endColorstr='#ff028fc0', GradientType=0);
+    filter: none;
+    border: 1px solid darken(@theme-color-teal-lt,10%);
+    color: white;
+}
+
 .btn-delete:hover {
-  background-image: -webkit-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
-  background-image: -o-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
-  background-image: linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff02a5de', endColorstr='#ff028fc0', GradientType=0);
-  filter: none;
-  border: 1px solid darken(@theme-color-teal-lt,10%);
-  
-  
+    background-image: -webkit-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
+    background-image: -o-linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
+    background-image: linear-gradient(@theme-color-teal-lt, darken(@theme-color-teal-lt,1%), darken(@theme-color-teal-lt,2%));
+    background-repeat: no-repeat;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff02a5de', endColorstr='#ff028fc0', GradientType=0);
+    filter: none;
+    border: 1px solid darken(@theme-color-teal-lt,10%);
 }
 
 .table-responsive-ctm {
@@ -225,39 +228,52 @@
     -webkit-overflow-scrolling: touch;
 }
 
-.table-responsive-ctm>.table { 
+.table-responsive-ctm > .table {
     margin-bottom: 0;
 }
 
-.table-responsive-ctm>.table>thead>tr>th, 
-.table-responsive-ctm>.table>tbody>tr>th, 
-.table-responsive-ctm>.table>tfoot>tr>th, 
-.table-responsive-ctm>.table>thead>tr>td, 
-.table-responsive-ctm>.table>tbody>tr>td, 
-.table-responsive-ctm>.table>tfoot>tr>td {
+.table-responsive-ctm > .table > thead > tr > th,
+.table-responsive-ctm > .table > tbody > tr > th,
+.table-responsive-ctm > .table > tfoot > tr > th,
+.table-responsive-ctm > .table > thead > tr > td,
+.table-responsive-ctm > .table > tbody > tr > td,
+.table-responsive-ctm > .table > tfoot > tr > td {
     white-space: nowrap;
 }
 
-#boards{
-    background-image:url('images/NB2.jpg');
-    background-size:100% 100%;
-    a{
-    color:@theme-color-gray;
+#boards {
+    background-image: url('images/NB2.jpg');
+    background-size: 100% 100%;
+
+    a {
+        color: @theme-color-gray;
     }
-
-}
-.container-ctm{ width:100%; }
-.align-left{ float: left;width:50%; }
-.align-right{float: right;width:50%}
-
-#editor {overflow:scroll; max-height:300px}
-
-.btn-new{
-    background-color:darken(@theme-color, 25%)
-
 }
 
-/*input {
+.container-ctm {
+    width: 100%;
+}
+
+.align-left {
+    float: left;
+    width: 50%;
+}
+
+.align-right {
+    float: right;
+    width: 50%;
+}
+
+#editor {
+    overflow: scroll;
+    max-height: 300px;
+}
+
+.btn-new {
+    background-color: darken(@theme-color, 25%);
+}
+
+input {
 	outline: none;
 }
 input[type=search] {
@@ -332,16 +348,9 @@ input::-webkit-input-placeholder {
 }
 .demo-2 input::-webkit-input-placeholder {
 	color: transparent;
-}*/
-
-
+}
 
 .btnborder {
-
-   
-
-width:20px;
-border-radius:12em;
-
-
+    width: 20px;
+    border-radius: 12em;
 }
