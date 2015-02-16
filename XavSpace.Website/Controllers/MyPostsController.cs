@@ -21,16 +21,13 @@ namespace XavSpace.Website.Controllers
             using(NoticeManager nm = new NoticeManager())
             {
                 var notices = await nm.GetUserNoticesAsync((await User.Identity.GetApplicationUserAsync()).Id);
-                List<NoticeViewModel> vm = new List<NoticeViewModel>();
+                List<DetailedNoticeViewModel> vm = new List<DetailedNoticeViewModel>();
 
                 foreach (var n in notices)
-                    vm.Add(NoticeMappings.To<NoticeViewModel>(n));
+                    vm.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
                 return View(vm);
             }
         }
-
-        
-
     }
 }

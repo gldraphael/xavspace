@@ -4,12 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using XavSpace.Entities.Data;
+
 namespace XavSpace.Website.ViewModels.Notices
 {
-    public class DetailedNoticeViewModel
+    public class NoticePosterViewModel
     {
         public int Id { get; set; }
-        [Required]
         public int NoticeBoardId { get; set; }
 
         /// <summary>
@@ -20,15 +22,13 @@ namespace XavSpace.Website.ViewModels.Notices
         /// <summary>
         /// The Title of the Notice
         /// </summary>
-        [Required]
         public string Title { get; set; }
 
         /// <summary>
         /// Description of the notice
         /// </summary>
-        /// 
         [AllowHtml]
-        [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
+        [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
         /// <summary>
@@ -40,9 +40,8 @@ namespace XavSpace.Website.ViewModels.Notices
         /// </summary>
         public bool isHighPriority { get; set; }
 
-        /// <summary>
-        /// Official post?
-        /// </summary>
-        public bool IsOfficial { get; set; }
+        public NoticeStatus Status { get; set; }
+
+        public string ModeratorComment { get; set; }
     }
 }

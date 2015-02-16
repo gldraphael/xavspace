@@ -1,4 +1,4 @@
-﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
+﻿@model List<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
 @{
     ViewBag.Title = "Your Notices";
     Layout = "~/Views/Shared/_NewsFeedLayout.cshtml";
@@ -20,62 +20,40 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            @foreach (var item in Model.OrderByDescending(i => i.DateCreated))
-            {
-                var date = item.DateCreated.Value.Day + "th " + item.DateCreated.Value.ToString("MMMM") + ", " + item.DateCreated.Value.Year;
-                <div style="border:thin; background-color:white; margin-top:1em; border-radius:.2em; border-bottom-style:inset; box-shadow:3px 3px 11px 0px rgba(50, 50, 50, 0.72)">
-                    <div style="padding:1em">
-                        <h1>@Html.DisplayFor(modelItem => item.NoticeBoardName)</h1>
-                        <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
-                        <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))</h4>
-
-                        <div class='container-ctm'>
-                            <div class="align-left">
-                                <h4 style="text-align:left;"><b>@date</b></h4>
-                            </div>
-                            <div class="align-right">
-                                <h4 style="text-align:right;"><b>The Principal</b></h4>
-                            </div>
-                        </div>
-
-
-
-                        <div class="img-responsive" style="text-align:right">
-                            <img src="~/Content/images/John_McCain_Signature.PNG" style="width:100px; height:auto" />
-
-                        </div>
-                        <a href="@Url.Action("Notice","Boards", new { id = item.Id })">
-                            <i class="fa fa-list" title="Details"></i>
-
-                        </a>
-                        @if (User.Identity.IsModerator())
-                        {
-                            <a href="">
-                                <i class="fa fa-trash-o" title="Details"></i>
-
-                            </a>
-                        }
-                        <div class="fb-share-button" data-href="@Url.Action("Notice","Boards", new { id = item.Id })" data-layout="button"></div>
-                    </div>
-                </div>
+        <div id="posts" class="col-md-6">
+            @foreach (var item in Model)
+            {   
+                @Html.Partial("_NoticePartial", item)
             }
-        </div>
-
-    </div>
-
-
-
-</div>
-
+                            </div>
+                            </div>
+                        </div>
+                        
 <div id="fb-root"></div>
+                        
 @section Scripts{
+
     <script>
+        var number = @Model.Count;
+        var index = number;
+
+        function getFeeds(n) {
+            var url = "/Home/GetFeed?index="+index+"&number="+n;
+            $.get(url, function(data) {
+                $("#posts").append(data);
+                index = index + n;
+            })
+            .fail(function () {
+                alert("Couldn't load more notices");
+            });
+            }
+
         (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1569856776576792&version=v2.0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1569856776576792&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 }

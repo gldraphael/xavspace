@@ -22,7 +22,7 @@ namespace XavSpace.Facade.Managers
         public async Task<int> AddAsync(Notice notice)
         {
             await Task.FromResult(0);
-            throw new InvalidOperationException("The OP of the notice wasn't specified");
+            throw new XSException("The OP of the notice wasn't specified");
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace XavSpace.Facade.Managers
 
             DbContext.Notices.Add(notice);
             int result = await DbContext.SaveChangesAsync();
-            if(result > 0)
+            if (result > 0)
             {
                 RelationshipManager rm = new RelationshipManager();
                 if (await rm.AddAsync(new UserNoticePost { NoticeId = notice.NoticeId, UserId = user.Id }) > 0)
@@ -57,7 +57,7 @@ namespace XavSpace.Facade.Managers
                     return await DbContext.SaveChangesAsync();
                 }
             }
-            
+
             return result;
         }
 
@@ -97,6 +97,38 @@ namespace XavSpace.Facade.Managers
         {
             return await DbContext.Notices
                 .Where(x => x.Status == NoticeStatus.Approved)
+                .Include(nb => nb.NoticeBoard)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Notice>> GetNewsFeedAsync(string userId)
+        {
+            return await GetNewsFeedAsync(userId, 0, 10);
+        }
+
+        public async Task<IEnumerable<Notice>> GetNewsFeedAsync(string userId, int index, int number)
+        {
+
+            var boards = (from board in DbContext.UserBoardFollowingRelationship
+                          where board.UserId == userId
+                          select board.NoticeBoard).Union(
+                                from board in DbContext.NoticeBoards
+                                where board.IsMandatory
+                                select board
+                          );
+
+            var feed = from n in DbContext.Notices
+                       where boards.Contains(n.NoticeBoard)
+                       select n;
+
+            feed = feed.OrderByDescending(n => n.DateCreated);
+
+            if (index > 0)
+                feed = feed.Skip(index);
+
+            feed = feed.Take(number);
+
+            return await feed //.OrderByDescending(n => n.DateCreated)
                 .Include(nb => nb.NoticeBoard)
                 .ToListAsync();
         }
@@ -188,6 +220,19 @@ namespace XavSpace.Facade.Managers
             return await this.UpdateAsync(n);
         }
 
+        /// <summary>
+        /// Declines the notice
+        /// </summary>
+        /// <param name="id">The id of the notice to be declined</param>
+        /// <returns>1 if success</returns>
+        public async Task<int> Disapprove(int id, string comment)
+        {
+            var n = await this.GetAsync(id);
+            n.Disapprove();
+            n.ModeratorComment = comment;
+            return await this.UpdateAsync(n);
+        }
+
 
         public async Task<List<Notice>> SearchAsync(string searchString)
         {
@@ -202,8 +247,8 @@ namespace XavSpace.Facade.Managers
         public async Task<ApplicationUser> PostedBy(int noticeId)
         {
             var r = await (from rel in DbContext.UserNoticePostRelationship
-                     where rel.NoticeId == noticeId
-                     select rel.User).FirstOrDefaultAsync();
+                           where rel.NoticeId == noticeId
+                           select rel.User).FirstOrDefaultAsync();
 
             return r;
         }

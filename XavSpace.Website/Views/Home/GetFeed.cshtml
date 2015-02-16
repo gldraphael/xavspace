@@ -1,0 +1,9 @@
+﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_NoticePartial", item)
+}

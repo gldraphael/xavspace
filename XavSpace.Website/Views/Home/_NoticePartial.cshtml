@@ -1,0 +1,44 @@
+﻿@model XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel
+
+@{
+    var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
+}
+
+<div style="border:thin; background-color:white; margin-top:1em; border-radius:.2em; border-bottom-style:inset; box-shadow:0 8px 6px -6px black">
+    <div style="padding:1em">
+        @*NEVER USER H1 FOR ANYTHING OTHER THAN THE TITLE.*@
+        @*<h1>@Html.DisplayFor(modelItem => item.NoticeBoardName)</h1>*@
+        <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
+        <p><span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span></p> @*I know this doesnt look nice, come up with a better way*@
+        <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
+        <p>
+            @*Again you should be able to do this better*@
+            @if (Model.IsOfficial)
+            {
+                <span class="label label-primary">Official</span>
+            }
+            else
+            {
+                <span class="label label-primary">Unofficial</span>
+            }
+            @*BTW remove unnecessary comments (and commented code) to keep things clean. Everything is in the source control anyway*@
+        </p>
+        <div class='container-ctm'>
+            <div class="align-left">
+                <h4 style="text-align:left;"><b>@date</b></h4>
+            </div>
+            <div class="align-right">
+                <h4 style="text-align:right;"><b>The Principal</b></h4>
+            </div>
+        </div>
+
+        <div class="img-responsive" style="text-align:right">
+            <img src="~/Content/images/John_McCain_Signature.PNG" style="width:100px; height:auto" />
+
+        </div>
+        <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
+            <i class="glyphicon glyphicon-list" title="Details"></i>
+        </a>
+        <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
+    </div>
+</div>

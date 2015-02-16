@@ -52,7 +52,8 @@ namespace XavSpace.Website.ViewModels.Notices
                 Description = notice.Description,
                 DateCreated = notice.DateCreated,
                 isHighPriority = notice.HighPriority,
-                NoticeBoardName = notice.NoticeBoard.Title
+                NoticeBoardName = notice.NoticeBoard.Title,
+                IsOfficial = notice.NoticeBoard.IsOfficial
             };
             return vm;
         }
@@ -91,17 +92,20 @@ namespace XavSpace.Website.ViewModels.Notices
             return vm;
         }
 
-        public static T To<T>(Notice nb)
+        public static T To<T>(Notice notice)
             where T : class
         {
+            if (notice == null)
+                throw new ArgumentNullException("notice");
+
             if (typeof(T) == typeof(NoticeViewModel))
-                return ToNoticeViewModel(nb) as T;
+                return ToNoticeViewModel(notice) as T;
 
             else if (typeof(T) == typeof(DetailedNoticeViewModel))
-                return ToDetailedNoticeViewModel(nb) as T;
+                return ToDetailedNoticeViewModel(notice) as T;
 
             else if (typeof(T) == typeof(PendingNoticeViewModel))
-                return ToPendingNoticeViewModel(nb) as T;
+                return ToPendingNoticeViewModel(notice) as T;
 
             else
                 throw new InvalidOperationException("T is not valid");

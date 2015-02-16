@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+
 using XavSpace.Facade.Managers;
 using XavSpace.Website.Filters;
 using XavSpace.Website.Hubs;
@@ -36,6 +37,13 @@ namespace XavSpace.Website.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Disapprove(int id)
+        {
+            await db.Disapprove(id);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Disapprove(int id, string comment)
         {
             await db.Disapprove(id);
             return RedirectToAction("Index");
