@@ -4,7 +4,8 @@
     ViewBag.Title = "Notice Boards";
     bool isMod = User.Identity.IsModerator();
 }
-
+need to figure out why the url always points to the first noticeboard on pressing delete.
+modal done, need to solve above issue.
 <h2>@ViewBag.Title</h2>
 @if (isMod)
 {
@@ -17,6 +18,8 @@
         <div class="row">
             @foreach (var item in Model.OrderBy(i => i.Title))
             {
+
+
                 string s = @Html.DisplayFor(modelItem => item.Title).ToString();
                 <div class="col-lg-3 col-md-4 col-sm-5">
                     <div class="well" style="height:180px;">
@@ -25,11 +28,11 @@
                                 @if (s.Contains("Board"))
                                 {
                                     @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" }).ToString().Substring(0, s.IndexOf(' '));
-                                                                                                                                              
+
                                 }
                                 else
                                 {
-                                @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
+                                    @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
                                 }
                             </a>
                         </h1>
@@ -58,17 +61,49 @@
                                             </a>
                                         </div>
                                         <div class="btn-group">
-                                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-xs btn-primary">
-                                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                                            </a>
+                                            @using (Html.BeginForm("Delete", "Boards", new { id = item.Id }, FormMethod.Post, new { @id = "deleteform" }))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <button type="button" value="delete" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirmDelete">
+                                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i></button>
+                                                <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog"
+                                                     aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+
+                                                                Are you sure you want to delete this Notice Board?
+
+
+                                                            </div>
+                                                            <div class="modal-footer">
+
+
+
+                                                                <button type="button" class="btn btn-default"
+                                                                        data-dismiss="modal">
+                                                                    Close
+                                                                </button>
+
+                                                                <button type="submit" class="btn btn-primary">Delete</button>
+
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div><!-- /.modal-content -->
+                                                </div>
+
+                                            }
                                         </div>
 
                                     }<div class="btn-group">
                                         @*@if (item.IsMandatory)
-                                        {
-                                            <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> FOLLOWING</button>
+                                            {
+                                                <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowModal"><i class="fa fa-plus"></i> FOLLOWING</button>
 
-                                        }*@
+                                            }*@
                                         @if (item.IsSubscribed)
                                         {
 
@@ -88,7 +123,10 @@
                                                 <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
                                             }
                                         }
+
                                     </div>
+
+
                                 </div>
                             </div>
 
@@ -103,7 +141,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+<div class="modal fade" id="unfollowModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -121,7 +159,7 @@
                         data-dismiss="modal">
                     Close
                 </button>
-                
+
 
             </div>
 
@@ -129,6 +167,8 @@
 
     </div><!-- /.modal-content -->
 </div>
+
+
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery")
@@ -137,6 +177,10 @@
 
 
     <script>
+        //function secondFunction() {
+        //    document.getElementById("deleteform").submit();
+        //}
+
 
         function subscribe() {
             $(".subscribeForms").on("submit", function (event) {
@@ -157,7 +201,7 @@
 
                         if (resp.status == "success") {
                             // add some text saying "you're now subscribed to this board" or something like that
-                            var string = document.getElementById("");
+                            // var string = document.getElementById("");
                             alert('success');
                             $('#mydiv').load(document.URL + " #mydiv", function () {
                                 subscribe(".subscribeForms");

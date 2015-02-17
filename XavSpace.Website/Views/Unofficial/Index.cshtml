@@ -10,65 +10,16 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 
-
-
-
-    @*<div class="table-responsive">
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                @if (User.Identity.IsModerator())
+<!-- #region Old Code -->
+@*<div id="mydiv">
+        <div class="body-content">
+            <div class="row">
+                @foreach (var item in Model)
                 {
-                    <th></th>
-                }
-            </tr>
 
+                    <div class="col-lg-3 col-md-4 col-sm-5">
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <a href="@Url.Action("View", new { id=item.Id })">
-                            @Html.DisplayFor(modelItem => item.Title)
-                        </a>
-                    </td>
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    @if (User.Identity.IsModerator())
-                    {
-                        <td class="col-md-1">
-                            <a href="@Url.Action("Edit", new { id = item.Id })">
-                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                            </a>&nbsp;
-                            <a href="@Url.Action("Delete", new { id = item.Id })">
-                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                            </a>
-                        </td>
-                    }
-                </tr>
-            }
-
-        </table>
-    </div>*@
-
-
-
-
-    <div class="body-content">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-
-                <div class="col-lg-3 col-md-4 col-sm-5">
-                    
-                       <div class="well"style="height:180px;"> 
+                        <div class="well" style="height:180px;">
                             <h1>
                                 <a href="@Url.Action("View", new { id=item.Id })" style="">
                                     @Html.DisplayFor(modelItem => item.Title)
@@ -83,26 +34,205 @@
                             {
                                 <h4>  @Html.DisplayFor(modelItem => item.Description)</h4>
                             }
-                           
-                           @if (User.Identity.IsModerator())
-                           {
-                               <div class="row">
-                               <div class="col-lg-2" style="width:100%">
-                                   <a href="@Url.Action("Edit", new { id = item.Id })">
-                                       <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                                   </a>
-                                   <a href="@Url.Action("Delete", new { id = item.Id })">
-                                       <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                                   </a>
-                               </div>
-                                   </div>
-                           }
+
+
+                            <div class="row">
+                                <div class="col-lg-3" style="width:100%">
+                                    <div class="btn-toolbar">
+                                        @if (User.Identity.IsModerator())
+                                        {
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                    <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
+                                                </a>
+                                            </div>
+                                            <div class="btn-group">
+                                                <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                    <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                                                </a>
+                                            </div>
+
+                                        }
+                                        <div class="btn-group">
+                                            @if (item.IsMandatory)
+                                                {
+                                                    <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> FOLLOWING</button>
+
+                                                }
+                                            @if (item.IsSubscribed)
+                                            {
+
+                                                using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                                {
+                                                    <div class="unsubButton">
+                                                        <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following">FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
+                                                    </div>
+                                                }
+
+
+                                            }
+                                            else
+                                            {
+                                                using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                                {
+                                                    <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
-                
+
+                }
+            </div>
+
+        </div>
+    </div>*@
+
+<!-- #endregion -->
+
+<div id="mydiv">
+    <div class="body-content">
+        <div class="row">
+            @foreach (var item in Model.OrderBy(i => i.Title))
+            {
+                string s = @Html.DisplayFor(modelItem => item.Title).ToString();
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    <div class="well" style="height:180px;">
+                        <h1>
+                            <a href="@Url.Action("View", new { id=item.Id })" style="">
+                                @if (s.Contains("Board"))
+                                {
+                                    @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" }).ToString().Substring(0, s.IndexOf(' '));
+
+                                }
+                                else
+                                {
+                                    @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
+                                }
+                            </a>
+                        </h1>
+                        @{string des = @Html.DisplayFor(model => item.Description).ToString();}
+                        @if (des.Length > 40)
+                        {
+                            <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 40)...</h4>
+                        }
+                        else
+                        {
+                            <h4>  @Html.DisplayFor(model => item.Description)</h4>
+                        }
+
+
+
+
+
+                        <div class="row">
+                            <div class="col-lg-3 " style="width:100%">
+                                <div class="btn-toolbar">
+                                    @if (User.Identity.IsModerator())
+                                    {
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
+                                            </a>
+                                        </div>
+                                        <div class="btn-group">
+                                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                                            </a>
+                                        </div>
+
+                                    }<div class="btn-group">
+                                        @*@if (item.IsMandatory)
+                                            {
+                                                <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> FOLLOWING</button>
+
+                                            }*@
+                                        @if (item.IsSubscribed)
+                                        {
+
+                                            using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                            {
+                                                <div class="unsubButton">
+                                                    <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following">FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
+                                                </div>
+                                            }
+
+
+                                        }
+                                        else
+                                        {
+                                            using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                            {
+                                                <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
             }
         </div>
-
     </div>
+</div>
 
 
+
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquery")
+
+
+
+
+    <script>
+
+        function subscribe() {
+            $(".subscribeForms").on("submit", function (event) {
+                event.preventDefault();
+                // show some animation 'in progress' animation here
+                var url = $(this).attr("action");
+                var formData = $(this).serialize();
+                console.log(url);
+                console.log(formData);
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    data: formData,
+                    dataType: "json",
+                    success: function (resp) {
+
+                        // stop showing the 'in progress animation' here
+
+                        if (resp.status == "success") {
+                            // add some text saying "you're now subscribed to this board" or something like that
+                            // var string = document.getElementById("");
+                            alert('success');
+                            $('#mydiv').load(document.URL + " #mydiv", function () {
+                                subscribe(".subscribeForms");
+                            });
+                        }
+                        else {
+                            alert('fail');
+                        }
+                    }
+                })
+            });
+        }
+
+        $(document).ready(function () {
+            subscribe();
+        });
+    </script>
+}

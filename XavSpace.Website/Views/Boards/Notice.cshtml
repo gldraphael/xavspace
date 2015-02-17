@@ -1,6 +1,8 @@
 ﻿@model XavSpace.Website.ViewModels.Notices.NoticeViewModel
 @{
     ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_NewsFeedLayout.cshtml";
+    
 }
 @section head{
     <style>
@@ -14,10 +16,10 @@
     </style>
 }
 <h2>Notice</h2>
+<hr>
+@*<div>
 
-<div>
-    <h4>NoticeViewModel</h4>
-    <hr />
+
     <div class="panel panel-success">
         <div class="panel-heading" style="display:flex">
             <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:left">
@@ -42,9 +44,62 @@
         </div>
     </div>
 
-</div>
+</div>*@
+@{var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
+  }
+    <div class="body-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="notice-outer effect6" id="printable">
+                    <div class="notice-inner">
+                        <h2><u><strong>@Html.DisplayFor(model => model.Title).ToString().ToUpper()</strong></u></h2>
+                        <br>
+                        <h3>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h3>
+                        <br>
+                        <div class='container-ctm'>
+                            <div class="align-left">
+                                <h3 style="text-align:left;">@date</h3>
+                            </div>
+                            <div class="align-right">
+                                <h3 style="text-align:right;">PRINCIPAL</h3>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        
+                        <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
+
+                        <a onclick="printContent('printable')" id="hideprint"><i class="fa fa-print"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+@section Scripts{
+    <script>
+        function printContent(el) {
+            var restorepage = document.body.innerHTML;
+            var printcontent = document.getElementById(el).innerHTML;
+            document.body.innerHTML = printcontent;
+            window.print();
+            document.body.innerHTML = restorepage;
+        }
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1569856776576792&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+</script>
+    
+    }
