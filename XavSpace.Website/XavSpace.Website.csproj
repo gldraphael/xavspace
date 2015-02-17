@@ -257,6 +257,7 @@
     <Content Include="favicon-32x32.png" />
     <Content Include="favicon-96x96.png" />
     <Content Include="favicon.ico" />
+    <Content Include="Images\spin.gif" />
     <Content Include="mstile-144x144.png" />
     <Content Include="mstile-150x150.png" />
     <Content Include="mstile-310x150.png" />
@@ -395,11 +396,12 @@
     <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
-    <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-1.9.0.js" />
-    <Content Include="Scripts\jquery-1.9.0.min.js" />
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <Content Include="Scripts\infiniteScroll.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
     <Content Include="Scripts\jquery.hotkeys.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.js" />
     <Content Include="Scripts\jquery.signalR-2.2.0.min.js" />
@@ -440,10 +442,12 @@
     <Content Include="Views\ErrorLog\Index.cshtml" />
     <Content Include="Views\ErrorLog\Details.cshtml" />
     <Content Include="Views\ErrorLog\Delete.cshtml" />
-    <Content Include="Scripts\jquery-1.9.0.min.map" />
     <Content Include="Views\MyPosts\Index.cshtml" />
     <Content Include="Views\Home\_NoticePartial.cshtml" />
     <Content Include="Views\Home\GetFeed.cshtml" />
+    <Content Include="Views\InfiniteScrollDemo\Index.cshtml" />
+    <Content Include="Views\InfiniteScrollDemo\_CustomerRow.cshtml" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -515,6 +519,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ErrorLogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InfiniteScrollDemoController.cs" />
     <Compile Include="Controllers\MyPostsController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\PendingController.cs" />
