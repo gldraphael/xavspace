@@ -28,7 +28,7 @@ namespace XavSpace.Website.Controllers
                 var current = await User.Identity.GetApplicationUserAsync();
                 var notice = await nm.GetAsync(noticeId);
 
-                if ((postedBy == current && notice.IsPendingApproval)
+                if ((postedBy.Id == current.Id && notice.IsPendingApproval)
                     || await User.Identity.IsModeratorAsync())
                 {
                     var res = await nm.DeleteAsync(noticeId);

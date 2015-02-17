@@ -35,17 +35,17 @@ namespace XavSpace.Website.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Disapprove(int id)
-        {
-            await db.Disapprove(id);
-            return RedirectToAction("Index");
-        }
+        //[HttpPost]
+        //public async Task<ActionResult> Disapprove(int id)
+        //{
+        //    await db.Disapprove(id);
+        //    return RedirectToAction("Index");
+        //}
 
         [HttpPost]
         public async Task<ActionResult> Disapprove(int id, string comment)
         {
-            await db.Disapprove(id);
+            await db.Disapprove(id,comment);
             return RedirectToAction("Index");
         }
     }

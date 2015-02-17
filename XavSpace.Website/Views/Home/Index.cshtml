@@ -26,6 +26,19 @@
                 @Html.Partial("_NoticePartial", item)
             }
         </div>
+        <div class="hidden-sm hidden-xs affix" style="right:30px">
+            <h3>Implementing Infinite Scroll</h3>
+            <ol>
+                <li>Scroll to the bottom of this page</li>
+                <li>Press F12 and open your browser's console</li>
+                <li>Type <code>getFeeds(1)</code></li>
+                <li>A notice will be appended to the news feed</li>
+            </ol>
+            <h6 class="help-block">PS: This will only work if you're supposed to be seeing more than 6 posts in your news feed</h6>
+            <p class="text-info">
+                TODO: This needs to be automated on scroll to the end of the page.
+            </p>
+        </div>
     </div>
 </div>
 

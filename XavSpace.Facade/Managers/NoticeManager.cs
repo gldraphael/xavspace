@@ -118,7 +118,7 @@ namespace XavSpace.Facade.Managers
                           );
 
             var feed = from n in DbContext.Notices
-                       where boards.Contains(n.NoticeBoard)
+                       where n.Status == NoticeStatus.Approved && boards.Contains(n.NoticeBoard)
                        select n;
 
             feed = feed.OrderByDescending(n => n.DateCreated);
