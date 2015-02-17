@@ -25,8 +25,16 @@
             {
                 @Html.Partial("_NoticePartial", item)
             }
+            
         </div>
-        <div class="hidden-sm hidden-xs affix" style="right:30px">
+        <div id="loading" class="col-md-12">
+            <br>
+            <img src="~/Content/images/ajax-loader.gif" style="height:100px;width:auto"/>
+
+        </div>
+        
+
+        @*<div class="hidden-sm hidden-xs affix" style="right:30px">
             <h3>Implementing Infinite Scroll</h3>
             <ol>
                 <li>Scroll to the bottom of this page</li>
@@ -38,7 +46,7 @@
             <p class="text-info">
                 TODO: This needs to be automated on scroll to the end of the page.
             </p>
-        </div>
+        </div>*@
     </div>
 </div>
 
@@ -55,11 +63,25 @@
             $.get(url, function(data) {
                 $("#posts").append(data);
                 index = index + n;
+
+                  
             })
             .fail(function () {
                 alert("Couldn't load more notices");
             });
         }
+
+       
+
+        $(window).scroll(function() {
+            
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                getFeeds(3);
+                
+                   
+            }
+            
+        });
 
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];

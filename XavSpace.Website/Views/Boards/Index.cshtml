@@ -22,13 +22,21 @@
                     <div class="well" style="height:180px;">
                         <h1>
                             <a href="@Url.Action("View", new { id=item.Id })" style="">
+                                @if (s.Contains("Board"))
+                                {
+                                    @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" }).ToString().Substring(0, s.IndexOf(' '));
+                                                                                                                                              
+                                }
+                                else
+                                {
                                 @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
+                                }
                             </a>
                         </h1>
                         @{string des = @Html.DisplayFor(model => item.Description).ToString();}
-                        @if (des.Length > 75)
+                        @if (des.Length > 40)
                         {
-                            <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 50)...</h4>
+                            <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 40)...</h4>
                         }
                         else
                         {
@@ -56,13 +64,22 @@
                                         </div>
 
                                     }<div class="btn-group">
-                                        @if (item.IsSubscribed)
+                                        @*@if (item.IsMandatory)
                                         {
+                                            <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> FOLLOWING</button>
+
+                                        }*@
+                                        else if (item.IsSubscribed)
+                                        {
+
                                             using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
                                             {
-                                                <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><i class="fa fa-minus"></i> UNFOLLOW</button>
-
+                                                <div class="unsubButton">
+                                                    <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following">FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
+                                                </div>
                                             }
+
+
                                         }
                                         else
                                         {
@@ -74,13 +91,43 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
+
+
+
                 </div>
             }
         </div>
     </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                Sorry, this is a Mandatory Notice Board. You aren't allowed to unfollow it.
+
+
+            </div>
+            <div class="modal-footer">
+
+
+
+                <button type="button" class="btn btn-default"
+                        data-dismiss="modal">
+                    Close
+                </button>
+                
+
+            </div>
+
+        </div>
+
+    </div><!-- /.modal-content -->
 </div>
 @section scripts{
     @Scripts.Render("~/bundles/jqueryval")

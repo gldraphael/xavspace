@@ -303,4 +303,13 @@ input::-webkit-input-placeholder {
 .myPostBodyInner {
   padding: 1em;
 }
+.unsubButton button .unfollow {
+  display: none;
+}
+.unsubButton button:hover .following {
+  display: none;
+}
+.unsubButton button:hover .unfollow {
+  display: inline;
+}
 /*# sourceMappingURL=style.css.map */

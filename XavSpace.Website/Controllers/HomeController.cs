@@ -30,6 +30,7 @@ namespace XavSpace.Website.Controllers
         // GET: /GetFeed?index=6&number=5
         public async Task<ActionResult> GetFeed(int? index, int? number)
         {
+            
             int i = index ?? 0;
             int n = number ?? 5;
 
@@ -40,7 +41,7 @@ namespace XavSpace.Website.Controllers
             List<DetailedNoticeViewModel> vms = new List<DetailedNoticeViewModel>();
             foreach (var notice in notices)
                 vms.Add(NoticeMappings.To<DetailedNoticeViewModel>(notice));
-
+            
             return View(vms);
         }
     }
