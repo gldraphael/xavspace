@@ -69,7 +69,7 @@
                                             <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> FOLLOWING</button>
 
                                         }*@
-                                        else if (item.IsSubscribed)
+                                        @if (item.IsSubscribed)
                                         {
 
                                             using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
