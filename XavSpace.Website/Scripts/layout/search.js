@@ -13,8 +13,6 @@ var notices = new Bloodhound({
 boards.initialize();
 notices.initialize();
 
-console.log('initialized');
-
 $('#search').typeahead(
     {
         highlight: true

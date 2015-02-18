@@ -23,23 +23,25 @@
         <div id="posts" class="col-md-6">
             @foreach (var item in Model)
             {
-              
+
                 @Html.Partial("_NoticePartial", item)
-            
+
             }
-            
-
         </div>
-        <div class="col-md-12">
-        <div class="spinner">
-            <div class="rect1"></div>
-            <div class="rect2"></div>
-            <div class="rect3"></div>
-            <div class="rect4"></div>
-            <div class="rect5"></div>
-        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="spinner" id="loadingAnimation">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
             </div>
+        </div>
 
+        <!-- #region Old -->
         @*<div class="hidden-sm hidden-xs affix" style="right:30px">
                 <h3>Implementing Infinite Scroll</h3>
                 <ol>
@@ -53,7 +55,10 @@
                     TODO: This needs to be automated on scroll to the end of the page.
                 </p>
             </div>*@
-    </div>
+
+        <!-- #endregion -->
+
+   
 </div>
 
 <div id="fb-root"></div>
@@ -69,24 +74,27 @@
             $.get(url, function(data) {
                 $("#posts").append(data);
                 index = index + n;
-
-
             })
             .fail(function () {
                 alert("Couldn't load more notices");
             });
         }
 
-
+        function done() {
+            return $('#posts .xs-done').length > 0;
+        }
 
         $(window).scroll(function() {
-
             if($(window).scrollTop() + $(window).height() == $(document).height()) {
-                getFeeds(3);
 
-
+                if(done()==true)
+                {
+                    $("#loadingAnimation").hide();
+                }
+                else{
+                    getFeeds(3);
+                }
             }
-
         });
 
         (function (d, s, id) {

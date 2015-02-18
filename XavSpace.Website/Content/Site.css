@@ -6581,24 +6581,24 @@ label {
 .btn-new {
   background-color: #621007;
 }
-input {
+.searchBar {
   outline: none;
 }
-input[type=search] {
+.searchBar {
   -webkit-appearance: textfield;
   -webkit-box-sizing: content-box;
   font-family: inherit;
   font-size: 100%;
 }
-input::-webkit-search-decoration,
-input::-webkit-search-cancel-button {
+.searchBar::-webkit-search-decoration,
+.searchBar::-webkit-search-cancel-button {
   display: none;
 }
-input[type=search] {
+.searchBar {
   background-color: transparent;
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAAgVBMVEXX19f////X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19eiU1qAAAAAKnRSTlMAAPkGLa78ME4Vq+qccj+0z/B72AnksUgqiku67YSfqOHA3qJRDFTnkAPgSFcgAAAAdklEQVR4XlXL1xaDMAwDUOGQhJZVVvfe9f9/YINxT0Fv17IQTYMIKHZpk83Qp3fOXWYpjdWxW7aArxbqA8lrzuvBp7MsV7wdvHHS1+x1z/YB+P1vH5rXsXRMiRrFpbreSqa7WmIs03NkmHmYiP+H99j4JCZ4mi8BVQZCciEiWAAAAABJRU5ErkJggg==') /*images/search-white.png*/ no-repeat 9px center;
   border: none;
-  padding: 9px 10px 9px 32px;
+  padding: 5px 10px 9px 32px;
   width: 0;
   -webkit-border-radius: 10em;
   -moz-border-radius: 10em;
@@ -6607,7 +6607,7 @@ input[type=search] {
   -moz-transition: all .5s;
   transition: all .5s;
 }
-input[type=search]:focus {
+.searchBar:focus {
   width: 200px;
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAA6lBMVEVqb3X///8ZGx1qb3Vqb3VpbnRqb3Vqb3VdYWdqb3UZGx1qb3Vqb3Vqb3Vqb3Vqb3VeYmghIyVbX2QZGx03Oj5qb3VpbnRlam9qb3UtLzIZGx0ZGx1nbHJqb3VobXNma3EZGx1RVVlfY2lbYGVhZmtPU1hCRUlpbnRqb3Vqb3VpbnRjaG4ZGx1SVlpqb3Vqb3Vqb3Vqb3VfZGkZGx0+QUVhZmxpbnRnbHJbYGVfY2lqb3UZGx0ZGx0ZGx0ZGx0ZGx0fIiRdYmdqb3VQVFkgIiRiZ2wgIiRjaG4cHyFDR0shIyUZGx0ZGx1qb3UGwh7wAAAATXRSTlMAAAL6TvsV/c0tEz9y69i60GHARoHq0o2cVgQ+7Cr27QhpV6mKSFqxDDDw4hKw55+0/MkxjNf058fSURlNYFlBTM5Up0q6SJ1GlT8BHyB8ovwAAACOSURBVHheVcxFFoNQEETRgg9B4u7u7u6uvf/t5EAzSN7s1qAg/QcJcPujvoQLVpY9lAmNhNdwbGiBYDocycUcx9VkCjDPlGVf8wUAKFKJXdbsqwpV2TWqN4Bmq22yO13q9QdDUhU2xpPpbL5Yklixsd5sd/vDkcTJNidfdBIKm4ebTnc2Jz+er1/j/ZGlLz9uDyhEzYcEAAAAAElFTkSuQmCC') /*images/search-dark.png*/ no-repeat 9px center;
   background-color: #fff;
@@ -6616,32 +6616,32 @@ input[type=search]:focus {
   -moz-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
   box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
 }
-input:-moz-placeholder {
+.searchBar:-moz-placeholder {
   color: #999;
 }
-input::-webkit-input-placeholder {
+.searchBar::-webkit-input-placeholder {
   color: #999;
 }
-.demo-2 input[type=search] {
+.demo-2 .searchBar {
   width: 15px;
   padding-left: 10px;
   color: transparent;
   cursor: pointer;
 }
-.demo-2 input[type=search]:hover {
+.demo-2 .searchBar:hover {
   background-color: #fff;
 }
-.demo-2 input[type=search]:focus {
+.demo-2 .searchBar:focus {
   width: 200px;
   padding-left: 32px;
   color: #000;
   background-color: #fff;
   cursor: auto;
 }
-.demo-2 input:-moz-placeholder {
+.demo-2 .searchBar:-moz-placeholder {
   color: transparent;
 }
-.demo-2 input::-webkit-input-placeholder {
+.demo-2 .searchBar::-webkit-input-placeholder {
   color: transparent;
 }
 .btnborder {
@@ -6758,6 +6758,7 @@ input::-webkit-input-placeholder {
     display: none;
   }
 }
+/*#Notice DetailsBoxShadow */
 .effect6 {
   position: relative;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -6787,6 +6788,19 @@ input::-webkit-input-placeholder {
   -ms-transform: skew(8deg) rotate(3deg);
   -o-transform: skew(8deg) rotate(3deg);
   transform: skew(8deg) rotate(3deg);
+}
+/*#endregion */
+.xs-done {
+  padding: 2em;
+  text-align: center;
+}
+.newsfeedPost {
+  border: thin;
+  background-color: white;
+  margin-top: 1em;
+  border-radius: .2em;
+  border-bottom-style: inset;
+  box-shadow: 1px 2px 2px 1px #595959;
 }
 .clearfix:before,
 .clearfix:after,
