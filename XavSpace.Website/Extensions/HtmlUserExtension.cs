@@ -16,7 +16,7 @@ namespace XavSpace.Website.Extensions
         public static string CurrentUserDisplayName(this HtmlHelper helper, IPrincipal principal)
         {
             var user = principal.Identity.GetApplicationUser();
-
+            
             if(user.Name != null)
             {
                 if (!String.IsNullOrWhiteSpace(user.Name.First) || !String.IsNullOrWhiteSpace(user.Name.Last))

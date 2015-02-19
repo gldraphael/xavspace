@@ -94,50 +94,6 @@ namespace XavSpace.Website.Controllers
         }
 
         //
-        // GET: /Account/VerifyCode
-        [AllowAnonymous]
-        public async Task<ActionResult> VerifyCode(string provider, string returnUrl)
-        {
-            // Require that the user has already logged in via username/password or external login
-            if (!await SignInManager.HasBeenVerifiedAsync())
-            {
-                return View("Error");
-            }
-            var user = await UserManager.FindByIdAsync(await SignInManager.GetVerifiedUserIdAsync());
-            if (user != null)
-            {
-                ViewBag.Status = "For DEMO purposes the current " + provider + " code is: " + await UserManager.GenerateTwoFactorTokenAsync(user.Id, provider);
-            }
-            return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl });
-        }
-
-        //
-        // POST: /Account/VerifyCode
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: false, rememberBrowser: model.RememberBrowser);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(model.ReturnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid code.");
-                    return View(model);
-            }
-        }
-
-        //
         // GET: /Account/Register
         [AllowAnonymous]
         public ActionResult Register()
@@ -390,7 +346,6 @@ namespace XavSpace.Website.Controllers
                 }
                 AddErrors(result);
             }
-
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
@@ -477,7 +432,7 @@ namespace XavSpace.Website.Controllers
             var claimsIdentity = await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
             if (claimsIdentity != null)
             {
-                // Retrieve the existing claims for the user and add the FacebookAccessTokenClaim
+                // Retrieve the existing claims for the user and add the facebook access token
                 var currentClaims = await UserManager.GetClaimsAsync(user.Id);
                 var facebookAccessToken = claimsIdentity.FindAll(KeyRepository.Constants.FacebookAccessToken).First();
                 if (currentClaims.Count() <= 0)

@@ -51,15 +51,6 @@ namespace XavSpace.Website
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
-
             var x = new FacebookAuthenticationOptions();
             x.Scope.Add("email");
             x.Scope.Add("friends_about_me");
@@ -78,10 +69,6 @@ namespace XavSpace.Website
             };
             x.SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie;
             app.UseFacebookAuthentication(x);
-
-            //app.UseGoogleAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
 
             app.MapSignalR();
         }

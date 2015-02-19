@@ -4,19 +4,30 @@ using System.Linq;
 using System.Web;
 
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
+using System.ComponentModel.DataAnnotations;
 
 namespace XavSpace.Website.ViewModels.Settings
 {
     public class IndexViewModel
     {
-        //public string FirstName { get; set; }
-        //public string MiddleName { get; set; }
-        //public string LastName { get; set; }
+        [Display(Name="First Name")]
+        public string FirstName { get; set; }
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+        [Display(Name = "Post")]
+        public string Post { get; set; }
 
+        [Display(Name = "UID Number")]
+        public int UidNumber { get; set; }
+
+        [Display(Name = "Emp ID")]
+        [DataType(DataType.Text)]
+        [Range(2001,2180)]
+        public int EmpId { get; set; }
+
+        public IList<UserLoginInfo> CurrentLogins { get; set; }
+        public IList<AuthenticationDescription> OtherLogins { get; set; }
         public bool HasPassword { get; set; }
-        public IList<UserLoginInfo> Logins { get; set; }
-        public string PhoneNumber { get; set; }
-        public bool TwoFactor { get; set; }
-        public bool BrowserRemembered { get; set; }
     }
 }

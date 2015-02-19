@@ -11,6 +11,7 @@ using XavSpace.Website.ViewModels;
 using XavSpace.Entities.Users;
 using XavSpace.Facade.Identity.Managers;
 using XavSpace.Website.ViewModels.Settings;
+using XavSpace.Website.Extensions;
 
 namespace XavSpace.Website.Controllers
 {
@@ -50,17 +51,67 @@ namespace XavSpace.Website.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "The phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                : message == ManageMessageId.Error ? "An error has occurred."
                 : "";
+
+            var user = await User.Identity.GetApplicationUserAsync();
+            if (user == null)
+            {
+                return View("Error");
+            }
 
             var model = new IndexViewModel
             {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(User.Identity.GetUserId()),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(User.Identity.GetUserId()),
-                Logins = await UserManager.GetLoginsAsync(User.Identity.GetUserId()),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(User.Identity.GetUserId())
+                CurrentLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId()),
+                FirstName = user.Name.First,
+                LastName = user.Name.Last,
+                HasPassword = user != null && user.PasswordHash != null,
+                UidNumber = user.UId,
+                EmpId = user.UId
             };
+
+            if (await User.Identity.IsStaffAsync())
+            {
+                var staff = user as Staff;
+                model.Post = staff.Post;
+            }
+
+            var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
+            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+            ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
+            model.CurrentLogins = userLogins;
+            model.OtherLogins = otherLogins;
+
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Index(IndexViewModel vm)
+        {
+            var user = await User.Identity.GetApplicationUserAsync();
+
+            user.Name.First = vm.FirstName;
+            user.Name.Last = vm.LastName;
+            user.UId = vm.UidNumber;
+
+            if (await User.Identity.IsStaffAsync())
+            {
+                (user as Staff).Post = vm.Post;
+                (user as Staff).UId = vm.EmpId;
+            }
+
+            await UserManager.UpdateAsync(user);
+
+            vm.HasPassword = user != null && user.PasswordHash != null;
+            var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
+            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+            ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
+            vm.CurrentLogins = userLogins;
+            vm.OtherLogins = otherLogins;
+
+            return View(vm);
         }
 
         //
@@ -94,137 +145,6 @@ namespace XavSpace.Website.Controllers
                 message = ManageMessageId.Error;
             }
             return RedirectToAction("ManageLogins", new { Message = message });
-        }
-
-        //
-        // GET: /Account/AddPhoneNumber
-        public ActionResult AddPhoneNumber()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Account/AddPhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            // Generate the token and send it
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
-            if (UserManager.SmsService != null)
-            {
-                var message = new IdentityMessage
-                {
-                    Destination = model.Number,
-                    Body = "Your security code is: " + code
-                };
-                await UserManager.SmsService.SendAsync(message);
-            }
-            return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
-        }
-
-        //
-        // POST: /Manage/RememberBrowser
-        [HttpPost]
-        public ActionResult RememberBrowser()
-        {
-            var rememberBrowserIdentity = AuthenticationManager.CreateTwoFactorRememberBrowserIdentity(User.Identity.GetUserId());
-            AuthenticationManager.SignIn(new AuthenticationProperties { IsPersistent = true }, rememberBrowserIdentity);
-            return RedirectToAction("Index", "Settings");
-        }
-
-        //
-        // POST: /Manage/ForgetBrowser
-        [HttpPost]
-        public ActionResult ForgetBrowser()
-        {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
-            return RedirectToAction("Index", "Settings");
-        }
-
-        //
-        // POST: /Manage/EnableTFA
-        [HttpPost]
-        public async Task<ActionResult> EnableTFA()
-        {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), true);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", "Settings");
-        }
-
-        //
-        // POST: /Manage/DisableTFA
-        [HttpPost]
-        public async Task<ActionResult> DisableTFA()
-        {
-            await UserManager.SetTwoFactorEnabledAsync(User.Identity.GetUserId(), false);
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", "Settings");
-        }
-
-        //
-        // GET: /Account/VerifyPhoneNumber
-        public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
-        {
-            // This code allows you exercise the flow without actually sending codes
-            // For production use please register a SMS provider in IdentityConfig and generate a code here.
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            ViewBag.Status = "For DEMO purposes only, the current code is " + code;
-            return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
-        }
-
-        //
-        // POST: /Account/VerifyPhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var result = await UserManager.ChangePhoneNumberAsync(User.Identity.GetUserId(), model.PhoneNumber, model.Code);
-            if (result.Succeeded)
-            {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInAsync(user, isPersistent: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
-            }
-            // If we got this far, something failed, redisplay form
-            ModelState.AddModelError("", "Failed to verify phone");
-            return View(model);
-        }
-
-        //
-        // GET: /Account/RemovePhoneNumber
-        public async Task<ActionResult> RemovePhoneNumber()
-        {
-            var result = await UserManager.SetPhoneNumberAsync(User.Identity.GetUserId(), null);
-            if (!result.Succeeded)
-            {
-                return RedirectToAction("Index", new { Message = ManageMessageId.Error });
-            }
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user != null)
-            {
-                await SignInAsync(user, isPersistent: false);
-            }
-            return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
 
         //
@@ -290,28 +210,25 @@ namespace XavSpace.Website.Controllers
             return View(model);
         }
 
-        //
-        // GET: /Account/Manage
-        public async Task<ActionResult> ManageLogins(ManageMessageId? message)
-        {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : "";
-            var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-            if (user == null)
-            {
-                return View("Error");
-            }
-            var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
-            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
-            ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
-            return View(new ManageLoginsViewModel
-            {
-                CurrentLogins = userLogins,
-                OtherLogins = otherLogins
-            });
-        }
+        ////
+        //// GET: /Account/Manage
+        //public async Task<ActionResult> ManageLogins(ManageMessageId? message)
+        //{
+            
+        //    var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //    if (user == null)
+        //    {
+        //        return View("Error");
+        //    }
+        //    var userLogins = await UserManager.GetLoginsAsync(User.Identity.GetUserId());
+        //    var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+        //    ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
+        //    return View(new ManageLoginsViewModel
+        //    {
+        //        CurrentLogins = userLogins,
+        //        OtherLogins = otherLogins
+        //    });
+        //}
 
         //
         // POST: /Manage/LinkLogin

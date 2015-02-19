@@ -1,82 +1,137 @@
 ﻿@model XavSpace.Website.ViewModels.Settings.IndexViewModel
 @{
     ViewBag.Title = "Account Settings";
+    var isStaff = User.Identity.IsStaff();
 }
 
 <h2>@ViewBag.Title</h2>
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div class="row">
     <div class="col-md-8">
-        <div> @*A common settings pane needs to be made that will contain all of these options*@
-            <p>
-                @if (Model.HasPassword) // User.Identity.HasPassword() can be used here
+        @using (Html.BeginForm())
+        {
+            <div class="form-horizontal">
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @if (!isStaff)
                 {
-                    @Html.ActionLink("Change your password", "ChangePassword")
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UidNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UidNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UidNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 }
                 else
                 {
-                    @Html.ActionLink("Pick a password", "SetPassword")
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EmpId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EmpId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EmpId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 }
-            </p>
-            <p>
-                Phone Number: @(Model.PhoneNumber ?? "None") [
-                @if (Model.PhoneNumber != null)
+                @if (isStaff)
                 {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Post, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Post, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Post, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber")
-                }
-                ]
-            </p>
-            <p>
-                External Logins: @Model.Logins.Count
-                @Html.ActionLink("[Manage]", "ManageLogins")
-            </p>
-        </div>
-        
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <input type="submit" value="Save" class="btn btn-primary center-block" />
+                    </div>
+                </div>
+            </div>
 
+        }
+    </div>
+</div>
 
-        @*This part will only be required if we plan to use Two Factor Authentication*@
-        @*@if (Model.TwoFactor)
+<div class="row">
+    <div class="col-lg-8">
+        @if (Model.CurrentLogins.Count > 0)
         {
-            <form method="post" action="/Manage/DisableTFA">
-                <p>
-                    Two factor is currently enabled:
-                    <input type="submit" value="Disable" class="btn btn-default"/>
-                </p>
-            </form>
+            <h4>Registered Logins</h4>
+            <table class="table">
+                <tbody>
+                    @foreach (var account in Model.CurrentLogins)
+                    {
+                        <tr>
+                            <td>@account.LoginProvider</td>
+                            <td>
+                                @if (ViewBag.ShowRemoveButton)
+                                {
+                                    using (Html.BeginForm("RemoveLogin", "Settings"))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <div>
+                                            @Html.Hidden("loginProvider", account.LoginProvider)
+                                            @Html.Hidden("providerKey", account.ProviderKey)
+                                            <input type="submit" class="btn btn-default" value="Remove" title="Remove this @account.LoginProvider login from your account" />
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    @: &nbsp;
+                        }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         }
-        else
+        @if (Model.OtherLogins.Count > 0)
         {
-            <form method="post" action="/Manage/EnableTFA">
-                <p>
-                    Two factor is currently disabled:
-                    <input type="submit" value="Enable" class="btn btn-default"/>
-                </p>
-            </form>
+            <h4>Add another service to log in</h4>
+            <hr />
+            using (Html.BeginForm("LinkLogin", "Settings"))
+            {
+                @Html.AntiForgeryToken()
+                <div id="socialLoginList">
+                    <p>
+                        @foreach (Microsoft.Owin.Security.AuthenticationDescription p in Model.OtherLogins)
+                        {
+                            <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">@p.AuthenticationType</button>
+                        }
+                    </p>
+                </div>
+            }
         }
-        @if (Model.BrowserRemembered)
-        {
-            <form method="post" action="/Manage/ForgetBrowser">
-                <p>
-                    Browser is curently remembered for two factor:
-                    <input type="submit" value="Forget Browser" class="btn btn-default" />
-                </p>
-            </form>
-        }
-        else
-        {
-            <form method="post" action="/Manage/RememberBrowser">
-                <p>
-                    Browser is curently not remembered for two factor:
-                    <input type="submit" value="Remember Browser" class="btn btn-default"/>
-                </p>
-            </form>
-        }*@
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            @if (Model.HasPassword)
+            {
+                @Html.ActionLink("Change your password", "ChangePassword")
+            }
+            else
+            {
+                @Html.ActionLink("Pick a password", "SetPassword")
+            }
+        </p>
     </div>
 </div>

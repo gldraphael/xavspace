@@ -46,20 +46,22 @@ namespace XavSpace.Website.Extensions
             }
         }
 
-        // Checks if the current user has a local password
-        public static bool HasPassword(this IIdentity identity)
-        {
-            var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var user = userManager.FindById(identity.GetUserId());
-            if (user != null)
-            {
-                // check if the user has a password
-                return user.PasswordHash != null;
-            }
+        #region Old Code
+        //// Checks if the current user has a local password
+        //public static bool HasPassword(this IIdentity identity)
+        //{
+        //    var userManager = HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>();
+        //    var user = userManager.FindById(identity.GetUserId());
+        //    if (user != null)
+        //    {
+        //        // check if the user has a password
+        //        return user.PasswordHash != null;
+        //    }
 
-            // user doesn't exists
-            return false;
-        }
+        //    // user doesn't exists
+        //    return false;
+        //} 
+        #endregion
 
         #region Check User Type
         public static bool IsStaff(this IIdentity identity)
