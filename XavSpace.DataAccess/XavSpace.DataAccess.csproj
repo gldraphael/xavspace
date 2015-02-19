@@ -92,6 +92,10 @@
     <Compile Include="Migrations\201501301739281_resolved-field-removed.Designer.cs">
       <DependentUpon>201501301739281_resolved-field-removed.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502172112324_IsArchived-field-added.cs" />
+    <Compile Include="Migrations\201502172112324_IsArchived-field-added.Designer.cs">
+      <DependentUpon>201502172112324_IsArchived-field-added.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -126,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501301739281_resolved-field-removed.resx">
       <DependentUpon>201501301739281_resolved-field-removed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502172112324_IsArchived-field-added.resx">
+      <DependentUpon>201502172112324_IsArchived-field-added.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

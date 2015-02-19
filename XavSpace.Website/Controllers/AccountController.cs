@@ -14,6 +14,7 @@ using XavSpace.Website.ViewModels;
 using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
 using XavSpace.Website.ViewModels.Account;
+using XavSpace.Facade;
 
 namespace XavSpace.Website.Controllers
 {
@@ -336,6 +337,11 @@ namespace XavSpace.Website.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    var currentUser = await UserManager.FindAsync(loginInfo.Login);
+                    if (currentUser != null)
+                    {
+                        await StoreFacebookAuthToken(currentUser);
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -377,6 +383,7 @@ namespace XavSpace.Website.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        await StoreFacebookAuthToken(user);
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
@@ -464,5 +471,20 @@ namespace XavSpace.Website.Controllers
             }
         }
         #endregion
+
+        private async Task StoreFacebookAuthToken(ApplicationUser user)
+        {
+            var claimsIdentity = await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+            if (claimsIdentity != null)
+            {
+                // Retrieve the existing claims for the user and add the FacebookAccessTokenClaim
+                var currentClaims = await UserManager.GetClaimsAsync(user.Id);
+                var facebookAccessToken = claimsIdentity.FindAll(KeyRepository.Constants.FacebookAccessToken).First();
+                if (currentClaims.Count() <= 0)
+                {
+                    await UserManager.AddClaimAsync(user.Id, facebookAccessToken);
+                }
+            }
+        }
     }
 }

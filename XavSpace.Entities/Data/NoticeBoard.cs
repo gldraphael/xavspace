@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using XavSpace.Entities.Relationships;
 using XavSpace.Entities.Users;
 
 namespace XavSpace.Entities.Data
@@ -37,5 +37,17 @@ namespace XavSpace.Entities.Data
         public string Description { get; set; }
 
         public virtual List<Notice> Notices { get; set; }
+
+        /// <summary>
+        /// If the notice board has been archived
+        /// </summary>
+        public bool IsArchived { get; set; }
+
+        public void Archived()
+        {
+            this.IsArchived = true;
+        }
+
+        public virtual List<UserNoticeBoardFollow> Followers { get; set; }
     }
 }

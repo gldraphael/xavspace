@@ -47,6 +47,9 @@
                 </p>
             }
         </section>
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
     </div>
     <div class="col-md-4">
         <section>
@@ -82,9 +85,7 @@
                 <p><strong>Password:</strong> testerpassword</p>
             </div>
         </section>
-        @*<section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>*@
+
     </div>
 </div>
 @section Scripts {

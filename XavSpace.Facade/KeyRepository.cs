@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace XavSpace.Facade
 {
-    public class KeyRepository
+    public static class KeyRepository
     {
-        public string FacebookAppId { 
+        public static string FacebookAppId { 
             get 
             { 
 #if DEBUG
@@ -20,7 +20,7 @@ namespace XavSpace.Facade
             }
         }
 
-        public string FacebookAppSecret
+        public static string FacebookAppSecret
         {
             get
             {
@@ -30,6 +30,11 @@ namespace XavSpace.Facade
                 return ConfigurationManager.AppSettings["FacebookAppSecret"]; 
 #endif
             }
+        }
+
+        public static class Constants
+        {
+            public const string FacebookAccessToken = "urn:facebook:access_token";
         }
     }
 }

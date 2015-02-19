@@ -8,6 +8,9 @@ using System;
 using XavSpace.DataAccess.DbContexts;
 using XavSpace.Facade.Identity.Managers;
 using XavSpace.Entities.Users;
+using Microsoft.Owin.Security.Facebook;
+using XavSpace.Facade;
+using System.Threading.Tasks;
 
 namespace XavSpace.Website
 {
@@ -57,9 +60,24 @@ namespace XavSpace.Website
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            var x = new FacebookAuthenticationOptions();
+            x.Scope.Add("email");
+            x.Scope.Add("friends_about_me");
+            x.Scope.Add("friends_photos");
+            x.AppId = KeyRepository.FacebookAppId;
+            x.AppSecret = KeyRepository.FacebookAppSecret;
+            x.Provider = new FacebookAuthenticationProvider()
+            {
+                OnAuthenticated = async context =>
+                {
+                    context.Identity.AddClaim(
+                    new System.Security.Claims.Claim(KeyRepository.Constants.FacebookAccessToken,
+                                                         context.AccessToken));
+                    await Task.FromResult(0);
+                }
+            };
+            x.SignInAsAuthenticationType = DefaultAuthenticationTypes.ExternalCookie;
+            app.UseFacebookAuthentication(x);
 
             //app.UseGoogleAuthentication(
             //    clientId: "",

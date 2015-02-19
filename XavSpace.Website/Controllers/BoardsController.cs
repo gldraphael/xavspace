@@ -134,29 +134,13 @@ namespace XavSpace.Website.Controllers
             return View(vm);
         }
 
-        // GET: Boards/Delete/5
-        [RestrictAccessTo(UserTypes = "moderator")]
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NoticeBoard noticeBoard = await db.GetOfficialBoardAsync(id.Value);
-            if (noticeBoard == null)
-            {
-                return HttpNotFound();
-            }
-            return View(NoticeBoardMappings.To<NoticeBoardIndexViewModel>(noticeBoard));
-        }
-
         // POST: Boards/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         [RestrictAccessTo(UserTypes = "moderator")]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            await db.DeleteAsync(id);
+            await db.DeleteOrArchiveAsync(id);
             return RedirectToAction("Index");
         }
 

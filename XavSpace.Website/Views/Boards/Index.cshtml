@@ -4,8 +4,6 @@
     ViewBag.Title = "Notice Boards";
     bool isMod = User.Identity.IsModerator();
 }
-need to figure out why the url always points to the first noticeboard on pressing delete.
-modal done, need to solve above issue.
 <h2>@ViewBag.Title</h2>
 @if (isMod)
 {
@@ -95,7 +93,6 @@ modal done, need to solve above issue.
 @*THE DELETE MODAL*@
 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
-    @*<form method="post" action="#" id="deleteForm">*@
     @using (Html.BeginForm("Delete", "Boards", null, FormMethod.Post, new { @id = "deleteform" }))
     {
         @Html.AntiForgeryToken()
@@ -109,13 +106,12 @@ modal done, need to solve above issue.
                             data-dismiss="modal">
                         Close
                     </button>
-                    <hidden name="id" id="deleteFormId" value="-1" />
+                    <input type="hidden" name="id" id="deleteFormId" value="-1" />
                     <button class="btn btn-primary" onclick="secondFunction()">Delete</button>
                 </div>
             </div>
         </div><!-- /.modal-content -->
     }
-    @*</form>*@
 </div>
 
 <!-- #region Mandatory -->

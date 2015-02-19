@@ -54,9 +54,9 @@ namespace XavSpace.Facade.Managers
                 return null;
             if (nb.IsOfficial)
             {
-                    nb.Notices = nb.Notices.Where(x => x.Status == NoticeStatus.Approved)
-                        .OrderByDescending(n=>n.DateCreated)
-                        .ToList();
+                nb.Notices = nb.Notices.Where(x => x.Status == NoticeStatus.Approved)
+                    .OrderByDescending(n => n.DateCreated)
+                    .ToList();
                 return nb;
             }
             throw new XSException("The requested noticeboard is not an official notice board");
@@ -74,7 +74,7 @@ namespace XavSpace.Facade.Managers
                 throw new XSException("The requested noticeboard is not an unofficial notice board");
 
             nb.Notices = nb.Notices.Where(x => x.Status != NoticeStatus.Flagged)
-                            .OrderByDescending(n=>n.DateCreated)
+                            .OrderByDescending(n => n.DateCreated)
                             .ToList();
             return nb;
         }
@@ -84,7 +84,7 @@ namespace XavSpace.Facade.Managers
         /// </summary>
         public async Task<IEnumerable<NoticeBoard>> GetAsync()
         {
-            return await DbContext.NoticeBoards.ToListAsync();
+            return await DbContext.NoticeBoards.Where(nb => !nb.IsArchived).ToListAsync();
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace XavSpace.Facade.Managers
         public async Task<IEnumerable<NoticeBoard>> GetOfficialBoardsAsync()
         {
             return await DbContext.NoticeBoards
-                .Where(nb => nb.IsOfficial)
+                .Where(nb => nb.IsOfficial && !nb.IsArchived)
                 .ToListAsync();
         }
 
@@ -103,7 +103,7 @@ namespace XavSpace.Facade.Managers
         public async Task<IEnumerable<NoticeBoard>> GetUnofficialBoardsAsync()
         {
             return await DbContext.NoticeBoards
-                .Where(nb => !nb.IsOfficial)
+                .Where(nb => !nb.IsOfficial && !nb.IsArchived)
                 .ToListAsync();
         }
 
@@ -131,6 +131,35 @@ namespace XavSpace.Facade.Managers
             res = res.Take(5);
 
             return await res.ToListAsync();
+        }
+
+        /// <summary>
+        /// Deletes a notice board
+        /// </summary>
+        /// <param name="id">The notice board to delete</param>
+        /// <returns>Returns 1 if the delete was successful</returns>
+        public async Task<int> ArchiveAsync(int id)
+        {
+            NoticeBoard noticeBoard = await DbContext.NoticeBoards.FindAsync(id);
+
+            if (noticeBoard.Notices.Count < 1)
+                throw new XSException("The notice board needs to have at least one post in order to be archived");
+
+            noticeBoard.Archived();
+            return await UpdateAsync(noticeBoard);
+        }
+
+        public async Task<int> DeleteOrArchiveAsync(int id)
+        {
+            NoticeBoard noticeBoard = await DbContext.NoticeBoards.FindAsync(id);
+
+            if (noticeBoard.IsArchived)
+                throw new XSException("This notice board has already been archived");
+
+            if (noticeBoard.Notices.Count > 0)
+                return await ArchiveAsync(id);
+
+            return await DeleteAsync(id);
         }
     }
 }
