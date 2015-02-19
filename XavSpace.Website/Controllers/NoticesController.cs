@@ -20,23 +20,27 @@ namespace XavSpace.Website.Controllers
     {
         // POST: /Notices/Delete?noticeId=5
         [HttpPost]
-        public async Task<JsonResult> Delete(int noticeId)
+        public async Task<ActionResult> Delete(int noticeId)
         {
             using (NoticeManager nm = new NoticeManager())
             {
                 var postedBy = await nm.PostedBy(noticeId);
                 var current = await User.Identity.GetApplicationUserAsync();
                 var notice = await nm.GetAsync(noticeId);
+                
 
                 if ((postedBy.Id == current.Id && notice.IsPendingApproval)
                     || await User.Identity.IsModeratorAsync())
                 {
                     var res = await nm.DeleteAsync(noticeId);
                     if (res > 0)
-                        return Json(JsonViewModel.Success);
+                        //return Json(JsonViewModel.Success);
+                        return RedirectToAction("Index", "Home");
                 }
+               
             }
-            return Json(JsonViewModel.Error);
+            //return Json(JsonViewModel.Error);
+            return RedirectToAction("Index", "Home");
         }
 
         #region Old COde

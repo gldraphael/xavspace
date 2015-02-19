@@ -4,25 +4,16 @@
     var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
 }
 
-<div  class="newsfeedPost" >
+@if(Model.IsOfficial)
+{ 
+<div class="newsfeedPost">
     <div style="padding:1em">
-        @*NEVER USER H1 FOR ANYTHING OTHER THAN THE TITLE.*@
-        @*<h1>@Html.DisplayFor(modelItem => item.NoticeBoardName)</h1>*@
+       
+        <span class="label label-primary">Official</span>
         <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
-        <p><span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span></p> @*I know this doesnt look nice, come up with a better way*@
+        <p><span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span></p> 
         <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
-        <p>
-            @*Again you should be able to do this better*@
-            @if (Model.IsOfficial)
-            {
-                <span class="label label-primary">Official</span>
-            }
-            else
-            {
-                <span class="label label-primary">Unofficial</span>
-            }
-            @*BTW remove unnecessary comments (and commented code) to keep things clean. Everything is in the source control anyway*@
-        </p>
+       
         <div class='container-ctm'>
             <div class="align-left">
                 <h4 style="text-align:left;"><b>@date</b></h4>
@@ -35,9 +26,67 @@
         <div class="img-responsive" style="text-align:right">
             <img src="~/Content/images/John_McCain_Signature.PNG" style="width:100px; height:auto" />
         </div>
-        <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
-            <i class="glyphicon glyphicon-list" title="Details"></i>
-        </a>
-        <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
+        <div class="btn-toolbar">
+            <div class="btn-group">
+                <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
+
+            </div>
+            <div class="btn-group">
+                <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
+                    <i class="glyphicon glyphicon-list " title="Details"></i>
+                </a>
+            </div>
+
+            <div class="btn-group">
+                @if (User.Identity.IsModerator())
+                {
+                    <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
+                        <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                    </a>
+                }
+            </div>
+        </div>
     </div>
 </div>
+}
+else
+{
+    <div class="newsfeedPost">
+        <div style="padding:1em">
+
+            <span class="label label-primary">Unofficial</span>
+            <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
+            <p><span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span></p>
+            <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
+            
+            
+                    <h4 style="text-align:left;"><b>@date</b></h4>
+               
+                
+            
+
+            
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
+
+                </div>
+                <div class="btn-group">
+                    <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
+                        <i class="glyphicon glyphicon-list " title="Details"></i>
+                    </a>
+                </div>
+
+                <div class="btn-group">
+                    @if (User.Identity.IsStaff())
+                    {
+                        <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
+                            <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

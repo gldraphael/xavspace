@@ -43,22 +43,22 @@
 
                         <div class="row">
                             <div class="col-lg-3" style="width:100%">
-                                <div class="btn-toolbar">
+                                <div class="btn-toolbar btn-xs">
                                     @if (isMod)
                                     {
-                                        <div class="btn-group">
+                                        <div class="btn-group ">
                                             <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-xs btn-primary">
                                                 <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
                                             </a>
                                         </div>
 
-                                        <div class="btn-group">
+                                        <div class="btn-group ">
                                             <button type="button" value="delete" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@item.Id)">
                                                 <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
                                             </button>
                                         </div>
                                     }
-                                    <div class="btn-group">
+                                    <div class="btn-group ">
                                         @*@if (item.IsMandatory)
                                             {
                                                 <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowModal"><i class="fa fa-plus"></i> FOLLOWING</button>
