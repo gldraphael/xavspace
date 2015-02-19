@@ -231,7 +231,7 @@ namespace XavSpace.Website.Controllers
 
             using (NoticeManager nm = new NoticeManager())
             {
-                var n = await nm.GetAsync(id.Value);
+                var n = await nm.GetDetailedAsync(id.Value);
 
                 if (n == null)
                     return HttpNotFound();

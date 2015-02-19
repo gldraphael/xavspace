@@ -83,6 +83,20 @@ namespace XavSpace.Facade.Managers
         }
 
         /// <summary>
+        /// Returns the specified notice, with NoticeBoard details
+        /// </summary>
+        /// <param name="id">The id of the notice</param>
+        /// <returns>Returns the requested notice. Returns null if the notice doesn't exist.</returns>
+        public async Task<Notice> GetDetailedAsync(int id)
+        {
+            var notice = from n in DbContext.Notices.Include(n => n.NoticeBoard)
+                    where n.NoticeId == id
+                    select n;
+
+            return await notice.FirstOrDefaultAsync();
+        }
+
+        /// <summary>
         /// Returns all the approved notices on all notice boards
         /// </summary>
         public async Task<IEnumerable<Notice>> GetAsync()
