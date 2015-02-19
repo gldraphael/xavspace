@@ -474,7 +474,6 @@
     <Content Include="Views\RolesAdmin\Delete.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />
     <Content Include="Views\Settings\SetPassword.cshtml" />
-    <Content Include="Views\Settings\ManageLogins.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\Settings\ChangePassword.cshtml" />
     <Content Include="Views\About\Contact.cshtml" />
@@ -553,7 +552,6 @@
     <Compile Include="ViewModels\Notices\PendingNoticeViewModel.cs" />
     <Compile Include="ViewModels\Settings\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\Settings\IndexViewModel.cs" />
-    <Compile Include="ViewModels\Settings\ManageLoginsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\Settings\SetPasswordViewModel.cs" />

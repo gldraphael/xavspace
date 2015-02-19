@@ -236,7 +236,7 @@ namespace XavSpace.Website.Controllers
                 if (n == null)
                     return HttpNotFound();
 
-                return View(NoticeMappings.To<NoticeViewModel>(n));
+                return View(NoticeMappings.To<DetailedNoticeViewModel>(n));
             }
         }
         #endregion

@@ -1,13 +1,8 @@
-﻿@model XavSpace.Website.ViewModels.Notices.NoticeViewModel
+﻿@model XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel
 @{
     ViewBag.Title = Model.Title;
     ViewBag.Description = Model.Description;
     Layout = "~/Views/Shared/_NewsFeedLayout.cshtml";
-        
-    
-
-
-    
 }
 @section head{
     <style>
@@ -26,8 +21,6 @@
 <meta property="og:image" content="~/Content/images/LOGO.png">
 }
 @*<div>
-
-
         <div class="panel panel-success">
             <div class="panel-heading" style="display:flex">
                 <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:left">
