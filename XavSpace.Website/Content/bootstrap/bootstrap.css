@@ -6599,6 +6599,7 @@ label {
 .searchBar {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAA6lBMVEVqb3X///8ZGx1qb3Vqb3VpbnRqb3Vqb3VdYWdqb3UZGx1qb3Vqb3Vqb3Vqb3Vqb3VeYmghIyVbX2QZGx03Oj5qb3VpbnRlam9qb3UtLzIZGx0ZGx1nbHJqb3VobXNma3EZGx1RVVlfY2lbYGVhZmtPU1hCRUlpbnRqb3Vqb3VpbnRjaG4ZGx1SVlpqb3Vqb3Vqb3Vqb3VfZGkZGx0+QUVhZmxpbnRnbHJbYGVfY2lqb3UZGx0ZGx0ZGx0ZGx0ZGx0fIiRdYmdqb3VQVFkgIiRiZ2wgIiRjaG4cHyFDR0shIyUZGx0ZGx1qb3UGwh7wAAAATXRSTlMAAAL6TvsV/c0tEz9y69i60GHARoHq0o2cVgQ+7Cr27QhpV6mKSFqxDDDw4hKw55+0/MkxjNf058fSURlNYFlBTM5Up0q6SJ1GlT8BHyB8ovwAAACOSURBVHheVcxFFoNQEETRgg9B4u7u7u6uvf/t5EAzSN7s1qAg/QcJcPujvoQLVpY9lAmNhNdwbGiBYDocycUcx9VkCjDPlGVf8wUAKFKJXdbsqwpV2TWqN4Bmq22yO13q9QdDUhU2xpPpbL5Yklixsd5sd/vDkcTJNidfdBIKm4ebTnc2Jz+er1/j/ZGlLz9uDyhEzYcEAAAAAElFTkSuQmCC') /*images/search-dark.png*/ no-repeat 9px center;
   border: none;
+  margin-top: .2px;
   padding: 5px 10px 5px 32px;
   background-color: white;
   -webkit-border-radius: 5em;
@@ -6753,6 +6754,12 @@ label {
   background-color: #fff;
   border: solid thin;
   border-color: #e6e6e6;
+}
+.linkBelloeNotice {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  padding-top: 2em;
 }
 .notice-inner {
   padding: 8em;

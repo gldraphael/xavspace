@@ -33,13 +33,13 @@ namespace XavSpace.Website.Controllers
                     || await User.Identity.IsModeratorAsync())
                 {
                     var res = await nm.DeleteAsync(noticeId);
-                    if (res > 0)
+                    //if (res > 0) ;
                         //return Json(JsonViewModel.Success);
-                        return RedirectToAction("Index", "Home");
+                       
                 }
                
             }
-            //return Json(JsonViewModel.Error);
+           // return Json(JsonViewModel.Error);
             return RedirectToAction("Index", "Home");
         }
 

@@ -1,0 +1,50 @@
+﻿@model XavSpace.Website.ViewModels.Notices.PendingNoticeViewModel
+
+<div class="well">
+
+    <h2>@Html.DisplayFor(modelItem => Model.Title) <small><em>Created on @Html.DisplayFor(modelItem => Model.DateCreated)</em></small> </h2>
+    <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
+    @if (@Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString().Contains("Board"))
+    {
+        <h5>- Posted on the<strong> @Html.DisplayFor(modelItem =>Model.NoticeBoardName)</strong></h5>
+    }
+    else
+    {
+        <h5>- Posted on the<strong> @Html.DisplayFor(modelItem => Model.NoticeBoardName) Notice Board.</strong> </h5>
+    }
+
+    @using (Html.BeginForm("Approve", "Pending"))
+    {
+        <input type="hidden" name="id" value="@Model.Id" />
+        <button type="submit" class="btn btn-success">Approve <i class="glyphicon glyphicon-thumbs-up"></i></button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Ammend <i class="glyphicon glyphicon-thumbs-down"></i></button>
+    }
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        Send poster a comment
+                    </h4>
+                </div>
+                @using (Html.BeginForm("Disapprove", "Pending", FormMethod.Post))
+                {
+                    <div class="modal-body">
+                        @Html.TextArea("comment", new { @class = "form-control " })
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        @Html.Hidden("id", Model.Id);
+                        <input type="submit" class="btn btn-primary" value="Disapprove">
+                    </div>
+                }
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
+

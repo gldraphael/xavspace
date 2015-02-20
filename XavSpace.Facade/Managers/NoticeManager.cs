@@ -124,7 +124,7 @@ namespace XavSpace.Facade.Managers
         {
 
             var boards = (from board in DbContext.UserBoardFollowingRelationship
-                          where board.UserId == userId
+                          where !board.NoticeBoard.IsArchived && board.UserId == userId
                           select board.NoticeBoard).Union(
                                 from board in DbContext.NoticeBoards
                                 where board.IsMandatory
@@ -171,23 +171,53 @@ namespace XavSpace.Facade.Managers
         /// <summary>
         /// Returns all of the pending notices for all official notice boards in common
         /// </summary>
-        public async Task<IEnumerable<Notice>> GetPendingAsync()
+        /// 
+        public async Task<IEnumerable<Notice>> GetUPendingAsync()
         {
-            var l = from x in DbContext.Notices
+            return await GetPendingAsync(0, 10);
+        }
+        public async Task<IEnumerable<Notice>> GetPendingAsync(int index, int number)
+        {
+            var pendingPosts = from x in DbContext.Notices
                     where x.NoticeBoard.IsOfficial && x.Status == NoticeStatus.PendingApproval
                     select x;
-            return await l.Include(n => n.NoticeBoard).ToListAsync();
+            pendingPosts = pendingPosts.OrderByDescending(n => n.DateCreated);
+
+            if (index > 0)
+                pendingPosts = pendingPosts.Skip(index);
+
+            pendingPosts = pendingPosts.Take(number);
+
+            return await pendingPosts
+                .Include(nb => nb.NoticeBoard)
+                .ToListAsync();
+            //return await l.Include(n => n.NoticeBoard).ToListAsync();
         }
 
         /// <summary>
         /// Returns all the notices posted by the given user
         /// </summary>
+        /// 
         public async Task<IEnumerable<Notice>> GetUserNoticesAsync(string userId)
         {
-            var l = from x in DbContext.UserNoticePostRelationship
+            return await GetUserNoticesAsync(userId, 0, 10);
+        }
+        public async Task<IEnumerable<Notice>> GetUserNoticesAsync(string userId,int index, int number)
+        {
+            var usersPosts = from x in DbContext.UserNoticePostRelationship
                     where x.UserId == userId
                     select x.Notice;
-            return await l.Include(n => n.NoticeBoard).ToListAsync();
+
+            usersPosts = usersPosts.OrderByDescending(n => n.DateCreated);
+
+            if (index > 0)
+                usersPosts = usersPosts.Skip(index);
+
+            usersPosts = usersPosts.Take(number);
+
+            return await usersPosts
+                .Include(nb => nb.NoticeBoard)
+                .ToListAsync();
         }
 
         /// <summary>

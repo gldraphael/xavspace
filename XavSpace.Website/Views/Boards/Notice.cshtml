@@ -14,11 +14,11 @@
             width: 100%;
         }
     </style>
-<meta property="og:title"
-      content="@ViewBag.Title" />
-<meta property="og:description" content="@ViewBag.Description">
-<meta property="og:site_name" content="XavSpace" />
-<meta property="og:image" content="~/Content/images/LOGO.png">
+    <meta property="og:title"
+          content="@ViewBag.Title" />
+    <meta property="og:description" content="@ViewBag.Description">
+    <meta property="og:site_name" content="XavSpace" />
+    <meta property="og:image" content="~/Content/images/LOGO.png">
 }
 @*<div>
         <div class="panel panel-success">
@@ -48,13 +48,15 @@
     </div>*@
 @{var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
 }
+
+
 <div class="body-content">
     <div class="row">
         <div class="col-md-12">
             <div class="notice-outer effect6" id="printable">
-                
+
                 <div class="notice-inner">
-                    
+
                     <h2><u><strong>@Html.DisplayFor(model => model.Title).ToString().ToUpper()</strong></u></h2>
 
                     <br>
@@ -74,7 +76,7 @@
 
                     <div class="btn-toolbar">
                         <div class="btn-group">
-                            <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button" ></div>    
+                            <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
                         </div>
                         <div class="btn-group">
                             <a onclick="printContent('printable')" id="hideprint" title="Print Notice"><i class="fa fa-print"></i></a>
@@ -84,7 +86,7 @@
                             {
                                 using (Html.BeginForm("Delete", "Notices", new { noticeId = Model.Id }, FormMethod.Post, new { @id = "deleteNoticeForm" }))
                                 {
-                                    <a data-toggle="modal" data-target="#confirmDelete">
+                                    <a data-toggle="modal" data-target="#confirmDelete" id="hideprint">
                                         <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>
                                     </a>
                                 }
@@ -93,9 +95,33 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="linkBelloeNotice">
+                <p>
+
+
+                    @if (Model.IsOfficial)
+                    {
+                        @Html.ActionLink("Back to Notice Board", "View", new { id = Model.NoticeBoardId })
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("View","Unofficial", new { id = Model.NoticeBoardId })"> Back to Notice Board</a>
+                    }
+                </p>
+
+            </div>
+
+        </div>
+
     </div>
+
+
+
 
     <!-- Delete Modal -->
 
@@ -122,13 +148,6 @@
     </div>
 
     <!-- #endregion -->
-
-
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-
     @section Scripts{
         <script>
             function confirmSelection() {

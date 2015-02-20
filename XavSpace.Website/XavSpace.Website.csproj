@@ -437,6 +437,10 @@
     <Content Include="Views\InfiniteScrollDemo\Index.cshtml" />
     <Content Include="Views\InfiniteScrollDemo\_CustomerRow.cshtml" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
+    <Content Include="Views\MyPosts\_MyPostsPartial.cshtml" />
+    <Content Include="Views\MyPosts\GetFeed.cshtml" />
+    <Content Include="Views\Pending\_PendingNoticesPartial.cshtml" />
+    <Content Include="Views\Pending\GetFeed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

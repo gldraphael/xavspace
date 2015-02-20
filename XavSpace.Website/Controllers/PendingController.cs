@@ -20,10 +20,26 @@ namespace XavSpace.Website.Controllers
         // GET: Pending
         public async Task<ActionResult> Index()
         {
-            var pending_notices = await db.GetPendingAsync();
+            var pending_notices = await db.GetPendingAsync(0,6);
             List<PendingNoticeViewModel> vmlist = new List<PendingNoticeViewModel>();
             foreach(var n in pending_notices)
                 vmlist.Add(NoticeMappings.To<PendingNoticeViewModel>(n));
+            return View(vmlist);
+        }
+
+        public async Task<ActionResult> GetFeed(int? index, int? number)
+        {
+
+            int i = index ?? 0;
+            int n = number ?? 5;
+
+            NoticeManager nm = new NoticeManager();
+            var pending_notices = await db.GetPendingAsync(i, n);
+
+
+            List<PendingNoticeViewModel> vmlist = new List<PendingNoticeViewModel>();
+            foreach (var notice in pending_notices)
+                vmlist.Add(NoticeMappings.To<PendingNoticeViewModel>(notice));
             return View(vmlist);
         }
 

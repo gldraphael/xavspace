@@ -1,4 +1,4 @@
-﻿@model IEnumerable<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
+﻿@model List<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -13,28 +13,63 @@
 
 <div class="container">
     <div class="body-content">
-        <div class="myPostBody">
-            <div class="row">
-                <div class="col-md-8">
-                    @foreach (var item in Model.OrderByDescending(i => i.DateCreated))
-                    {
-                       
-                        var date = item.DateCreated.Value.Day + "th " + item.DateCreated.Value.ToString("MMMM") + ", " + item.DateCreated.Value.Year;
-                        <div class="myPostBodyOuter">
-                            <div class="myPostBodyInner">
-                                <h4>@date</h4>
-                                <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+        <div class="row">
+        <div id="myposts">
+            @foreach (var item in Model)
+            {
+                @Html.Partial("_MyPostsPartial", item)
 
-                                <h3> @Html.Raw(System.Web.HttpUtility.HtmlDecode(item.Description))</h3>
-
-
-                            </div>
-                        </div>
-
-                        <br>
-                    }
+            }
+        </div>
+            </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="spinner" id="loadingAnimation">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+
+        var number = @Model.Count;
+        var index = number;
+   
+
+        function getFeeds(n) {
+            var url = "/MyPosts/GetFeed?index="+index+"&number="+n;
+            $.get(url, function(data) {
+                $("#myposts").append(data);
+                index = index + n;
+            })
+            .fail(function () {
+                alert("Couldn't load more notices");
+            });
+        }
+
+        function done() {
+            return $('#myposts .xs-done').length > 0;
+        }
+
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+
+                if(done()==true)
+                {
+                    $("#loadingAnimation").hide();
+                }
+                else{
+                    getFeeds(3);
+                }
+            }
+        });
+    </script>
+
+}
