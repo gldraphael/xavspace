@@ -219,6 +219,23 @@ namespace XavSpace.Facade.Managers
                 .Include(nb => nb.NoticeBoard)
                 .ToListAsync();
         }
+        public async Task<IEnumerable<Notice>> GetUserNoticesAsync(string userId, int index, int number, NoticeStatus noticeStatus)
+        {
+            var usersPosts = from x in DbContext.UserNoticePostRelationship
+                             where x.UserId == userId && x.Notice.Status == noticeStatus
+                             select x.Notice;
+
+            usersPosts = usersPosts.OrderByDescending(n => n.DateCreated);
+
+            if (index > 0)
+                usersPosts = usersPosts.Skip(index);
+
+            usersPosts = usersPosts.Take(number);
+
+            return await usersPosts
+                .Include(nb => nb.NoticeBoard)
+                .ToListAsync();
+        }
 
         /// <summary>
         /// Returns all notices on all notice boards

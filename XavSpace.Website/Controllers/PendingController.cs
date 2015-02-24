@@ -36,7 +36,6 @@ namespace XavSpace.Website.Controllers
             NoticeManager nm = new NoticeManager();
             var pending_notices = await db.GetPendingAsync(i, n);
 
-
             List<PendingNoticeViewModel> vmlist = new List<PendingNoticeViewModel>();
             foreach (var notice in pending_notices)
                 vmlist.Add(NoticeMappings.To<PendingNoticeViewModel>(notice));
@@ -50,13 +49,6 @@ namespace XavSpace.Website.Controllers
             NotificationService.Instance.BroadcastNotification();
             return RedirectToAction("Index");
         }
-
-        //[HttpPost]
-        //public async Task<ActionResult> Disapprove(int id)
-        //{
-        //    await db.Disapprove(id);
-        //    return RedirectToAction("Index");
-        //}
 
         [HttpPost]
         public async Task<ActionResult> Disapprove(int id, string comment)

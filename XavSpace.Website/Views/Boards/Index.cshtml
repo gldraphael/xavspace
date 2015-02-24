@@ -94,18 +94,16 @@
         <hr>
         <div class="row">
             <div id="moreBoards">
-            @foreach (var item in Model)
-            {
-                if (!item.IsSubscribed)
+                @foreach (var item in Model)
                 {
-                    string s = @Html.DisplayFor(modelItem => item.Title).ToString();
-                         @Html.Partial("_BoardsPartial", item);
-                    
-
+                    if (!item.IsSubscribed)
+                    {
+                        string s = @Html.DisplayFor(modelItem => item.Title).ToString();
+                        @Html.Partial("_BoardsPartial", item);
+                    }
                 }
-            }
-                </div>
-                    </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="spinner" id="loadingAnimation">
@@ -166,6 +164,7 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/jquery")
     <script>
+
         var id = -1;
         function secondFunction() {
             if (id > -1) {
@@ -173,9 +172,11 @@
                 document.getElementById("deleteform").submit();
             }
         }
+
         function thirdFunction(i) {
             id = i;
         }
+
         function subscribe() {
             $(".subscribeForms").on("submit", function (event) {
                 event.preventDefault();
@@ -196,6 +197,7 @@
                             // var string = document.getElementById("");
                             // alert('success');
                             $('#mydiv').load(document.URL + " #mydiv", function () {
+                                index = 0;
                                 subscribe(".subscribeForms");
                             });
                         }
@@ -204,21 +206,22 @@
                         }
                     }
                 })
+                
             });
         }
+
         $(document).ready(function () {
             subscribe();
         });
 
         var index = 0;
-   
 
         function getFeeds(n) {
-            
             var url = "/Boards/GetBoards?index="+index+"&number="+n;
             $.get(url, function(data) {
                 $("#moreBoards").append(data);
                 index = index + n;
+                subscribe();
             })
             .fail(function () {
                 alert("Couldn't load more notices");
@@ -228,7 +231,7 @@
         function done() {
             return $('#moreBoards .xs-done').length > 0;
         }
-        
+
         $(window).scroll(function() {
             if($(window).scrollTop() + $(window).height() == $(document).height()) {
 
@@ -237,11 +240,12 @@
                     $("#loadingAnimation").hide();
                 }
                 else{
-                    
-                    getFeeds(1);
-                    
+                    getFeeds(4);
                 }
             }
         });
+
+
+
     </script>
 }

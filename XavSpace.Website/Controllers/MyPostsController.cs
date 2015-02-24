@@ -21,27 +21,74 @@ namespace XavSpace.Website.Controllers
             using(NoticeManager nm = new NoticeManager())
             {
                 var user = await User.Identity.GetApplicationUserAsync();
-                var notices = await nm.GetUserNoticesAsync(user.Id, 0, 6);
-                List<DetailedNoticeViewModel> vm = new List<DetailedNoticeViewModel>();
+                var approved = await nm.GetUserNoticesAsync(user.Id, 0, 6, Entities.Data.NoticeStatus.Approved);
+                var pending = await nm.GetUserNoticesAsync(user.Id, 0, 6, Entities.Data.NoticeStatus.PendingApproval);
+                var disapproved = await nm.GetUserNoticesAsync(user.Id, 0, 6, Entities.Data.NoticeStatus.Disapproved);
 
-                foreach (var n in notices)
-                    vm.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                Tuple<List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>> vm 
+                    = new Tuple<List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>>(
+                        new List<DetailedNoticeViewModel>(),
+                        new List<DetailedNoticeViewModel>(),
+                        new List<DetailedNoticeViewModel>());
+
+                foreach (var n in approved)
+                    vm.Item1.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+
+                foreach (var n in pending)
+                    vm.Item2.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+
+                foreach (var n in pending)
+                    vm.Item3.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
                 return View(vm);
             }
         }
-        // GET: /GetFeed?index=6&number=5
-        public async Task<ActionResult> GetFeed(int? index, int? number)
+
+        // GET: /GetApproved?index=6&number=5
+        public async Task<ActionResult> GetApproved(int? index, int? number)
         {
-
-            
-
             using (NoticeManager nm = new NoticeManager())
             {
                 int i = index ?? 0;
                 int n = number ?? 5;
                 var user = await User.Identity.GetApplicationUserAsync();
-                var notices = await nm.GetUserNoticesAsync(user.Id,i,n);
+                var notices = await nm.GetUserNoticesAsync(user.Id, i, n, Entities.Data.NoticeStatus.Approved);
+                List<DetailedNoticeViewModel> vm = new List<DetailedNoticeViewModel>();
+
+                foreach (var notice in notices)
+                    vm.Add(NoticeMappings.To<DetailedNoticeViewModel>(notice));
+
+                return View(vm);
+            }
+        }
+
+        // GET: /GetPending?index=6&number=5
+        public async Task<ActionResult> GetPending(int? index, int? number)
+        {
+            using (NoticeManager nm = new NoticeManager())
+            {
+                int i = index ?? 0;
+                int n = number ?? 5;
+                var user = await User.Identity.GetApplicationUserAsync();
+                var notices = await nm.GetUserNoticesAsync(user.Id, i, n, Entities.Data.NoticeStatus.PendingApproval);
+                List<DetailedNoticeViewModel> vm = new List<DetailedNoticeViewModel>();
+
+                foreach (var notice in notices)
+                    vm.Add(NoticeMappings.To<DetailedNoticeViewModel>(notice));
+
+                return View(vm);
+            }
+        }
+
+        // GET: /GetAmended?index=6&number=5
+        public async Task<ActionResult> GetAmended(int? index, int? number)
+        {
+            using (NoticeManager nm = new NoticeManager())
+            {
+                int i = index ?? 0;
+                int n = number ?? 5;
+                var user = await User.Identity.GetApplicationUserAsync();
+                var notices = await nm.GetUserNoticesAsync(user.Id, i, n, Entities.Data.NoticeStatus.Disapproved);
                 List<DetailedNoticeViewModel> vm = new List<DetailedNoticeViewModel>();
 
                 foreach (var notice in notices)
