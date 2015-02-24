@@ -8,10 +8,18 @@
 { 
 <div class="newsfeedPost">
     <div style="padding:1em">
-       
-        <span class="label label-primary">Official</span>
+        <div class='container-ctm'>
+            <div class="align-left">
+              <span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span>
+            </div>
+            <div class="align-right" style="text-align:right">
+                <span class="label label-primary">Official</span>
+            </div>
+        </div>
+        <br>
+        
         <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
-        <p><span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span></p> 
+         
         <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
        
         <div class='container-ctm'>
@@ -53,10 +61,19 @@ else
 {
     <div class="newsfeedPost">
         <div style="padding:1em">
+            <div class='container-ctm'>
+                <div class="align-left">
+                    <span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span>
+                </div>
+                <div class="align-right" style="text-align:right">
+                    <span class="label label-primary">Unofficial</span>
+                </div>
+            </div>
+            <br>
 
-            <span class="label label-primary">Unofficial</span>
+            
             <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
-            <p><span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span></p>
+           
             <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
             
             

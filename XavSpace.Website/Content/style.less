@@ -558,3 +558,53 @@
     border-bottom-style: inset;
     box-shadow: 1px 2px 2px 1px darken(#999,25%);
 }
+
+.not-active {
+   pointer-events: none;
+   cursor: default;
+   
+}
+
+/*Tool Tip */
+a.tooltips {
+  position: relative;
+  display: inline;
+}
+a.tooltips span {
+  position: absolute;
+  width:140px;
+  color: #FFFFFF;
+  background: #000000;
+  height: 29px;
+  line-height: 29px;
+  text-align: center;
+  visibility: hidden;
+  border-radius: 11px;
+}
+a.tooltips span:after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -8px;
+  width: 0; height: 0;
+  border-top: 8px solid #000000;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}
+a:hover.tooltips span {
+  visibility: visible;
+  opacity: 0.7;
+  bottom: 30px;
+  left: 50%;
+  margin-left: -76px;
+  z-index: 999;
+}
+/*------------*/
+
+.disabled
+{ 
+    a{
+        color : #ddd; 
+        }
+    }

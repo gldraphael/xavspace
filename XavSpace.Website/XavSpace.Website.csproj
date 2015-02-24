@@ -441,6 +441,8 @@
     <Content Include="Views\MyPosts\GetFeed.cshtml" />
     <Content Include="Views\Pending\_PendingNoticesPartial.cshtml" />
     <Content Include="Views\Pending\GetFeed.cshtml" />
+    <Content Include="Views\Search\GetFeed.cshtml" />
+    <Content Include="Views\Search\_SearchPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

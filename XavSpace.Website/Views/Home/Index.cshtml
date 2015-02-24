@@ -29,6 +29,7 @@
             }
         </div>
     </div>
+    
         <div class="row">
             <div class="col-md-6">
                 <div class="spinner" id="loadingAnimation">
@@ -40,25 +41,26 @@
                 </div>
             </div>
         </div>
+    
+    
+    <!-- #region Old -->
+    @*<div class="hidden-sm hidden-xs affix" style="right:30px">
+            <h3>Implementing Infinite Scroll</h3>
+            <ol>
+                <li>Scroll to the bottom of this page</li>
+                <li>Press F12 and open your browser's console</li>
+                <li>Type <code>getFeeds(1)</code></li>
+                <li>A notice will be appended to the news feed</li>
+            </ol>
+            <h6 class="help-block">PS: This will only work if you're supposed to be seeing more than 6 posts in your news feed</h6>
+            <p class="text-info">
+                TODO: This needs to be automated on scroll to the end of the page.
+            </p>
+        </div>*@
 
-        <!-- #region Old -->
-        @*<div class="hidden-sm hidden-xs affix" style="right:30px">
-                <h3>Implementing Infinite Scroll</h3>
-                <ol>
-                    <li>Scroll to the bottom of this page</li>
-                    <li>Press F12 and open your browser's console</li>
-                    <li>Type <code>getFeeds(1)</code></li>
-                    <li>A notice will be appended to the news feed</li>
-                </ol>
-                <h6 class="help-block">PS: This will only work if you're supposed to be seeing more than 6 posts in your news feed</h6>
-                <p class="text-info">
-                    TODO: This needs to be automated on scroll to the end of the page.
-                </p>
-            </div>*@
+    <!-- #endregion -->
 
-        <!-- #endregion -->
 
-   
 </div>
 
 <div id="fb-root"></div>
@@ -116,19 +118,27 @@
         function done() {
             return $('#posts .xs-done').length > 0;
         }
-
-        $(window).scroll(function() {
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
-
-                if(done()==true)
-                {
-                    $("#loadingAnimation").hide();
+        
+            $(".xs-done").hide();
+            $("#loadingAnimation").hide();
+            $(window).scroll(function() {
+               
+              
+                if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                    $("#loadingAnimation").show();
+                    if(done()==true )
+                    {
+                        $("#loadingAnimation").hide();
+                        $(".xs-done").show();
+                    }
+                    
+                    else{
+                        getFeeds(3);
+                    }
+                    
                 }
-                else{
-                    getFeeds(3);
-                }
-            }
-        });
+            });
+        
 
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
