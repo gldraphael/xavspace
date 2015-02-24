@@ -97,7 +97,6 @@
     <Compile Include="Identity\Managers\ApplicationSignInManager.cs" />
     <Compile Include="Identity\Managers\ApplicationUserManager.cs" />
     <Compile Include="Identity\Services\EmailService.cs" />
-    <Compile Include="Identity\Services\SmsService.cs" />
     <Compile Include="KeyRepository.cs" />
     <Compile Include="Managers\Base\IAsyncManager.cs" />
     <Compile Include="Managers\Base\IManager.cs" />

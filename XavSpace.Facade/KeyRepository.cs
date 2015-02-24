@@ -32,6 +32,31 @@ namespace XavSpace.Facade
             }
         }
 
+
+        public static string GmailEmailId
+        {
+            get
+            {
+#if DEBUG
+                return ConfigurationManager.AppSettings["GmailEmailId"];
+#else
+                return ConfigurationManager.AppSettings["GmailEmailId"]; 
+#endif
+            }
+        }
+
+        public static string GmailEmailPassword
+        {
+            get
+            {
+#if DEBUG
+                return ConfigurationManager.AppSettings["GmailEmailPassword"];
+#else
+                return ConfigurationManager.AppSettings["GmailEmailPassword"]; 
+#endif
+            }
+        }
+
         public static class Constants
         {
             public const string FacebookAccessToken = "urn:facebook:access_token";
