@@ -1,7 +1,7 @@
-﻿@model IEnumerable<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
+﻿@model List<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
 @using System.Linq
 @{
-    ViewBag.Title = "Notice Boards";
+    ViewBag.Title = "My Boards";
     bool isMod = User.Identity.IsModerator();
 }
 <h2>@ViewBag.Title</h2>
@@ -16,76 +16,106 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                string s = @Html.DisplayFor(modelItem => item.Title).ToString();
-                <div class="col-lg-3 col-md-4 col-sm-5">
-                    <div class="well" style="height:180px;">
-                        <h1>
-                            <a href="@Url.Action("View", new { id=item.Id })" style="">
-                                @if (s.Contains("Board"))
-                                {
-                                    @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" }).ToString().Substring(0, s.IndexOf(' '));
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
-                                }
-                            </a>
-                        </h1>
-                        @{string des = @Html.DisplayFor(model => item.Description).ToString();}
-                        @if (des.Length > 40)
-                        {
-                            <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 40)...</h4>
-                        }
-                        else
-                        {
-                            <h4>  @Html.DisplayFor(model => item.Description)</h4>
-                        }
-
-                        <div class="row">
-                            <div class="col-lg-3" style="width:100%">
-                                <div class="btn-toolbar btn-xs">
-                                    @if (isMod)
+                if (item.IsSubscribed)
+                {
+                    string s = @Html.DisplayFor(modelItem => item.Title).ToString();
+                    <div class="col-lg-3 col-md-4 col-sm-5">
+                        <div class="well" style="height:180px;">
+                            <h1>
+                                <a href="@Url.Action("View", new { id=item.Id })" style="">
+                                    @if (s.Contains("Board"))
                                     {
-                                        <div class="btn-group ">
-                                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-xs btn-primary">
-                                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
-                                            </a>
-                                        </div>
-
-                                        <div class="btn-group ">
-                                            <button type="button" value="delete" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@item.Id)">
-                                                <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
-                                            </button>
-                                        </div>
+                                        @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" }).ToString().Substring(0, s.IndexOf(' '));
                                     }
-                                    <div class="btn-group ">
-                                        @*@if (item.IsMandatory)
-                                            {
-                                                <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowModal"><i class="fa fa-plus"></i> FOLLOWING</button>
-                                            }*@
-                                        @if (item.IsSubscribed)
+                                    else
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Title, new { @id = "NBTitle" })
+                                    }
+                                </a>
+                            </h1>
+                            @{string des = @Html.DisplayFor(model => item.Description).ToString();}
+                            @if (des.Length > 40)
+                            {
+                                <h4>  @Html.DisplayFor(model => item.Description).ToString().Substring(0, 40)...</h4>
+                            }
+                            else
+                            {
+                                <h4>  @Html.DisplayFor(model => item.Description)</h4>
+                            }
+
+                            <div class="row">
+                                <div class="col-lg-3" style="width:100%">
+                                    <div class="btn-toolbar btn-xs">
+                                        @if (isMod)
                                         {
-                                            using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
-                                            {
-                                                <div class="unsubButton">
-                                                    <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following">FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
-                                                </div>
-                                            }
+                                            <div class="btn-group ">
+                                                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-xs btn-primary">
+                                                    <i class="glyphicon glyphicon-pencil" title="Edit Notice Board"></i>
+                                                </a>
+                                            </div>
+
+                                            <div class="btn-group ">
+                                                <button type="button" value="delete" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@item.Id)">
+                                                    <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                                                </button>
+                                            </div>
                                         }
-                                        else
-                                        {
-                                            using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                        <div class="btn-group ">
+                                            @*@if (item.IsMandatory)
+                                                {
+                                                    <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowModal"><i class="fa fa-plus"></i> FOLLOWING</button>
+                                                }*@
+                                            @if (item.IsSubscribed)
                                             {
-                                                <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
+                                                using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                                {
+                                                    <div class="unsubButton">
+                                                        <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following">FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
+                                                    </div>
+                                                }
                                             }
-                                        }
+                                            else
+                                            {
+                                                using (Html.BeginForm("Subscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
+                                                {
+                                                    <button type="submit" value="Subscribe" id="btnSubscribe" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i> FOLLOW</button>
+                                                }
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
             }
+        </div>
+        For More Boards Scroll Down
+        <hr>
+        <div class="row">
+            <div id="moreBoards">
+            @foreach (var item in Model)
+            {
+                if (!item.IsSubscribed)
+                {
+                    string s = @Html.DisplayFor(modelItem => item.Title).ToString();
+                         @Html.Partial("_BoardsPartial", item);
+                    
+
+                }
+            }
+                </div>
+                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="spinner" id="loadingAnimation">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -138,7 +168,7 @@
     <script>
         var id = -1;
         function secondFunction() {
-            if(id > -1){
+            if (id > -1) {
                 $('#deleteFormId').val(id);
                 document.getElementById("deleteform").submit();
             }
@@ -178,6 +208,41 @@
         }
         $(document).ready(function () {
             subscribe();
+        });
+
+        var number = @Model.Count;
+        var index = number;
+   
+
+        function getFeeds(n) {
+            
+            var url = "/Boards/GetBoards?index="+index+"&number="+n;
+            $.get(url, function(data) {
+                $("#moreBoards").append(data);
+                index = index + n;
+            })
+            .fail(function () {
+                alert("Couldn't load more notices");
+            });
+        }
+
+        function done() {
+            return $('#moreBoards .xs-done').length > 0;
+        }
+        
+        $(window).scroll(function() {
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+
+                if(done()==true)
+                {
+                    $("#loadingAnimation").hide();
+                }
+                else{
+                    
+                    getFeeds(1);
+                    
+                }
+            }
         });
     </script>
 }

@@ -443,6 +443,8 @@
     <Content Include="Views\Pending\GetFeed.cshtml" />
     <Content Include="Views\Search\GetFeed.cshtml" />
     <Content Include="Views\Search\_SearchPartial.cshtml" />
+    <Content Include="Views\Boards\GetBoards.cshtml" />
+    <Content Include="Views\Boards\_BoardsPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
