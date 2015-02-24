@@ -28,9 +28,38 @@ namespace XavSpace.Website.Controllers
             {
                 var temp = NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i);
                 temp.IsSubscribed = await User.Identity.IsSubscribedToAsync(temp.Id);
-                list.Add(temp);
+                if (temp.IsSubscribed)
+                {
+                    list.Add(temp);
+                }
             }
             return View(list);
+        }
+
+        // GET: /Unofficial/GetBoards?index=6&number=5
+        public async Task<ActionResult> GetBoards(int? index, int? number)
+        {
+            int i = index ?? 0;
+            int n = number ?? 5;
+
+            var boards = await db.GetUnofficialBoardsAsync();
+            var list = new List<NoticeBoardIndexViewModel>();
+            foreach (var nb in boards)
+            {
+                var temp = NoticeBoardMappings.To<NoticeBoardIndexViewModel>(nb);
+                temp.IsSubscribed = await User.Identity.IsSubscribedToAsync(temp.Id);
+                if (!temp.IsSubscribed)
+                {
+                    list.Add(temp);
+                }
+            }
+
+            IEnumerable<NoticeBoardIndexViewModel> finalList = list.OrderBy(nb => nb.Title);
+
+            finalList = finalList.Skip(i);
+            finalList = finalList.Take(n);
+
+            return View(finalList);
         }
 
         // GET: Boards/View/5

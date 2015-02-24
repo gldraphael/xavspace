@@ -26,21 +26,48 @@ namespace XavSpace.Website.Controllers
 
         // GET: Boards
         /// <summary>
-        /// Displays all the official notice boards on XavSpace
+        /// Displays all the official notice boards that the user is subscribed to
         /// </summary>
         public async Task<ActionResult> Index()
         {
             var x = await db.GetOfficialBoardsAsync();
-
             var list = new List<NoticeBoardIndexViewModel>();
             foreach (var i in x)
             {
                 var temp = NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i);
                 temp.IsSubscribed = await User.Identity.IsSubscribedToAsync(temp.Id);
-                list.Add(temp);
+                if (temp.IsSubscribed)
+                {
+                    list.Add(temp);
+                }
+            }
+            return View(list);
+        }
+
+        // GET: Official/GetBoards?index=6&number=5
+        public async Task<ActionResult> GetBoards(int? index, int? number)
+        {
+            int i = index ?? 0;
+            int n = number ?? 5;
+
+            var boards = await db.GetOfficialBoardsAsync();
+            var list = new List<NoticeBoardIndexViewModel>();
+            foreach (var nb in boards)
+            {
+                var temp = NoticeBoardMappings.To<NoticeBoardIndexViewModel>(nb);
+                temp.IsSubscribed = await User.Identity.IsSubscribedToAsync(temp.Id);
+                if (!temp.IsSubscribed)
+                {
+                    list.Add(temp);
+                }
             }
 
-            return View(list);
+            IEnumerable<NoticeBoardIndexViewModel> finalList = list.OrderBy(nb => nb.Title);
+
+            finalList = finalList.Skip(i);
+            finalList = finalList.Take(n);
+
+            return View(finalList);
         }
 
         // GET: Boards/View/5

@@ -30,7 +30,6 @@ namespace XavSpace.Website.Controllers
         // GET: /GetFeed?index=6&number=5
         public async Task<ActionResult> GetFeed(int? index, int? number)
         {
-            
             int i = index ?? 0;
             int n = number ?? 5;
 

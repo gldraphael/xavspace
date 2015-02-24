@@ -137,7 +137,7 @@ namespace XavSpace.Facade.Managers
 
             feed = feed.OrderByDescending(n => n.DateCreated);
 
-            if (index > 0)
+            //if (index > 0)
                 feed = feed.Skip(index);
 
             feed = feed.Take(number);
