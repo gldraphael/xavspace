@@ -25,22 +25,18 @@ namespace XavSpace.Website.Controllers
                 var pending = await nm.GetUserNoticesAsync(user.Id, 0, 6, Entities.Data.NoticeStatus.PendingApproval);
                 var disapproved = await nm.GetUserNoticesAsync(user.Id, 0, 6, Entities.Data.NoticeStatus.Disapproved);
 
-                Tuple<List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>> vm 
-                    = new Tuple<List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>, List<DetailedNoticeViewModel>>(
-                        new List<DetailedNoticeViewModel>(),
-                        new List<DetailedNoticeViewModel>(),
-                        new List<DetailedNoticeViewModel>());
+                MyPostViewModel pvm = new MyPostViewModel();
 
                 foreach (var n in approved)
-                    vm.Item1.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                    pvm.ApprovedPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
                 foreach (var n in pending)
-                    vm.Item2.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                    pvm.PendingPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
-                foreach (var n in pending)
-                    vm.Item3.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                foreach (var n in disapproved)
+                    pvm.AmendedPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
-                return View(vm);
+                return View(pvm);
             }
         }
 

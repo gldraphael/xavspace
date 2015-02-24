@@ -519,6 +519,7 @@
     <Compile Include="Hubs\NotificationService.cs" />
     <Compile Include="ViewModels\JsonViewModels\Base\JsonViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Search\SearchItemJVM.cs" />
+    <Compile Include="ViewModels\Notices\MyPostViewModel.cs" />
     <Compile Include="ViewModels\Notices\NoticePosterViewModel.cs" />
     <Compile Include="WebApi\BoardsController.cs" />
     <Compile Include="WebApi\TestController.cs" />

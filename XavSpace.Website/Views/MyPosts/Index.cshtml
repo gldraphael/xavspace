@@ -1,7 +1,6 @@
-﻿@model List<XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel>
-
+﻿@model XavSpace.Website.ViewModels.Notices.MyPostViewModel
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "My Posts";
 }
 
 <h2>My Posts</h2>
@@ -15,7 +14,7 @@
     <div class="body-content">
         <div class="row">
         <div id="myposts">
-            @foreach (var item in Model)
+            @foreach (var item in Model.ApprovedPosts)
             {
                 @Html.Partial("_MyPostsPartial", item)
 
