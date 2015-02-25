@@ -16,8 +16,7 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                if (item.IsSubscribed)
-                {
+               
                     string s = @Html.DisplayFor(modelItem => item.Title).ToString();
                     <div class="col-lg-3 col-md-4 col-sm-5">
                         <div class="well" style="height:180px;">
@@ -87,34 +86,10 @@
                             </div>
                         </div>
                     </div>
-                }
+                
             }
         </div>
-        For More Boards Scroll Down
-        <hr>
-        <div class="row">
-            <div id="moreBoards">
-                @foreach (var item in Model)
-                {
-                    if (!item.IsSubscribed)
-                    {
-                        string s = @Html.DisplayFor(modelItem => item.Title).ToString();
-                        @Html.Partial("_BoardsPartial", item);
-                    }
-                }
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="spinner" id="loadingAnimation">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
-                </div>
-            </div>
-        </div>
+       
     </div>
 </div>
 
@@ -214,38 +189,7 @@
             subscribe();
         });
 
-        var index = 0;
-
-        function getFeeds(n) {
-            var url = "/Boards/GetBoards?index="+index+"&number="+n;
-            $.get(url, function(data) {
-                $("#moreBoards").append(data);
-                index = index + n;
-                subscribe();
-            })
-            .fail(function () {
-                alert("Couldn't load more notices");
-            });
-        }
-
-        function done() {
-            return $('#moreBoards .xs-done').length > 0;
-        }
-
-        $(window).scroll(function() {
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
-
-                if(done()==true)
-                {
-                    $("#loadingAnimation").hide();
-                }
-                else{
-                    getFeeds(4);
-                }
-            }
-        });
-
-
+       
 
     </script>
 }

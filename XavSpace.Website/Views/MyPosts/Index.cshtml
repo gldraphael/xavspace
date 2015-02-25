@@ -10,30 +10,103 @@
 </p>
 
 
-<div class="container">
-    <div class="body-content">
-        <div class="row">
-        <div id="myposts">
-            @foreach (var item in Model.ApprovedPosts)
-            {
-                @Html.Partial("_MyPostsPartial", item)
+@*<ul class="nav nav-tabs">
+        <li class="active"><a href="#approved" data-toggle="tab">Approved Posts</a></li>
+    </ul>*@
 
-            }
-        </div>
-            </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="spinner" id="loadingAnimation">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
+<ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#approved" data-toggle="tab">Approved</a></li>
+    <li role="presentation"><a href="#pending" data-toggle="tab">Pending</a></li>
+    <li role="presentation"><a href="#amended" data-toggle="tab">Amended</a></li>
+</ul>
+<br>
+<br>
+<div class="tab-content">
+    <div class="tab-pane fade" id="approved">
+        <div class="container">
+            <div class="body-content">
+                <div class="row">
+                    <div id="myposts">
+                        @foreach (var item in Model.ApprovedPosts)
+                        {
+                            @Html.Partial("_MyPostsPartial", item)
+
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="spinner" id="loadingAnimation">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="tab-pane fade" id="pending">
+        <div class="container">
+            <div class="body-content">
+                <div class="row">
+                    <div id="myposts">
+                        @foreach (var item in Model.PendingPosts)
+                        {
+                            @Html.Partial("_MyPostsPartial", item)
+
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="spinner" id="loadingAnimation">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="amended">
+        <div class="container">
+            <div class="body-content">
+                <div class="row">
+                    <div id="myposts">
+                        @foreach (var item in Model.AmendedPosts)
+                        {
+                            @Html.Partial("_MyPostsPartial", item)
+
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="spinner" id="loadingAnimation">
+                            <div class="rect1"></div>
+                            <div class="rect2"></div>
+                            <div class="rect3"></div>
+                            <div class="rect4"></div>
+                            <div class="rect5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
 @*THE DELETE MODAL*@
 <div class="modal fade" id="confirmDelete" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -59,50 +132,50 @@
 </div>
 @section Scripts{
     <script>
-        var id = -1;
-        function secondFunction() {
-            if(id > -1){
-                $('#deleteFormId').val(id);
-                document.getElementById("deleteform").submit();
-            }
-        }
-        function thirdFunction(i) {
-            id = i;
-        }
-        var number = @Model.Count;
-        var index = number;
-   
-
-        function getFeeds(n) {
-            var url = "/MyPosts/GetFeed?index="+index+"&number="+n;
-            $.get(url, function(data) {
-                $("#myposts").append(data);
-                index = index + n;
-            })
-            .fail(function () {
-                alert("Couldn't load more notices");
-            });
-        }
-
-        function done() {
-            return $('#myposts .xs-done').length > 0;
-        }
-        
-            $(window).scroll(function() {
-                if($(window).scrollTop() + $(window).height() == $(document).height()) {
-
-                    if(done()==true)
-                    {
-                        $("#loadingAnimation").hide();
-                    }
-                    else{
-                    
-                        getFeeds(3);
-                    
-                    }
+            var id = -1;
+            function secondFunction() {
+                if(id > -1){
+                    $('#deleteFormId').val(id);
+                    document.getElementById("deleteform").submit();
                 }
-            });
-        
-    </script>
+            }
+            function thirdFunction(i) {
+                id = i;
+            }
+            @*var number = @Model.Count;
+            var index = number;
+
+
+            function getFeeds(n) {
+                var url = "/MyPosts/GetFeed?index="+index+"&number="+n;
+                $.get(url, function(data) {
+                    $("#myposts").append(data);
+                    index = index + n;
+                })
+                .fail(function () {
+                    alert("Couldn't load more notices");
+                });
+            }
+
+            function done() {
+                return $('#myposts .xs-done').length > 0;
+            }
+
+                $(window).scroll(function() {
+                    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+
+                        if(done()==true)
+                        {
+                            $("#loadingAnimation").hide();
+                        }
+                        else{
+
+                            getFeeds(3);
+
+                        }
+                    }
+                });*@
+
+        </script>
 
 }
