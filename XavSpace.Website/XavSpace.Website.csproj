@@ -439,6 +439,11 @@
     <Content Include="Views\Pending\GetFeed.cshtml" />
     <Content Include="Views\Search\GetFeed.cshtml" />
     <Content Include="Views\Search\_SearchPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\MyPosts\GetApproved.cshtml" />
+    <Content Include="Views\MyPosts\GetPending.cshtml" />
+    <Content Include="Views\MyPosts\GetAmended.cshtml" />
+    <Content Include="Views\MyPosts\_MyPostsAmendedPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -517,6 +522,7 @@
     <Compile Include="Hubs\NotificationService.cs" />
     <Compile Include="ViewModels\JsonViewModels\Base\JsonViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Search\SearchItemJVM.cs" />
+    <Compile Include="ViewModels\Notices\AmendedNoticeViewModel.cs" />
     <Compile Include="ViewModels\Notices\MyPostViewModel.cs" />
     <Compile Include="ViewModels\Notices\NoticePosterViewModel.cs" />
     <Compile Include="WebApi\BoardsController.cs" />

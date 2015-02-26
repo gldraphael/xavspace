@@ -1,4 +1,4 @@
-﻿@model XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel
+﻿@model XavSpace.Website.ViewModels.Notices.AmendedNoticeViewModel
 @{
     var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
 }
@@ -13,6 +13,8 @@
                     <h2>@Html.DisplayFor(model => Model.Title)</h2>
 
                     <h3> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h3>
+                    <p>@Model.ModeratorComment</p>
+                    <p>@Model.DateReviewed</p>
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
@@ -21,7 +23,7 @@
                         </div>
 
                         <div class="btn-group">
-                            @if (User.Identity.IsStaff() && !Model.IsOfficial)
+                            @if (User.Identity.IsStaff() @*&& !Model.IsOfficial only official posts appear here*@)
                             {
                                 <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
                                     <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>

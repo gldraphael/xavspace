@@ -12,6 +12,7 @@ using XavSpace.DataAccess.DbContexts;
 using XavSpace.Entities.Data;
 using XavSpace.Facade.Managers;
 using XavSpace.Website.ViewModels.JsonViewModels.Base;
+using XavSpace.Website.ViewModels.Notices;
 using XavSpace.Website.Extensions;
 
 namespace XavSpace.Website.Controllers
@@ -40,6 +41,31 @@ namespace XavSpace.Website.Controllers
                
             }
            // return Json(JsonViewModel.Error);
+            return RedirectToAction("Index", "Home");
+        }
+
+        // POST: /Notices/Edit?noticeId=5
+        [HttpPost]
+        public async Task<ActionResult> Edit(NoticeViewModel vm)
+        {
+            using (NoticeManager nm = new NoticeManager())
+            {
+                var postedBy = await nm.PostedBy(vm.Id);
+                var current = await User.Identity.GetApplicationUserAsync();
+                var notice = await nm.GetAsync(vm.Id);
+
+
+                if ((postedBy.Id == current.Id && notice.IsPendingApproval)
+                    || await User.Identity.IsModeratorAsync())
+                {
+                    var res = await nm.UpdateAsync(NoticeMappings.From(vm));
+                    //if (res > 0) ;
+                    //return Json(JsonViewModel.Success);
+
+                }
+
+            }
+            // return Json(JsonViewModel.Error);
             return RedirectToAction("Index", "Home");
         }
 

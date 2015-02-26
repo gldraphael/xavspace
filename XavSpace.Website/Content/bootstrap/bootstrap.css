@@ -6418,8 +6418,8 @@ label {
 }
 .tt-dropdown-menu {
   width: 100%;
-  margin-top: 12px;
-  padding: 8px 0;
+  margin-top: 1em;
+  padding: 1em;
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -6910,6 +6910,10 @@ a:hover.tooltips span {
 /*------------*/
 .disabled a {
   color: #ddd;
+}
+.loginbody {
+  background-color: white;
+  padding: 1em;
 }
 .clearfix:before,
 .clearfix:after,

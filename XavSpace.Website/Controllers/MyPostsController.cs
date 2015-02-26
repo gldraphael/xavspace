@@ -34,7 +34,7 @@ namespace XavSpace.Website.Controllers
                     pvm.PendingPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
                 foreach (var n in disapproved)
-                    pvm.AmendedPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                    pvm.AmendedPosts.Add(NoticeMappings.To<AmendedNoticeViewModel>(n));
 
                 return View(pvm);
             }
@@ -85,10 +85,10 @@ namespace XavSpace.Website.Controllers
                 int n = number ?? 5;
                 var user = await User.Identity.GetApplicationUserAsync();
                 var notices = await nm.GetUserNoticesAsync(user.Id, i, n, Entities.Data.NoticeStatus.Disapproved);
-                List<DetailedNoticeViewModel> vm = new List<DetailedNoticeViewModel>();
+                List<AmendedNoticeViewModel> vm = new List<AmendedNoticeViewModel>();
 
                 foreach (var notice in notices)
-                    vm.Add(NoticeMappings.To<DetailedNoticeViewModel>(notice));
+                    vm.Add(NoticeMappings.To<AmendedNoticeViewModel>(notice));
 
                 return View(vm);
             }

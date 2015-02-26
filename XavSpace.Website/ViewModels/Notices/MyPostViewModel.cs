@@ -9,13 +9,13 @@ namespace XavSpace.Website.ViewModels.Notices
     {
         public List<DetailedNoticeViewModel> ApprovedPosts { get; set; }
         public List<DetailedNoticeViewModel> PendingPosts { get; set; }
-        public List<DetailedNoticeViewModel> AmendedPosts { get; set; }
+        public List<AmendedNoticeViewModel> AmendedPosts { get; set; }
 
         public MyPostViewModel()
         {
             ApprovedPosts = new List<DetailedNoticeViewModel>();
             PendingPosts = new List<DetailedNoticeViewModel>();
-            AmendedPosts = new List<DetailedNoticeViewModel>();
+            AmendedPosts = new List<AmendedNoticeViewModel>();
         }
     }
 }

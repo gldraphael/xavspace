@@ -1,9 +1,13 @@
 ﻿@model XavSpace.Website.ViewModels.Account.LoginViewModel
+
 @{
     ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
+
 <h2>@ViewBag.Title</h2>
+<div class="loginbody">
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
@@ -88,6 +92,7 @@
 
     </div>
 </div>
+    </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
