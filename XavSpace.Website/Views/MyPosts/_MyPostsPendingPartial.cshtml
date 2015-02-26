@@ -1,7 +1,5 @@
 ﻿@model XavSpace.Website.ViewModels.Notices.PendingNoticeViewModel
-@{
-    var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
-}
+
 
 <div class="myPostBody">
     <div class="row">
@@ -9,7 +7,7 @@
 
             <div class="myPostBodyOuter">
                 <div class="myPostBodyInner">
-                    <h4>@date</h4>
+                    <h4>@Model.DateCreated.Friendly()</h4>
                     <h2>@Html.DisplayFor(model => Model.Title)</h2>
 
                     <h3> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h3>
