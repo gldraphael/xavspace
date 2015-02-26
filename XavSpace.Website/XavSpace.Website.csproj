@@ -444,6 +444,8 @@
     <Content Include="Views\MyPosts\GetPending.cshtml" />
     <Content Include="Views\MyPosts\GetAmended.cshtml" />
     <Content Include="Views\MyPosts\_MyPostsAmendedPartial.cshtml" />
+    <Content Include="Views\MyPosts\_MyPostsPendingPartial.cshtml" />
+    <Content Include="Views\Boards\EditNotice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

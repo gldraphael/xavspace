@@ -126,7 +126,7 @@ namespace XavSpace.Website.Controllers
         //    {
         //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         //    }
-        //    Notice notice = await db.Notices.FindAsync(id);
+        //    Notice notice = await  db.Notices.FindAsync(id);
         //    if (notice == null)
         //    {
         //        return HttpNotFound();

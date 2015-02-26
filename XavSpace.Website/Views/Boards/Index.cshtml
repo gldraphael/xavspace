@@ -1,4 +1,5 @@
-﻿@model List<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
+﻿
+@model List<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
 @using System.Linq
 @{
     ViewBag.Title = "My Boards";
@@ -60,9 +61,9 @@
                                             </div>
                                         }
                                         <div class="btn-group ">
-                                            @*@if (item.IsMandatory)
+                                            @*@if (item.isMandatory)
                                                 {
-                                                    <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowModal"><i class="fa fa-plus"></i> FOLLOWING</button>
+                                                    <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowmodal"><i class="fa fa-plus"></i> following</button>
                                                 }*@
                                             @if (item.IsSubscribed)
                                             {

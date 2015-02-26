@@ -201,6 +201,26 @@ namespace XavSpace.Website.Controllers
 
         #endregion
 
+        // Get:Boards/EditNotice/5
+        
+        public async Task<ActionResult> EditNotice(int id)
+        {
+            using (NoticeManager nm = new NoticeManager())
+            {
+                var notice = await nm.GetAsync(id);
+                var board = await db.GetAsync(notice.NoticeBoardId);
+
+                // access denied if user is not a staff and the notice board is official
+                if (board.IsOfficial)
+                {
+                    if (!await User.Identity.IsStaffAsync())
+                        throw new HttpException(403, "Access Denied");
+                }
+
+                var vm = NoticeMappings.To<NoticeViewModel>(notice);
+                return View(vm);
+            }
+        }
 
         #region Subscribe
         // POST: Boards/Subscribe?noticeboardId=5
