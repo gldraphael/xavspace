@@ -136,6 +136,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Http.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
@@ -522,12 +525,19 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Hubs\NHub.cs" />
     <Compile Include="Hubs\NotificationService.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Account\UserInfoViewModel.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Account\UserLoginInfoViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Base\JsonViewModel.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Boards\BoardViewModel.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Boards\DetailedBoardViewModel.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Notices\NoticeViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Search\SearchItemJVM.cs" />
     <Compile Include="ViewModels\Notices\AmendedNoticeViewModel.cs" />
     <Compile Include="ViewModels\Notices\MyPostViewModel.cs" />
     <Compile Include="ViewModels\Notices\NoticePosterViewModel.cs" />
+    <Compile Include="WebApi\AccountController.cs" />
     <Compile Include="WebApi\BoardsController.cs" />
+    <Compile Include="WebApi\NewsFeed.cs" />
     <Compile Include="WebApi\TestController.cs" />
     <Compile Include="Controllers\UnofficialController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />

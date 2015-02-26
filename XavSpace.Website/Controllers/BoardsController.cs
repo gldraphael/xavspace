@@ -36,10 +36,10 @@ namespace XavSpace.Website.Controllers
             {
                 var temp = NoticeBoardMappings.To<NoticeBoardIndexViewModel>(i);
                 temp.IsSubscribed = await User.Identity.IsSubscribedToAsync(temp.Id);
-                if (temp.IsSubscribed)
-                {
+                //if (temp.IsSubscribed)
+                //{
                     list.Add(temp);
-                }
+                //}
             }
             return View(list);
         }

@@ -54,19 +54,26 @@ namespace XavSpace.Website.Controllers
                 var current = await User.Identity.GetApplicationUserAsync();
                 var notice = await nm.GetAsync(vm.Id);
 
+                if(notice.Status == NoticeStatus.Approved)
+                    return Json(JsonViewModel.Error);
 
                 if ((postedBy.Id == current.Id && notice.IsPendingApproval)
                     || await User.Identity.IsModeratorAsync())
                 {
-                    var res = await nm.UpdateAsync(NoticeMappings.From(vm));
+                    notice.NoticeId = vm.Id;
+                    notice.HighPriority = vm.isHighPriority;
+                    notice.NoticeBoardId = vm.NoticeBoardId;
+                    notice.Title = vm.Title;
+                    notice.Description = vm.Description;
+                    notice.Status = NoticeStatus.PendingApproval;
+                    var res = await nm.UpdateAsync(notice);
+                    
                     //if (res > 0) ;
                     //return Json(JsonViewModel.Success);
-
                 }
-
             }
             // return Json(JsonViewModel.Error);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "MyPosts");
         }
 
         #region Old COde
