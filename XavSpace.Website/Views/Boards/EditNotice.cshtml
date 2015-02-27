@@ -104,83 +104,37 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                            <div id="editor" class="well well-lg">
-
+                            <div id="editor" class="well well-lg" contenteditable="true">
+                                
                             </div>
                         </div>
-                        @Html.HiddenFor(model => model.Description, new { @id = "myhidden" })
-
-
+                        @Html.HiddenFor(model => model.Description, new { @id = "description" })
                     </div>
                 </div>
 
             </div>
+
             <div class="form-group">
                 <div class="col-md-10">
                     @Html.LabelFor(model => model.isHighPriority, "High Priority", htmlAttributes: new { @class = "control-label ", @style = "text-align:left" })
-
-
                     <div class="checkbox-ctm" style="display:inline; padding-left:1em">
                         @Html.EditorFor(model => model.isHighPriority)
                         @Html.ValidationMessageFor(model => model.isHighPriority, "", new { @class = "text-danger" })
-
                     </div>
                 </div>
-
             </div>
+
             <div class="form-group">
                 <div class="col-md-10">
-                    @*<button type="submit" value="Create" class="btn btn-default" onclick="setTimeout(myFunction(),3000)" data-toggle="modal" data-target="#myModal" />*@
-                    <input type="button" value="Create" class="btn btn-primary" onclick="myFunction()" data-toggle="modal" data-target="#myModal" />
+                    <input type="submit" value="Save" class="btn btn-primary" onclick="myFunction()"/>
                 </div>
             </div>
 
         </div>
-
-
-
-
-
     </div>
 }
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-
-                Thank you for posting. Your post will be sent for moderation.
-
-
-            </div>
-            <div class="modal-footer">
-
-
-
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary" onclick="secondFunction()">Confirm Post</button>
-
-            </div>
-
-        </div>
-
-    </div><!-- /.modal-content -->
-</div>
-
-
-
-
-
-
-
-
-
 <div>
-    
     @Html.ActionLink("Back to My Posts", "Index", "MyPosts", protocol: null, hostName: null, fragment: "amended", routeValues: null, htmlAttributes: null)
 </div>
 
@@ -194,20 +148,15 @@
         $('#editor').cleanHtml();
 
         function myFunction() {
-            document.getElementById("myhidden").value = document.getElementById("editor").innerHTML;
-
-
+            document.getElementById("description").value = document.getElementById("editor").innerHTML;
         }
 
         function secondFunction() {
             document.getElementById("Confirm").submit();
         }
 
-
-
-
-
-
+        $(document).ready(function () {
+            document.getElementById("editor").innerHTML = document.getElementById("description").value
+        });
     </script>
-
 }

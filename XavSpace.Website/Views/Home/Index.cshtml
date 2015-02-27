@@ -119,8 +119,7 @@
             return $('#posts .xs-done').length > 0;
         }
         
-            $(".xs-done").hide();
-            $("#loadingAnimation").hide();
+           
             $(window).scroll(function() {
                
               
@@ -129,7 +128,7 @@
                     if(done()==true )
                     {
                         $("#loadingAnimation").hide();
-                        $(".xs-done").show();
+                        
                     }
                     
                     else{

@@ -1,6 +1,5 @@
-﻿
-@model XavSpace.Website.ViewModels.Notices.AmendedNoticeViewModel
-        
+﻿@model XavSpace.Website.ViewModels.Notices.AmendedNoticeViewModel
+
 
 
 <div class="myPostBody">
@@ -9,12 +8,16 @@
 
             <div class="myPostBodyOuter">
                 <div class="myPostBodyInner">
-                    <h4>@Model.DateCreated.Friendly()</h4>
+                    <h4>@Html.DisplayFor(modelItem =>Model.DateReviewed)</h4>
+                  
                     <h2>@Html.DisplayFor(model => Model.Title)</h2>
 
                     <h3> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h3>
-                    <p>@Model.ModeratorComment</p>
-                    <p>@Model.DateReviewed.Friendly()</p>
+                    Moderator Comment:
+                    <p><em><strong>@Model.ModeratorComment</strong></em></p>
+                    <small>Originally posted on @Html.DisplayFor(modelItem => Model.DateCreated)</small>
+                    <br>
+                    
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">

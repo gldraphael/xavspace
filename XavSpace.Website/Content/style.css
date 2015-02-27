@@ -1,25 +1,25 @@
 ﻿/* ----- BOOTSTRAP TYPEAHEAD.JS STYLE FOR SEARCH ----- */
 /*-------------------------------------------------------
 -------------------------------------------------------*/
-/*.tt-input,
+.tt-input,
 .tt-hint {
-    width: 396px;
-    height: 30px;
-    padding: 8px 12px;
-    font-size: 24px;
-    line-height: 30px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    outline: none;
-}*/
-/*.tt-input {
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}*/
+  width: 396px;
+  height: 30px;
+  padding: 8px 12px;
+  font-size: 24px;
+  line-height: 30px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+.tt-input {
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
 .tt-hint {
   color: #999;
 }
 .tt-dropdown-menu {
-  width: 100%;
+  width: 125%;
   margin-top: 1em;
   padding: 1em;
   background-color: #fff;
@@ -27,6 +27,18 @@
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 8px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  max-height: 300px;
+  overflow-y: auto;
+}
+.tt-cursor:hover {
+  color: #fff;
+  background-color: #d9230f;
+  border-radius: 3px;
+}
+.tt-cursor::selection {
+  color: #fff;
+  background-color: #d9230f;
+  border-radius: 3px;
 }
 .tt-suggestion {
   padding: 3px 20px;
@@ -248,7 +260,7 @@
   -webkit-border-radius: 5em;
   -moz-border-radius: 5em;
   border-radius: 5em;
-  width: 100%;
+  width: 200%;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   -o-transition: all .5s;
@@ -509,8 +521,7 @@ a:hover.tooltips span {
 .disabled a {
   color: #ddd;
 }
-.loginbody {
-  background-color: white;
-  padding: 1em;
+#commentTextBox {
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

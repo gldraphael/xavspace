@@ -2,7 +2,7 @@
 @model List<XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel>
 @using System.Linq
 @{
-    ViewBag.Title = "My Boards";
+    ViewBag.Title = "Boards";
     bool isMod = User.Identity.IsModerator();
 }
 <h2>@ViewBag.Title</h2>
@@ -63,7 +63,7 @@
                                         <div class="btn-group ">
                                             @*@if (item.isMandatory)
                                                 {
-                                                    <button type="submit" class="btn btn-xs btn-delete" data-toggle="modal" data-target="#unfollowmodal"><i class="fa fa-plus"></i> following</button>
+                                                    <button type="submit" class="btn btn-xs disabled" data-toggle="modal" data-target="#unfollowmodal" title="Mandatory Board, Cannot unfollow"><i class="fa fa-plus"></i> following</button>
                                                 }*@
                                             @if (item.IsSubscribed)
                                             {

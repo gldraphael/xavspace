@@ -449,6 +449,7 @@
     <Content Include="Views\MyPosts\_MyPostsAmendedPartial.cshtml" />
     <Content Include="Views\MyPosts\_MyPostsPendingPartial.cshtml" />
     <Content Include="Views\Boards\EditNotice.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

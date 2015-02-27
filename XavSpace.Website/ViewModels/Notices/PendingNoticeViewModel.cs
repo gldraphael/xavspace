@@ -28,7 +28,7 @@ namespace XavSpace.Website.ViewModels.Notices
         /// </summary>
         /// 
         [AllowHtml]
-        [DataType(DataType.MultilineText)]
+        [DataType(System.ComponentModel.DataAnnotations.DataType.MultilineText)]
         public string Description { get; set; }
 
         /// <summary>

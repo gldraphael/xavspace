@@ -1,8 +1,5 @@
 ﻿@model XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel
 
-@{
-    var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
-}
 
 @if(Model.IsOfficial)
 { 
@@ -24,7 +21,7 @@
        
         <div class='container-ctm'>
             <div class="align-left">
-                <h4 style="text-align:left;"><b>@date</b></h4>
+                <h4 style="text-align:left;"><b>@Html.DisplayFor(modelItem => Model.DateCreated)</b></h4>
             </div>
             <div class="align-right">
                 <h4 style="text-align:right;"><b>The Principal</b></h4>
@@ -77,7 +74,7 @@ else
             <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
             
             
-                    <h4 style="text-align:left;"><b>@date</b></h4>
+                    <h4 style="text-align:left;"><b>@Html.DisplayFor(modelItem => Model.DateCreated)</b></h4>
                
                 
             

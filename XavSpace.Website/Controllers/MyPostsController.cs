@@ -31,7 +31,7 @@ namespace XavSpace.Website.Controllers
                     pvm.ApprovedPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
 
                 foreach (var n in pending)
-                    pvm.PendingPosts.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                    pvm.PendingPosts.Add(NoticeMappings.To<PendingNoticeViewModel>(n));
 
                 foreach (var n in disapproved)
                     pvm.AmendedPosts.Add(NoticeMappings.To<AmendedNoticeViewModel>(n));
