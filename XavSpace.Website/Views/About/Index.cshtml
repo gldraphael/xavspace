@@ -1,26 +1,70 @@
-﻿@{
+﻿@model XavSpace.Website.ViewModels.Account.RegisterViewModel
+@{
     Layout = "~/Views/Shared/_AboutLayout.cshtml";
     ViewBag.Title = "About";
 }
-<div>
-    <div id="aboutbody1" style="display:table;  text-align:center">
-        <div style="vertical-align:middle; display:table-cell ; padding-left:5%; padding-right:5%">
-            <h1 style="color:white;">XavSpace keeps Xavier's notified. Get Notified and Post whatever you want, whenever you want. </h1>
-            <br>
-            <img class="img-responsive" src="~/Content/images/devices.png" style="padding-left:5%; padding-right:5%">
+
+<div class="aboutbody3" >
+    <div class="container">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-7">
+                    <div class="aboutbody3inner">
+                        <h2>Sign Up for a XavSpace Account!</h2>
+                        <br>
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                                <div class="col-md-10">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" class="btn btn-default" value="Sign Up" />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-
-    <div id="aboutbody2" style="background-color:white; display:table; text-align:center ">
-        <div style="vertical-align:middle; display:table-cell ; padding-left:5%; padding-right:5%">
-            <img class="img-responsive" src="~/Content/images/fb.png" style="max-width:150px;display:inline">
-            <h1 style="color:#808080; display:inline-block; padding-left:3%">Connect through Facebook. </h1>
-        </div>
-    </div>
-
-    <div id="aboutbody1" style="background-color:#f55050; display:table;  text-align:center; ">
-        <h1 style="color:white; display:table-cell; vertical-align:middle">Get XavSpace on your Phone </h1>
+</div>
+<div class="aboutbody1" style="display:table;  text-align:center">
+    <div style="vertical-align:middle; display:table-cell ; padding-left:5%; padding-right:5%">
+        <h1 style="color:white;">XavSpace keeps Xavier's notified. Get Notified and Post whatever you want, whenever you want. </h1>
         <br>
+        <img class="img-responsive" src="~/Content/images/devices.png" style="padding-left:5%; padding-right:5%">
     </div>
+</div>
+
+
+<div class="aboutbody2" style="background-color:white; display:table; text-align:center ">
+    <div style="vertical-align:middle; display:table-cell ; padding-left:5%; padding-right:5%">
+        <img class="img-responsive" src="~/Content/images/fb.png" style="max-width:150px;display:inline">
+        <h1 style="color:#808080; display:inline-block; padding-left:3%">Connect through Facebook. </h1>
+    </div>
+</div>
+
+<div class="aboutbody1" style="background-color:#f55050; display:table;  text-align:center; ">
+    <h1 style="color:white; display:table-cell; vertical-align:middle">Get XavSpace on your Phone </h1>
+    <br>
+</div>
 </div>

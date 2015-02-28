@@ -46,8 +46,7 @@
         </div>
 
     </div>*@
-@{var date = Model.DateCreated.Value.Day + "th " + Model.DateCreated.Value.ToString("MMMM") + ", " + Model.DateCreated.Value.Year;
-}
+
 
 
 <div class="body-content">
@@ -64,7 +63,7 @@
                     <br>
                     <div class='container-ctm'>
                         <div class="align-left">
-                            <h3 style="text-align:left;">@date</h3>
+                            <h3 style="text-align:left;">@Html.DisplayFor(model => model.DateCreated)</h3>
                         </div>
                         <div class="align-right">
                             <h3 style="text-align:right;">PRINCIPAL</h3>
@@ -119,7 +118,7 @@
         </div>
 
     </div>
-
+</div>
 
 
 

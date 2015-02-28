@@ -213,6 +213,7 @@
     <Content Include="Content\font-awesome-4.3.0\css\font-awesome.min.css" />
     <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\AboutPageSM.jpg" />
     <Content Include="Content\images\devices-white.png" />
     <Content Include="Content\images\devices.png" />
     <Content Include="Content\images\facebook icon3.png" />
@@ -223,6 +224,7 @@
     <Content Include="Content\images\LOGO.png" />
     <Content Include="Content\images\LOGOxs.png" />
     <Content Include="Content\images\NB2.jpg" />
+    <Content Include="Content\images\phone.jpg" />
     <Content Include="Content\images\search-dark.png" />
     <Content Include="Content\images\search-white.png" />
     <Content Include="Content\Site.css">

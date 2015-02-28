@@ -64,7 +64,7 @@
     {
         <div class="well">
 
-            <h3>@notice.Title <small><em> - Posted on @notice.DateCreated</em></small></h3>
+            <h3>@notice.Title <small><em> - Posted on @Html.DisplayFor(modelItem=>notice.DateCreated)</em></small></h3>
 
 
             <p> @Html.Raw(System.Web.HttpUtility.HtmlDecode(notice.Description))</p>
@@ -163,7 +163,7 @@
                         if (resp.status == "success") {
                             // add some text saying "you're now subscribed to this board" or something like that
 
-                            alert('success');
+                            //alert('success');
                             $('#mydiv').load(document.URL + " #mydiv", function () {
                                 subscribe();
                             });

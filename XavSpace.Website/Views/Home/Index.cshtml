@@ -29,20 +29,20 @@
             }
         </div>
     </div>
-    
-        <div class="row">
-            <div class="col-md-6">
-                <div class="spinner" id="loadingAnimation">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
-                </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="spinner" id="loadingAnimation">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
             </div>
         </div>
-    
-    
+    </div>
+   
+
     <!-- #region Old -->
     @*<div class="hidden-sm hidden-xs affix" style="right:30px">
             <h3>Implementing Infinite Scroll</h3>
@@ -91,6 +91,10 @@
 @section Scripts{
 
     <script>
+        $(document).ready(function () {
+            $(".xs-endOfScroll").hide();
+        });
+
         var id = -1;
         function secondFunction() {
             if(id > -1){
@@ -103,7 +107,11 @@
         }
         var number = @Model.Count;
         var index = number;
-
+        if (number < 6)
+        {
+            $("#loadingAnimation").hide();
+            
+        }
         function getFeeds(n) {
             var url = "/Home/GetFeed?index="+index+"&number="+n;
             $.get(url, function(data) {
@@ -118,26 +126,27 @@
         function done() {
             return $('#posts .xs-done').length > 0;
         }
-        
-           
-            $(window).scroll(function() {
-               
-              
-                if($(window).scrollTop() + $(window).height() == $(document).height()) {
-                    $("#loadingAnimation").show();
-                    if(done()==true )
-                    {
-                        $("#loadingAnimation").hide();
-                        
-                    }
-                    
-                    else{
-                        getFeeds(3);
-                    }
-                    
+
+
+        $(window).scroll(function() {
+
+
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                
+                if(done()==true )
+                {
+                    $("#loadingAnimation").hide();
+                   // $(".xs-endOfScroll").show();
+
                 }
-            });
-        
+
+                else{
+                    getFeeds(3);
+                }
+
+            }
+        });
+
 
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
