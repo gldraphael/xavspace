@@ -1,0 +1,19 @@
+﻿@model Tuple<IEnumerable<XavSpace.Website.ViewModels.Boards.NoticeBoardViewModel>, IEnumerable<XavSpace.Website.ViewModels.Notices.NoticeViewModel>>
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model.Item1)
+{
+    @Html.Partial("_BoardSearchPartial", item)
+}
+
+@foreach (var item in Model.Item2)
+{
+    @Html.Partial("_NoticeSearchPartial", item)
+}
+
+@if (Model.Item1.Count() == 0 && Model.Item2.Count()==0)
+{
+    <div class="xs-done">No more results.</div>
+}
