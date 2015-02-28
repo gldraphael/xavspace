@@ -526,6 +526,8 @@
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Hubs\NHub.cs" />
     <Compile Include="Hubs\NotificationService.cs" />
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="ViewModels\JsonViewModels\Account\ExternalLoginViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Account\UserInfoViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Account\UserLoginInfoViewModel.cs" />
     <Compile Include="ViewModels\JsonViewModels\Base\JsonViewModel.cs" />
@@ -538,7 +540,7 @@
     <Compile Include="ViewModels\Notices\NoticePosterViewModel.cs" />
     <Compile Include="WebApi\AccountController.cs" />
     <Compile Include="WebApi\BoardsController.cs" />
-    <Compile Include="WebApi\NewsFeed.cs" />
+    <Compile Include="WebApi\NewsFeedController.cs" />
     <Compile Include="WebApi\TestController.cs" />
     <Compile Include="Controllers\UnofficialController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />

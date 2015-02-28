@@ -14,9 +14,11 @@ using XavSpace.Entities.Relationships;
 
 namespace XavSpace.Website.WebApi
 {
+    [Authorize]
     public class BoardsController : ApiController
     {
         // GET: /Boards
+        [AllowAnonymous]
         public async Task<IEnumerable<BoardViewModel>> Get()
         {
             NoticeBoardManager nbm = new NoticeBoardManager();
@@ -26,8 +28,9 @@ namespace XavSpace.Website.WebApi
                 vmlist.Add(BoardViewModel.From(nb));
             return vmlist;
         }
-
+        
         // Get: /Boards/Get/5
+        [AllowAnonymous]
         public async Task<IHttpActionResult> Get(int id)
         {
             NoticeBoardManager nm = new NoticeBoardManager();

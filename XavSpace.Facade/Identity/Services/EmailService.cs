@@ -14,7 +14,7 @@ namespace XavSpace.Facade.Identity.Services
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            return sendMail(message);
         }
 
         private static Task sendMail(IdentityMessage message)
@@ -23,7 +23,7 @@ namespace XavSpace.Facade.Identity.Services
             string html = "Please confirm your account by clicking <a href=\"" + message.Body + "\">this link</a><br/>";
 
             MailMessage msg = new MailMessage();
-            msg.From = new MailAddress(KeyRepository.GmailEmailId);
+            msg.From = new MailAddress(String.Format("XavSpace Account <{0}>", KeyRepository.GmailEmailId));
             msg.To.Add(new MailAddress(message.Destination));
             msg.Subject = message.Subject;
             msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));

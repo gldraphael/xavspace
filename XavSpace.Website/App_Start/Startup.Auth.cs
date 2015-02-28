@@ -1,21 +1,28 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using System;
+using System.Threading.Tasks;
+
+using Owin;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using XavSpace.Website.ViewModels;
-using Owin;
-using System;
-using XavSpace.DataAccess.DbContexts;
-using XavSpace.Facade.Identity.Managers;
-using XavSpace.Entities.Users;
 using Microsoft.Owin.Security.Facebook;
+using Microsoft.Owin.Security.OAuth;
+
+using XavSpace.DataAccess.DbContexts;
+using XavSpace.Entities.Users;
 using XavSpace.Facade;
-using System.Threading.Tasks;
+using XavSpace.Facade.Identity.Managers;
+using XavSpace.Website.Providers;
 
 namespace XavSpace.Website
 {
     public partial class Startup
     {
+        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+
+        public static string PublicClientId { get; private set; }
+
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
@@ -24,7 +31,7 @@ namespace XavSpace.Website
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
-
+            
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
             // Configure the sign in cookie
@@ -43,13 +50,19 @@ namespace XavSpace.Website
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
-            // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
-            app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
+            // Configure the XavSpace for OAuth based flow
+            PublicClientId = "self";
+            OAuthOptions = new OAuthAuthorizationServerOptions
+            {
+                TokenEndpointPath = new PathString("/Token"),
+                Provider = new XavSpaceOAuthProvider(PublicClientId),
+                AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
+                AllowInsecureHttp = true
+            };
 
-            // Enables the application to remember the second login verification factor such as phone or email.
-            // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
-            // This is similar to the RememberMe option when you log in.
-            app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
+            // Enable bearer tokens to authenticate users
+            app.UseOAuthBearerTokens(OAuthOptions);
 
             var x = new FacebookAuthenticationOptions();
             x.Scope.Add("email");

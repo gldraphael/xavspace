@@ -12,7 +12,8 @@ using XavSpace.Website.ViewModels.JsonViewModels.Notices;
 
 namespace XavSpace.Website.WebApi
 {
-    public class NewsFeed : ApiController
+    [Authorize]
+    public class NewsFeedController : ApiController
     {
         private NoticeManager nm = new NoticeManager();
 
