@@ -1,85 +1,79 @@
 ﻿@model XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel
 
+@{
+    string noticeBoardName = null;
 
-@if(Model.IsOfficial)
-{ 
-<div class="newsfeedPost">
-    <div style="padding:1em">
-        <div class='container-ctm'>
-            <div class="align-left">
-              <span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span>
+    if (@Model.NoticeBoardName.ToString().Contains("Board") || @Model.NoticeBoardName.ToString().Contains("Notice") || @Model.NoticeBoardName.ToString().Contains("Notice Board"))
+    {
+        noticeBoardName = @Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString();
+    }
+    else
+    {
+        noticeBoardName = @Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString() + " Notice Board";
+    }
+}
+@if (Model.IsOfficial)
+{
+    <div class="newsfeedPost">
+        <div style="padding:1em">
+            <span class="label label-primary">Official</span> @if (Model.isHighPriority)
+            {
+                <span class="label label-primary">
+                    High Priority <i class="fa fa-exclamation"></i>
+                </span><br>
+            }
+            <h4><strong>John Doe</strong> posted a notice on the <strong>@noticeBoardName</strong></h4>
+            <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
+            <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
+            <div class='container-ctm'>
+                <div class="align-left">
+                    <h4 style="text-align:left;"><b>@Html.DisplayFor(modelItem => Model.DateCreated)</b></h4>
+                </div>
+                <div class="align-right">
+                    <h4 style="text-align:right;"><b>The Principal</b></h4>
+                </div>
             </div>
-            <div class="align-right" style="text-align:right">
-                <span class="label label-primary">Official</span>
+            <div class="img-responsive" style="text-align:right">
+                <img src="~/Content/images/John_McCain_Signature.PNG" style="width:100px; height:auto" />
             </div>
-        </div>
-        <br>
-        
-        <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
-         
-        <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
-       
-        <div class='container-ctm'>
-            <div class="align-left">
-                <h4 style="text-align:left;"><b>@Html.DisplayFor(modelItem => Model.DateCreated)</b></h4>
-            </div>
-            <div class="align-right">
-                <h4 style="text-align:right;"><b>The Principal</b></h4>
-            </div>
-        </div>
-
-        <div class="img-responsive" style="text-align:right">
-            <img src="~/Content/images/John_McCain_Signature.PNG" style="width:100px; height:auto" />
-        </div>
-        <div class="btn-toolbar">
-            <div class="btn-group">
-                <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
-
-            </div>
-            <div class="btn-group">
-                <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
-                    <i class="glyphicon glyphicon-list " title="Details"></i>
-                </a>
-            </div>
-
-            <div class="btn-group">
-                @if (User.Identity.IsModerator())
-                {
-                    <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
-                        <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+            <div class="btn-toolbar">
+                <div class="btn-group">
+                    <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
+                </div>
+                <div class="btn-group">
+                    <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
+                        <i class="glyphicon glyphicon-list " title="Details"></i>
                     </a>
-                }
+                </div>
+
+                <div class="btn-group">
+                    @if (User.Identity.IsModerator())
+                    {
+                        <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
+                            <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
+                        </a>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
 }
 else
 {
     <div class="newsfeedPost">
         <div style="padding:1em">
-            <div class='container-ctm'>
-                <div class="align-left">
-                    <span class="label label-primary">@Html.DisplayFor(modelItem => Model.NoticeBoardName)</span>
-                </div>
-                <div class="align-right" style="text-align:right">
-                    <span class="label label-primary">Unofficial</span>
-                </div>
-            </div>
-            <br>
+            <span class="label label-info">Unofficial</span>
+            @if(Model.isHighPriority)
+            { 
+            <span class="label label-primary">
+                High Priority <i class="fa fa-exclamation"></i>
+            </span><br>
+            }
+            <h4><strong>John Doe</strong> posted a notice on the <strong>@noticeBoardName</strong></h4>
 
-            
             <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
-           
             <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
-            
-            
-                    <h4 style="text-align:left;"><b>@Html.DisplayFor(modelItem => Model.DateCreated)</b></h4>
-               
-                
-            
-
-            
+            <h4 style="text-align:left;"><b>@Html.DisplayFor(modelItem => Model.DateCreated)</b></h4>
             <div class="btn-toolbar">
                 <div class="btn-group">
                     <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>

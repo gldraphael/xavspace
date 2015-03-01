@@ -12,6 +12,7 @@ namespace XavSpace.Website.ViewModels.Settings
     public class IndexViewModel
     {
         [Display(Name="First Name")]
+        [Required]
         public string FirstName { get; set; }
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
@@ -19,9 +20,12 @@ namespace XavSpace.Website.ViewModels.Settings
         public string Post { get; set; }
 
         [Display(Name = "UID Number")]
+        
+        [Range(12000, 141999)]
         public int UidNumber { get; set; }
 
         [Display(Name = "Emp ID")]
+       
         [DataType(DataType.Text)]
         [Range(2001,2180)]
         public int EmpId { get; set; }

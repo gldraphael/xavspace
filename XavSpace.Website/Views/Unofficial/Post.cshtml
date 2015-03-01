@@ -17,12 +17,12 @@
         @Html.HiddenFor(model => model.NoticeBoardId)
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="container">
             <div class="form-group">
@@ -115,19 +115,22 @@
                 </div>
 
             </div>
-            <div class="form-group">
-                <div class="col-md-10">
-                    @Html.LabelFor(model => model.isHighPriority, "High Priority", htmlAttributes: new { @class = "control-label ", @style = "text-align:left" })
+            @if (User.Identity.IsStaff())
+            {
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.LabelFor(model => model.isHighPriority, "High Priority", htmlAttributes: new { @class = "control-label ", @style = "text-align:left" })
 
 
-                    <div class="checkbox-ctm" style="display:inline; padding-left:1em">
-                        @Html.EditorFor(model => model.isHighPriority)
-                        @Html.ValidationMessageFor(model => model.isHighPriority, "", new { @class = "text-danger" })
+                        <div class="checkbox-ctm" style="display:inline; padding-left:1em">
+                            @Html.EditorFor(model => model.isHighPriority)
+                            @Html.ValidationMessageFor(model => model.isHighPriority, "", new { @class = "text-danger" })
 
+                        </div>
                     </div>
-                </div>
 
-            </div>
+                </div>
+            }
             <div class="form-group">
                 <div class="col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" onclick="myFunction()" />

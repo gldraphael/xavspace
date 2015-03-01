@@ -6417,7 +6417,7 @@ label {
   color: #999;
 }
 .tt-dropdown-menu {
-  width: 125%;
+  width: 100%;
   margin-top: 1em;
   padding: 1em;
   background-color: #fff;
@@ -6428,12 +6428,17 @@ label {
   max-height: 300px;
   overflow-y: auto;
 }
+.tt-dropdown-menu li.active {
+  color: #fff;
+  background-color: #d9230f;
+  border-radius: 3px;
+}
 .tt-cursor:hover {
   color: #fff;
   background-color: #d9230f;
   border-radius: 3px;
 }
-.tt-cursor::selection {
+.tt-cursor:focus {
   color: #fff;
   background-color: #d9230f;
   border-radius: 3px;
@@ -6443,12 +6448,17 @@ label {
   font-size: 18px;
   line-height: 24px;
 }
-.tt-suggestion .tt-cursor {
+.tt-suggestion tt-cursor:focus {
   color: #fff;
   background-color: #0097cf;
 }
 .tt-suggestion p {
   margin: 0 5px;
+}
+.search-type {
+  margin: 0 20px 5px 20px;
+  padding: 3px 0;
+  border-bottom: 1px solid #ccc;
 }
 /*-------------------------------------------------------
 --------------------------------------------------------*/
@@ -6671,13 +6681,13 @@ label {
 .searchBar {
   background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAMAAAAMCGV4AAAA6lBMVEVqb3X///8ZGx1qb3Vqb3VpbnRqb3Vqb3VdYWdqb3UZGx1qb3Vqb3Vqb3Vqb3Vqb3VeYmghIyVbX2QZGx03Oj5qb3VpbnRlam9qb3UtLzIZGx0ZGx1nbHJqb3VobXNma3EZGx1RVVlfY2lbYGVhZmtPU1hCRUlpbnRqb3Vqb3VpbnRjaG4ZGx1SVlpqb3Vqb3Vqb3Vqb3VfZGkZGx0+QUVhZmxpbnRnbHJbYGVfY2lqb3UZGx0ZGx0ZGx0ZGx0ZGx0fIiRdYmdqb3VQVFkgIiRiZ2wgIiRjaG4cHyFDR0shIyUZGx0ZGx1qb3UGwh7wAAAATXRSTlMAAAL6TvsV/c0tEz9y69i60GHARoHq0o2cVgQ+7Cr27QhpV6mKSFqxDDDw4hKw55+0/MkxjNf058fSURlNYFlBTM5Up0q6SJ1GlT8BHyB8ovwAAACOSURBVHheVcxFFoNQEETRgg9B4u7u7u6uvf/t5EAzSN7s1qAg/QcJcPujvoQLVpY9lAmNhNdwbGiBYDocycUcx9VkCjDPlGVf8wUAKFKJXdbsqwpV2TWqN4Bmq22yO13q9QdDUhU2xpPpbL5Yklixsd5sd/vDkcTJNidfdBIKm4ebTnc2Jz+er1/j/ZGlLz9uDyhEzYcEAAAAAElFTkSuQmCC') /*images/search-dark.png*/ no-repeat 9px center;
   border: none;
-  margin-top: .2px;
+  margin-top: 3px;
   padding: 5px 10px 5px 32px;
   background-color: white;
   -webkit-border-radius: 5em;
   -moz-border-radius: 5em;
   border-radius: 5em;
-  width: 200%;
+  width: 100%;
   -webkit-transition: all .5s;
   -moz-transition: all .5s;
   -o-transition: all .5s;
@@ -6897,7 +6907,7 @@ label {
   margin-top: 1em;
   border-radius: .2em;
   border-bottom-style: inset;
-  box-shadow: 1px 2px 2px 1px #595959;
+  box-shadow: 0.5px 1px 1px 0 #595959;
 }
 .not-active {
   pointer-events: none;

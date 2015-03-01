@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            
+
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
                 <img alt="XavSpace" src="~/Content/images/LOGOxs.png" style="height:100%; width:100%">
             </a>
@@ -29,10 +29,10 @@
                     {
                         <li>@Html.ActionLink("Pending Approvals", "Index", "Pending")</li>
                     }
-                   
-                    
 
-                    
+
+
+
                 }
             </ul>
 
@@ -41,16 +41,19 @@
                 using (Html.BeginForm("Results", "Search", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
                 {
 
-                            @Html.TextBox("q", value: null, htmlAttributes: new { @placeholder = "Search", @type = "search", @class = "typeahead searchBar", @id = "search" })
+                    <div class="input-group">
+                        @Html.TextBox("q", value: null, htmlAttributes: new { @placeholder = "Search", @type = "search", @class = "typeahead searchBar", @id = "search" })
+                        <div class="input-group-btn">
 
-                            <button class="btn btn-sm btn-default" type="submit" style="visibility:hidden"><i class="glyphicon glyphicon-search"></i></button>
-                        
+                            <button class="btn btn-sm btn-default" type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                        </div>
 
-                       
-                
-                }
-            }
-            @Html.Partial("_LoginPartial")
-        </div>
-    </div>
-</nav>
+
+
+                        }
+                        }
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+        </nav>

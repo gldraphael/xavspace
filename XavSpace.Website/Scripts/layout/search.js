@@ -22,7 +22,7 @@ $('#search').typeahead(
         displayKey: 'value',
         source: boards.ttAdapter(),
         templates: {
-            header: '<h4>Notice Boards</h4>'
+            header: '<h3 class="search-type">Notice Boards</h3>'
         }
     },
     {
@@ -30,7 +30,7 @@ $('#search').typeahead(
         displayKey: 'value',
         source: notices.ttAdapter(),
         templates: {
-            header: '<h4>Notices</h4>'
+            header: '<h3 class="search-type">Notices</h3>'
         }
     }
 );
