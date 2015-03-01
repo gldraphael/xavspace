@@ -20,14 +20,22 @@
                     <li>@Html.ActionLink("Boards", "Index", "Boards")</li>
                     <li>@Html.ActionLink("Unofficial", "Index", "Unofficial")</li>
 
-                    if (User.Identity.IsStaff())
+                    if (User.Identity.IsStaff() && !User.Identity.IsModerator())
                     {
                         <li>@Html.ActionLink("My Posts", "Index", "MyPosts")</li>
                     }
 
                     if (User.Identity.IsModerator())
                     {
-                        <li>@Html.ActionLink("Pending Approvals", "Index", "Pending")</li>
+                        @*<li>@Html.ActionLink("Pending Approvals", "Index", "Pending")</li>*@
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Posts <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="@Url.Action("Index", "MyPosts")">My Posts</a></li>
+                                <li><a href="@Url.Action("Index", "Pending")">Pending Approvals</a></li>
+                               
+                            </ul>
+                        </li>
                     }
 
 
@@ -47,13 +55,13 @@
 
                             <button class="btn btn-sm btn-default" type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
-                        </div>
-
-
-
-                        }
-                        }
-                        @Html.Partial("_LoginPartial")
                     </div>
-                </div>
-        </nav>
+
+
+
+                }
+            }
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</nav>

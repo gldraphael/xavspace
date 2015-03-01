@@ -1,15 +1,42 @@
 ﻿@model XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel
+@{
+    string noticeBoardName = null;
 
+    if (@Model.NoticeBoardName.ToString().Contains("Board") || @Model.NoticeBoardName.ToString().Contains("Notice") || @Model.NoticeBoardName.ToString().Contains("Notice Board"))
+    {
+        noticeBoardName = @Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString();
+    }
+    else
+    {
+        noticeBoardName = @Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString() + " Notice Board";
+    }
+}
 <div class="myPostBody">
     <div class="row">
         <div class="col-md-8">
 
             <div class="myPostBodyOuter">
                 <div class="myPostBodyInner">
-                    <h4>@Html.DisplayFor(modelItem => Model.DateCreated)</h4>
+                    You posted on the <strong>@noticeBoardName</strong><br>
+                    @if (Model.IsOfficial)
+                    {
+                        <span class="label label-primary">Official</span>
+                    }
+                    else
+                    {
+                        <span class="label label-info">Unofficial</span>
+                    }
+                    @if (Model.isHighPriority)
+                    {
+                        <span class="label label-primary">
+                            High Priority <i class="fa fa-exclamation"></i>
+                        </span><br>
+                    }
+
                     <h2>@Html.DisplayFor(model => Model.Title)</h2>
 
-                    <h3> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h3>
+                    <h4> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
+                    <h4><strong>@Html.DisplayFor(modelItem => Model.DateCreated)</strong></h4>
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
@@ -38,7 +65,7 @@
                                     <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>
                                 </a>
                             }
-                            
+
 
                         </div>
                     </div>

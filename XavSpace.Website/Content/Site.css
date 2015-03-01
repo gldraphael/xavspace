@@ -6473,7 +6473,9 @@ label {
 .aboutbody3inner {
   vertical-align: middle;
   color: white;
-  margin-top: 50%;
+  margin-top: 40%;
+  border: thick;
+  border-color: aqua;
 }
 .aboutbody3inner h2 {
   color: white;
@@ -6746,8 +6748,8 @@ label {
 }
 .myPostBodyOuter {
   background-color: #e8e8ec;
-  border-radius: 0.5em 0.5em 2em 0.5em;
-  box-shadow: 1px 1px 11px 0px rgba(50, 50, 50, 0.72);
+  border-radius: 0.2em;
+  box-shadow: 0.5px 1px 1px 0px #999;
   /*// background-color:lightseagreen;*/
 }
 .myPostBodyOuter img {

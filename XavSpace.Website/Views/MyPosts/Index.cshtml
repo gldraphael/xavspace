@@ -15,7 +15,7 @@
     </ul>*@
 
 <ul class="nav nav-tabs">
-    <li role="presentation" class="active" ><a href="#approved" data-toggle="tab" onclick="chooseNoticeType(1)">Approved</a></li>
+    <li role="presentation" class="active"><a href="#approved" data-toggle="tab" onclick="chooseNoticeType(1)">Approved</a></li>
     <li role="presentation"><a href="#pending" data-toggle="tab" onclick="chooseNoticeType(2)">Pending</a></li>
     <li role="presentation"><a href="#amended" data-toggle="tab" onclick="chooseNoticeType(3)">Amended</a></li>
 </ul>
@@ -27,6 +27,12 @@
             <div class="body-content">
                 <div class="row">
                     <div id="approvedPosts">
+                        @if (Model.ApprovedPosts.Count == 0)
+                        {
+                            <div class="col-md-8" style="text-align:center">
+                                <p class="nothingThere ">No Approved notices</p>
+                            </div>
+                        }
                         @foreach (var item in Model.ApprovedPosts)
                         {
                             @Html.Partial("_MyPostsPartial", item)
@@ -35,7 +41,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="spinner" id="loadingAnimationApproved">
                             <div class="rect1"></div>
                             <div class="rect2"></div>
@@ -55,6 +61,12 @@
             <div class="body-content">
                 <div class="row">
                     <div id="pendingPosts">
+                        @if (Model.PendingPosts.Count == 0)
+                        {
+                            <div class="col-md-8" style="text-align:center">
+                                <p class="nothingThere ">No Pending notices</p>
+                            </div>
+                        }
                         @foreach (var item in Model.PendingPosts)
                         {
                             @Html.Partial("_MyPostsPendingPartial", item)
@@ -63,7 +75,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="spinner" id="loadingAnimationPending">
                             <div class="rect1"></div>
                             <div class="rect2"></div>
@@ -83,6 +95,12 @@
             <div class="body-content">
                 <div class="row">
                     <div id="amendedPosts">
+                        @if (Model.AmendedPosts.Count == 0)
+                        {
+                            <div class="col-md-8" style="text-align:center">
+                                <p class="nothingThere ">No notices for amendment</p>
+                            </div>
+                        }
                         @foreach (var item in Model.AmendedPosts)
                         {
                             @Html.Partial("_MyPostsAmendedPartial", item)
@@ -90,7 +108,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="spinner" id="loadingAnimationAmended">
                             <div class="rect1"></div>
                             <div class="rect2"></div>
@@ -111,22 +129,22 @@
      aria-labelledby="myModalLabel" aria-hidden="true">
     @using (Html.BeginForm("Delete", "Notices", null, FormMethod.Post, new { @id = "deleteform" }))
     {
-    @Html.AntiForgeryToken()
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                Are you sure you want to delete this Notice?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
-                    Close
-                </button>
-                <input type="hidden" name="noticeId" id="deleteFormId" value="-1" />
-                <button class="btn btn-primary" onclick="secondFunction()">Delete</button>
+        @Html.AntiForgeryToken()
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Are you sure you want to delete this Notice?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                    <input type="hidden" name="noticeId" id="deleteFormId" value="-1" />
+                    <button class="btn btn-primary" onclick="secondFunction()">Delete</button>
+                </div>
             </div>
         </div>
-    </div>
     }
 </div>
 @section Scripts{
@@ -233,17 +251,17 @@
         if (approvedIndex < 6)
         {
             $("#loadingAnimationApproved").hide();
-            
+
         }
         if (pendingIndex < 6)
         {
             $("#loadingAnimationPending").hide();
-            
+
         }
         if (ammendedIndex < 6)
         {
             $("#loadingAnimationAmended").hide();
-            
+
         }
     </script>
 }

@@ -386,6 +386,9 @@
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <None Include="Properties\PublishProfiles\XavSpace Test Site.pubxml" />
+    <Content Include="Scripts\blur.dev.js" />
+    <Content Include="Scripts\blur.js" />
+    <Content Include="Scripts\blur.min.js" />
     <Content Include="Scripts\bootstrap-wysiwyg.js" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />

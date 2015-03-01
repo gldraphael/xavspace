@@ -1,6 +1,17 @@
 ﻿@model XavSpace.Website.ViewModels.Notices.AmendedNoticeViewModel
 
+@{
+    string noticeBoardName = null;
 
+    if (@Model.NoticeBoardName.ToString().Contains("Board") || @Model.NoticeBoardName.ToString().Contains("Notice") || @Model.NoticeBoardName.ToString().Contains("Notice Board"))
+    {
+        noticeBoardName = @Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString();
+    }
+    else
+    {
+        noticeBoardName = @Html.DisplayFor(modelItem => Model.NoticeBoardName).ToString() + " Notice Board";
+    }
+}
 
 <div class="myPostBody">
     <div class="row">
@@ -8,59 +19,65 @@
 
             <div class="myPostBodyOuter">
                 <div class="myPostBodyInner">
-                    <h4>@Html.DisplayFor(modelItem =>Model.DateReviewed)</h4>
-                  
-                    <h2>@Html.DisplayFor(model => Model.Title)</h2>
-
-                    <h3> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h3>
-                    Moderator Comment:
-                    <p><em><strong>@Model.ModeratorComment</strong></em></p>
-                    <small>Originally posted on @Html.DisplayFor(modelItem => Model.DateCreated)</small>
+                    <h4>Your post on the <strong> @noticeBoardName </strong>orignally dated <strong> @Html.DisplayFor(modelItem => Model.DateCreated)</strong> was reviewed on <strong>@Html.DisplayFor(modelItem => Model.DateReviewed)</strong>.</h4>
                     <br>
-                    
-                    <div class="btn-toolbar">
-                        <div class="btn-group">
-                            <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
-                                <i class="glyphicon glyphicon-list " title="Details"></i>
-                            </a>
-                        </div>
-
-                        <div class="btn-group">
-                            @if (User.Identity.IsStaff() @*&& !Model.IsOfficial only official posts appear here*@)
-                            {
-                                <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
-                                    <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>
-                                </a>
-                            }
-                            else if (!User.Identity.IsModerator())
-                            {
-
-                                <a style="color:#808080">
-                                    <i class="glyphicon glyphicon-trash" title="Official Notices can only be deleted by Moderators"></i>
-
-                                </a>
-                            }
-                            else if (User.Identity.IsModerator())
-                            {
-                                <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
-                                    <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>
-                                </a>
-                            }
-
-                        </div>
-                        <div class="btn-group">
-                            <a title="Edit Notice" href="@Url.Action("EditNotice","Boards", new { id = Model.Id })">
-                                <i class="glyphicon glyphicon-pencil" title="Edit Notice Notice"></i>
-                            </a>
-                        </div>
+                    @if (Model.isHighPriority)
+                    {
+                        <span class="label label-primary">
+                            High Priority <i class="fa fa-exclamation"></i>
+                        </span><br>
+                    }
+                    <h2>@Html.DisplayFor(model => Model.Title)</h2>
+                    <h4> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
+                    <br>
+                    @if (!Model.ModeratorComment.IsEmpty())
+                    {
+                        <h4>Moderator Comment: <em><strong>@Model.ModeratorComment</strong></em></h4>
+                    }
+               
+               
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
+                            <i class="glyphicon glyphicon-list " title="Details"></i>
+                        </a>
                     </div>
 
+                    <div class="btn-group">
+                        @if (User.Identity.IsStaff() @*&& !Model.IsOfficial only official posts appear here*@)
+                        {
+                            <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
+                                <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>
+                            </a>
+                        }
+                        else if (!User.Identity.IsModerator())
+                        {
+
+                            <a style="color:#808080">
+                                <i class="glyphicon glyphicon-trash" title="Official Notices can only be deleted by Moderators"></i>
+
+                            </a>
+                        }
+                        else if (User.Identity.IsModerator())
+                        {
+                            <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@Model.Id)">
+                                <i class="glyphicon glyphicon-trash" title="Delete Notice"></i>
+                            </a>
+                        }
+
+                    </div>
+                    <div class="btn-group">
+                        <a title="Edit Notice" href="@Url.Action("EditNotice","Boards", new { id = Model.Id })">
+                            <i class="glyphicon glyphicon-pencil" title="Edit Notice Notice"></i>
+                        </a>
+                    </div>
                 </div>
+
             </div>
-
-            <br />
-
         </div>
+
+        <br />
+
     </div>
 </div>
-
+</div>

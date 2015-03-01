@@ -1,46 +1,64 @@
-﻿@model XavSpace.Website.ViewModels.Account.RegisterViewModel
+﻿@model XavSpace.Website.ViewModels.Account.LoginViewModel
 @{
     Layout = "~/Views/Shared/_AboutLayout.cshtml";
     ViewBag.Title = "About";
 }
 
-<div class="aboutbody3" >
+<div class="aboutbody3">
     <div class="container">
         <div class="body-content">
             <div class="row">
                 <div class="col-md-5 col-md-offset-7">
-                    <div class="aboutbody3inner">
-                        <h2>Sign Up for a XavSpace Account!</h2>
-                        <br>
-                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                    <div class="aboutbody3inner" >
+                        <h2>Log in to your XavSpace Account!</h2>
+
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()
-
-                            @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
                                     @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @type = "email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                                <div class="col-md-10">
-                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" class="btn btn-default" value="Sign Up" />
+                                    <div class="checkbox-ctm">
+                                        @Html.CheckBoxFor(m => m.RememberMe)
+                                        @Html.LabelFor(m => m.RememberMe)
+                                    </div>
                                 </div>
                             </div>
+                            <div class="form-group">
+
+                                <div class="col-md-offset-2 col-md-10">
+                                    <div class="btn-toolbar">
+                                        <div class="btn-group">
+                                            <input type="submit" value="Log in" class="btn btn-default" />
+                                        </div>
+                                        <div class="btn-group">
+                                            @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "btn btn-primary" })
+                                        </div>
+                                    </div>
+                                    <br>
+                                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account", null, new { @style = "color:white;" })
+                                </div>
+                            </div>
+
                         }
+                        <hr>
+
+                        @*@Html.Partial("~/Views/Account/_ExternalLoginsListPartial.chtml",new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
                     </div>
                 </div>
             </div>
@@ -67,4 +85,17 @@
     <h1 style="color:white; display:table-cell; vertical-align:middle">Get XavSpace on your Phone </h1>
     <br>
 </div>
-</div>
+
+
+@section Scripts{
+    <script>
+        $('aboutboddddy3').blurjs({
+            source: '.aboutbody3',
+            radius: 0,
+            overlay: 'rgba(255,255,255,0.4)',
+            border: 10
+
+
+        });
+    </script>
+}

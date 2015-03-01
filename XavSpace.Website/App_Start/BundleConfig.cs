@@ -43,6 +43,9 @@ namespace XavSpace.Website
             BundleTable.Bundles.Add(new ScriptBundle("~/bundles/ta-bh").Include("~/Scripts/bloodhound*"));
             BundleTable.Bundles.Add(new ScriptBundle("~/bundles/ta-jquery").Include("~/Scripts/typeahead.jquery*"));
             #endregion
+
+            bundles.Add(new ScriptBundle("~/bundles/blur").Include(
+                      "~/Scripts/blur.js"));
         }
     }
 }
