@@ -92,11 +92,29 @@ namespace XavSpace.Website.Controllers
         //
         // POST: /Users/Create
         [HttpPost]
-        public async Task<ActionResult> Create(RegisterViewModel userViewModel, params string[] selectedRoles)
+        public async Task<ActionResult> Create(RegisterViewModel userViewModel, string type, params string[] selectedRoles)
         {
+            if(String.IsNullOrWhiteSpace("type"))
+                type = "user";
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
+                
+                ApplicationUser user = null;
+
+                switch (type) { 
+                    case "user":
+                    user = new ApplicationUser { UserName = userViewModel.Email, Email = userViewModel.Email };
+                    break;
+
+                    case "staff":
+                    user = new Staff { UserName = userViewModel.Email, Email = userViewModel.Email };
+                    break;
+
+                    case "moderator":
+                    user = new Moderator { UserName = userViewModel.Email, Email = userViewModel.Email };
+                    break;
+            }
+
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);
 
                 //Add User to the selected Roles 
