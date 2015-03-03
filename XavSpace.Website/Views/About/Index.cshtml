@@ -46,12 +46,14 @@
                                         <div class="btn-group">
                                             <input type="submit" value="Log in" class="btn btn-default" />
                                         </div>
-                                        <div class="btn-group">
+                                        @*<div class="btn-group">
                                             @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "btn btn-primary" })
-                                        </div>
+                                        </div>*@
                                     </div>
                                     <br>
-                                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account", null, new { @style = "color:white;" })
+                                    @Html.ActionLink("Sign Up", "Register", "Account", null, new { @style = "color:white;" })<br>
+                                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account", null, new { @style = "color:white;" })<br>
+                                   
                                 </div>
                             </div>
 

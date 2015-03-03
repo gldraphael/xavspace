@@ -1,6 +1,6 @@
 ﻿@model XavSpace.Website.ViewModels.Account.ExternalLoginConfirmationViewModel
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Sign Up";
 }
 <h2>@ViewBag.Title</h2>
 <h3>Associate your @ViewBag.LoginProvider account</h3>
@@ -14,7 +14,7 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <p class="text-info">
         You've successfully authenticated with <strong>@ViewBag.LoginProvider</strong>.
-        Please enter a user name for this site below and click the Register button to finish
+        Please enter a user name for this site below and click the Sign Up button to finish
         logging in.
     </p>
     <div class="form-group">
@@ -26,7 +26,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Sign Up" />
         </div>
     </div>
 }
