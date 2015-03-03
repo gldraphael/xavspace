@@ -456,6 +456,7 @@
     <Content Include="Views\MyPosts\_MyPostsPendingPartial.cshtml" />
     <Content Include="Views\Boards\EditNotice.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\Boards\Notice.Mobile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

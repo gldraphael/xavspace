@@ -73,8 +73,10 @@
         </div>
 
     </div>
+    
     <div class="row">
         <div class="col-md-8">
+            
             <div class="form-horizontal">
                 @using (Html.BeginForm("LinkLogin", "Settings"))
                 {
@@ -86,7 +88,7 @@
                                 <p>
                                     @foreach (Microsoft.Owin.Security.AuthenticationDescription p in Model.OtherLogins)
                                     {
-                                        <button type="submit" class="btn btn-fbk" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Connect with @p.Caption">Connect with @p.AuthenticationType</button>
+                                        <button type="submit" class="btn btn-fbk" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Connect with @p.Caption"><i class="fa fa-facebook-official" style="font-size:medium"></i> Connect @*with @p.AuthenticationType*@</button>
                                     }
                                 </p>
                             </div>

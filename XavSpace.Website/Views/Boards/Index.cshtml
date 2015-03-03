@@ -70,7 +70,7 @@
                                                 using (Html.BeginForm("Unsubscribe", "Boards", new { noticeboardId = item.Id }, FormMethod.Post, new { @class = "subscribeForms" }))
                                                 {
                                                     <div class="unsubButton">
-                                                        <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following">FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
+                                                        <button type="submit" value="Unsubscribe" id="btnSubscribe" class="btn btn-xs btn-delete"><span class="following"><i class="fa fa-check"></i> FOLLOWING</span><span class="unfollow"><i class="fa fa-minus"></i> UNFOLLOW</span></button>
                                                     </div>
                                                 }
                                             }
