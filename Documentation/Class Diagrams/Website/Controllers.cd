@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XavSpace.Website.Controllers.AboutController">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.AccountController">
+    <Position X="2.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.BoardsController">
+    <Position X="0.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.ErrorController">
+    <Position X="0.5" Y="11" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.ErrorLogController">
+    <Position X="5" Y="11.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.HomeController">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.MyPostsController">
+    <Position X="6.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.NoticesController">
+    <Position X="4.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.PendingController">
+    <Position X="5" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.RolesAdminController">
+    <Position X="3.5" Y="14" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.SearchController">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.SettingsController">
+    <Position X="2.25" Y="9" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="XavSpace.Website.Controllers.SettingsController.ManageMessageId">
+        <Members>
+          <Field Name="AddPhoneSuccess" Hidden="true" />
+          <Field Name="RemovePhoneSuccess" Hidden="true" />
+          <Field Name="SetTwoFactorSuccess" Hidden="true" />
+        </Members>
+        <TypeIdentifier />
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.UnofficialController">
+    <Position X="2.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Controllers.UsersAdminController">
+    <Position X="0.5" Y="14" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

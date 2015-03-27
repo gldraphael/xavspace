@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XavSpace.Website.ViewModels.Settings.ChangePasswordViewModel">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Settings.IndexViewModel">
+    <Position X="5.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Settings.SetPasswordViewModel">
+    <Position X="3" Y="0.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.AmendedNoticeViewModel">
+    <Position X="0.5" Y="4.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.DetailedNoticeViewModel">
+    <Position X="3" Y="4.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.MyPostViewModel">
+    <Position X="5.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.NoticeMappings">
+    <Position X="5.5" Y="6.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.NoticePosterViewModel">
+    <Position X="2.75" Y="7.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.NoticeViewModel">
+    <Position X="5.5" Y="9.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Notices.PendingNoticeViewModel">
+    <Position X="0.5" Y="7.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Boards.NoticeBoardEditViewModel">
+    <Position X="3" Y="11.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Boards.NoticeBoardIndexViewModel">
+    <Position X="0.5" Y="11.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Boards.NoticeBoardMappings">
+    <Position X="0.5" Y="13.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Boards.NoticeBoardViewModel">
+    <Position X="5.5" Y="12" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Admin.EditUserViewModel">
+    <Position X="11" Y="16.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Admin.RoleViewModel">
+    <Position X="13" Y="16.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.ExternalLoginConfirmationViewModel">
+    <Position X="0.5" Y="18.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel">
+    <Position X="3.5" Y="18.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.ForgotPasswordViewModel">
+    <Position X="0.5" Y="25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.ForgotViewModel">
+    <Position X="4.25" Y="20.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.LoginViewModel">
+    <Position X="2.5" Y="20.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.RegisterViewModel">
+    <Position X="0.5" Y="20.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.ResetPasswordViewModel">
+    <Position X="4.75" Y="22.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.SendCodeViewModel">
+    <Position X="2.75" Y="22.75" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.Account.VerifyCodeViewModel">
+    <Position X="0.5" Y="22.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Account.ExternalLoginViewModel">
+    <Position X="2.5" Y="36.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Account.UserInfoViewModel">
+    <Position X="0.5" Y="37.5" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Account.UserLoginInfoViewModel">
+    <Position X="2.25" Y="34.75" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Base.JsonViewModel">
+    <Position X="4.75" Y="34.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Boards.BoardViewModel">
+    <Position X="0.5" Y="34.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Boards.DetailedBoardViewModel">
+    <Position X="0.5" Y="39.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Notices.NoticeViewModel">
+    <Position X="2.75" Y="39" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.ViewModels.JsonViewModels.Search.SearchItemJVM">
+    <Position X="4.75" Y="37" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

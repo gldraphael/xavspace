@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XavSpace.Website.Extensions.HtmlLayoutExtension">
+    <Position X="3.25" Y="4.25" Width="1.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Extensions.HtmlUserExtension">
+    <Position X="1" Y="4.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Website.Extensions.IdentityApplicationUserExtension">
+    <Position X="1" Y="5.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

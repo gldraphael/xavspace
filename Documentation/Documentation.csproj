@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BD10E23-10C3-4F09-BBB9-A46829C3833D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Documentation</RootNamespace>
+    <AssemblyName>Documentation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Class Diagrams\DataAccess.cd" />
+    <None Include="Class Diagrams\Entities.cd" />
+    <None Include="Class Diagrams\Facade.cd" />
+    <None Include="Class Diagrams\Website\Controllers.cd" />
+    <None Include="Class Diagrams\Website\Extensions.cd" />
+    <None Include="Class Diagrams\Website\Filters.cd" />
+    <None Include="Class Diagrams\Website\Other classes.cd" />
+    <None Include="Class Diagrams\Website\ViewModels.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XavSpace.DataAccess\XavSpace.DataAccess.csproj">
+      <Project>{36cfae4a-d260-494a-9083-e56d17f78c38}</Project>
+      <Name>XavSpace.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XavSpace.Entities\XavSpace.Entities.csproj">
+      <Project>{020f23b4-169a-4525-a0cf-e1322ccb702d}</Project>
+      <Name>XavSpace.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XavSpace.Facade\XavSpace.Facade.csproj">
+      <Project>{6d151f2f-c1ad-4fcb-af3c-a39fb9742040}</Project>
+      <Name>XavSpace.Facade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XavSpace.Website\XavSpace.Website.csproj">
+      <Project>{6e35319a-32e2-4d6d-95f0-45c567c63bea}</Project>
+      <Name>XavSpace.Website</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

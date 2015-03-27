@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="XavSpace.Facade.XSException">
+    <Position X="1" Y="15.25" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Facade.KeyRepository">
+    <Position X="3.25" Y="12.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="XavSpace.Facade.KeyRepository.Constants">
+        <TypeIdentifier />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Facade.Managers.Base.DbContextManager">
+    <Position X="5" Y="3" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="1.138" />
+  </Class>
+  <Class Name="XavSpace.Facade.Managers.ErrorLogManager">
+    <Position X="3.5" Y="5.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="1.326" />
+  </Class>
+  <Class Name="XavSpace.Facade.Managers.NoticeBoardManager">
+    <Position X="1" Y="5.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="1.18" />
+  </Class>
+  <Class Name="XavSpace.Facade.Managers.NoticeManager">
+    <Position X="4.5" Y="8" Width="2.75" />
+    <InheritanceLine Type="XavSpace.Facade.Managers.Base.DbContextManager" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.875" Y="4.94" />
+        <Point X="5.875" Y="7.876" />
+        <Point X="5.875" Y="7.876" />
+        <Point X="5.875" Y="8" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier />
+    <Lollipop Position="1.832" />
+  </Class>
+  <Class Name="XavSpace.Facade.Managers.RelationshipManager">
+    <Position X="6.25" Y="5.5" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Facade.Identity.Managers.ApplicationRoleManager">
+    <Position X="3.75" Y="16.75" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Facade.Identity.Managers.ApplicationSignInManager">
+    <Position X="1" Y="16.75" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Facade.Identity.Managers.ApplicationUserManager">
+    <Position X="1" Y="12.5" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="XavSpace.Facade.Identity.Services.EmailService" BaseTypeListCollapsed="true">
+    <Position X="3" Y="18.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.887" />
+  </Class>
+  <Class Name="XavSpace.Facade.Factory.DbContextFactory" BaseTypeListCollapsed="true">
+    <Position X="1" Y="18.75" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.995" />
+  </Class>
+  <Interface Name="XavSpace.Facade.Managers.Base.IAsyncManager&lt;TEntity, TKey&gt;">
+    <Position X="0.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="XavSpace.Facade.Managers.Base.IManager&lt;TEntity, TKey&gt;">
+    <Position X="3.5" Y="0.5" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
