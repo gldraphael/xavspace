@@ -63,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbContexts\ApplicationDbContext.cs" />
-    <Compile Include="DbInitializers\ApplicationDbInitializer.cs" />
     <Compile Include="Migrations\201412281158350_Initial_Create.cs" />
     <Compile Include="Migrations\201412281158350_Initial_Create.Designer.cs">
       <DependentUpon>201412281158350_Initial_Create.cs</DependentUpon>
