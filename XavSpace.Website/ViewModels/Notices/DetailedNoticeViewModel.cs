@@ -44,5 +44,10 @@ namespace XavSpace.Website.ViewModels.Notices
         /// Official post?
         /// </summary>
         public bool IsOfficial { get; set; }
+
+        /// <summary>
+        /// The name of the person who posted the notice
+        /// </summary>
+        public string PostedBy { get; set; }
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
+
 using XavSpace.Entities.Data;
 using XavSpace.Entities.Relationships;
 using XavSpace.Entities.Users;
@@ -62,6 +64,16 @@ namespace XavSpace.Facade.Managers
         {
             var unb = await DbContext.UserBoardFollowingRelationship.FindAsync(relationship.UserId, relationship.NoticeBoardId);
             return unb != null;
+        }
+
+        public async Task<UserNoticePost> GetUserAsync(Notice notice)
+        {
+            var rel = await DbContext.UserNoticePostRelationship
+                .Include(r=>r.User)
+                .Where(x => x.NoticeId == notice.NoticeId)
+                .ToListAsync();
+
+            return rel[0];
         }
     }
 }

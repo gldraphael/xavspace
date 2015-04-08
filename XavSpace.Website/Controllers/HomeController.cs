@@ -22,7 +22,7 @@ namespace XavSpace.Website.Controllers
 
             List<DetailedNoticeViewModel> vms = new List<DetailedNoticeViewModel>();
             foreach (var n in notices)
-                vms.Add(NoticeMappings.To<DetailedNoticeViewModel>(n));
+                vms.Add(await NoticeMappings.ToDetailedNoticeViewModelAsync(n));
 
             return View(vms);
         }

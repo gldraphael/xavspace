@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
-
 using XavSpace.Entities.Data;
+using XavSpace.Facade.Managers;
 
 namespace XavSpace.Website.ViewModels.Notices
 {
@@ -17,7 +18,7 @@ namespace XavSpace.Website.ViewModels.Notices
                 Title = vm.Title,
                 NoticeBoardId = vm.NoticeBoardId,
                 Description = vm.Description,
-                HighPriority=vm.isHighPriority
+                HighPriority = vm.isHighPriority
             };
             if (vm.DateCreated.HasValue)
                 n.DateCreated = vm.DateCreated.Value;
@@ -32,7 +33,7 @@ namespace XavSpace.Website.ViewModels.Notices
                 NoticeBoardId = n.NoticeBoardId,
                 Description = n.Description,
                 DateCreated = n.DateCreated,
-                isHighPriority=n.HighPriority
+                isHighPriority = n.HighPriority
             };
             return vm;
         }
@@ -42,6 +43,7 @@ namespace XavSpace.Website.ViewModels.Notices
         {
             throw new NotImplementedException();
         }
+
         public static DetailedNoticeViewModel ToDetailedNoticeViewModel(Notice notice)
         {
             DetailedNoticeViewModel vm = new DetailedNoticeViewModel
@@ -53,9 +55,29 @@ namespace XavSpace.Website.ViewModels.Notices
                 DateCreated = notice.DateCreated,
                 isHighPriority = notice.HighPriority,
                 NoticeBoardName = notice.NoticeBoard.Title,
-                IsOfficial = notice.NoticeBoard.IsOfficial
+                IsOfficial = notice.NoticeBoard.IsOfficial,
             };
             return vm;
+        }
+
+        public async static Task<DetailedNoticeViewModel> ToDetailedNoticeViewModelAsync(Notice notice)
+        {
+            using (var rm = new RelationshipManager())
+            {
+                DetailedNoticeViewModel vm = new DetailedNoticeViewModel
+                {
+                    Id = notice.NoticeId,
+                    Title = notice.Title,
+                    NoticeBoardId = notice.NoticeBoardId,
+                    Description = notice.Description,
+                    DateCreated = notice.DateCreated,
+                    isHighPriority = notice.HighPriority,
+                    NoticeBoardName = notice.NoticeBoard.Title,
+                    IsOfficial = notice.NoticeBoard.IsOfficial,
+                    PostedBy = (await rm.GetUserAsync(notice)).User.Name.ToString()
+                };
+                return vm;
+            }
         }
 
         public static Notice From(PendingNoticeViewModel vm)

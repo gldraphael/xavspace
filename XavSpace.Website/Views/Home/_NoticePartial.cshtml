@@ -22,7 +22,7 @@
                     High Priority <i class="fa fa-exclamation"></i>
                 </span><br>
             }
-            <h4><strong>John Doe</strong> posted a notice on the <strong>@noticeBoardName</strong></h4>
+            <h4><strong>@Model.PostedBy</strong> posted a notice on the <strong>@noticeBoardName</strong></h4>
             <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
             <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
             <div class='container-ctm'>
@@ -69,7 +69,7 @@ else
                 High Priority <i class="fa fa-exclamation"></i>
             </span><br>
             }
-            <h4><strong>John Doe</strong> posted a notice on the <strong>@noticeBoardName</strong></h4>
+            <h4><strong>@Model.PostedBy</strong> posted a notice on the <strong>@noticeBoardName</strong></h4>
 
             <h2>@Html.DisplayFor(modelItem => Model.Title)</h2>
             <h4>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>

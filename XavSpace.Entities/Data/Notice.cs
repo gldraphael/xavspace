@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using XavSpace.Entities.Users;
 
 namespace XavSpace.Entities.Data
 {
@@ -83,8 +84,6 @@ namespace XavSpace.Entities.Data
         /// Comment by the moderator to the notice's Author
         /// </summary>
         public string ModeratorComment { get; set; }
-
-        
 
         public Notice()
         {

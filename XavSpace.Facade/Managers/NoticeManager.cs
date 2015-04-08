@@ -123,7 +123,7 @@ namespace XavSpace.Facade.Managers
         public async Task<IEnumerable<Notice>> GetNewsFeedAsync(string userId, int index, int number)
         {
 
-            var boards = (from board in DbContext.UserBoardFollowingRelationship
+            var boards = (from board in DbContext.UserBoardFollowingRelationship.Include(n=>n.User)
                           where !board.NoticeBoard.IsArchived && board.UserId == userId
                           select board.NoticeBoard).Union(
                                 from board in DbContext.NoticeBoards
