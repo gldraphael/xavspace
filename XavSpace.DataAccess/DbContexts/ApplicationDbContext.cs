@@ -18,6 +18,7 @@ namespace XavSpace.DataAccess.DbContexts
     {
         public ApplicationDbContext()
             : base("XSLocal", throwIfV1Schema: false)
+
         {
         }
         
