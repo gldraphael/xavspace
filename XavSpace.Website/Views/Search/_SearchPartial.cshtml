@@ -3,7 +3,7 @@
 <div class="well">
 
     <h2>@Model.Item1.Title</h2>
-    <h3>@Model.Item1.Description</h3>
+    <h3>@Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Item1.Description))</h3>
     <a href="@Url.Action("Notice", "Boards", new { id = Model.Item1.Id })">
         <i class="glyphicon glyphicon-list " title="Details"></i>
     </a>

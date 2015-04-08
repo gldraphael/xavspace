@@ -30,11 +30,7 @@
                     <h4> @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))</h4>
                     
                     <div class="btn-toolbar">
-                        <div class="btn-group">
-                            <a href="@Url.Action("Notice", "Boards", new { id = Model.Id })">
-                                <i class="glyphicon glyphicon-list " title="Details"></i>
-                            </a>
-                        </div>
+                        
 
                         <div class="btn-group">
                             @if (User.Identity.IsStaff() @*&& !Model.IsOfficial only official posts appear here*@)
