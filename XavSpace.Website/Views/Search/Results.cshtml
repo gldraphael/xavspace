@@ -11,7 +11,7 @@
    <div class="well">
        
    <h2>@item.Title</h2>
-   <h3>@item.Description</h3>
+   <h3>@Html.Raw(item.Description)</h3>
        <a href="@Url.Action("Notice", "Boards", new { id = item.Id })">
            <i class="glyphicon glyphicon-list " title="Details"></i>
        </a>
@@ -29,7 +29,7 @@
     <div class="well">
 
         <h2>@item.Title</h2>
-        <h3>@item.Description</h3>
+        <h3>@Html.Raw(@item.Description)</h3>
         <a href="@Url.Action("View", "Boards", new { id = item.Id })">
             <i class="glyphicon glyphicon-list " title="Details"></i>
         </a>

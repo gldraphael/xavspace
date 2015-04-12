@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Create Notice Board";
 }
+@*Create Official Notice Board Form*@
 
 <h2>@ViewBag.Title</h2>
 
@@ -19,12 +20,9 @@
             @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Title, "Enter Title of Notice Board", new { @class = "text-danger" })
             </div>
         </div>
-
-        
-
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -32,16 +30,6 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
-        @*<div class="form-group">
-            @Html.LabelFor(model => model.IsOfficial, "Official", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox-ctm">
-                    @Html.EditorFor(model => model.IsOfficial)
-                    @Html.ValidationMessageFor(model => model.IsOfficial, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.LabelFor(model => model.IsMandatory, "Mandatory",htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -51,7 +39,6 @@
                 </div>
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

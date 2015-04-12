@@ -12,12 +12,14 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-<div id="mydiv">
+
+@*Page where all Notice Boards are displayed*@
+    
+<div id="updated">
     <div class="body-content">
         <div class="row">
             @foreach (var item in Model)
-            {
-               
+            {             
                     string s = @Html.DisplayFor(modelItem => item.Title).ToString();
                     <div class="col-lg-3 col-md-4 col-sm-5">
                         <div class="well" style="height:180px;">
@@ -55,13 +57,14 @@
                                             </div>
 
                                             <div class="btn-group ">
-                                                <button type="button" value="delete" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@item.Id)">
+                                                <button type="button" value="delete" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#confirmDelete" onclick="getID(@item.Id)">
                                                     <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
                                                 </button>
                                             </div>
                                         }
+                                        
                                         <div class="btn-group ">
-                                            @*@if (item.isMandatory)
+                                            @*@if (item.isMandatory)  Still waiting on the isMandatory from back end
                                                 {
                                                     <button type="submit" class="btn btn-xs disabled" data-toggle="modal" data-target="#unfollowmodal" title="Mandatory Board, Cannot unfollow"><i class="fa fa-plus"></i> following</button>
                                                 }*@
@@ -111,13 +114,13 @@
                         Close
                     </button>
                     <input type="hidden" name="id" id="deleteFormId" value="-1" />
-                    <button class="btn btn-primary" onclick="secondFunction()">Delete</button>
+                    <button class="btn btn-primary" onclick="confirmSubmit()">Delete</button>
                 </div>
             </div>
-        </div><!-- /.modal-content -->
+        </div>
     }
 </div>
-
+@*THE MANDATORY MODAL*@
 <!-- #region Mandatory -->
 <div class="modal fade" id="unfollowModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
@@ -133,7 +136,7 @@
                 </button>
             </div>
         </div>
-    </div><!-- /.modal-content -->
+    </div>
 </div>
 <!-- #endregion -->
 @section scripts{
@@ -142,21 +145,20 @@
     <script>
 
         var id = -1;
-        function secondFunction() {
+        function confirmSubmit() {//submits form in modal
             if (id > -1) {
                 $('#deleteFormId').val(id);
                 document.getElementById("deleteform").submit();
             }
         }
 
-        function thirdFunction(i) {
+        function getID(i) {//gets id of each noticeboard 
             id = i;
         }
 
-        function subscribe() {
+        function subscribe() {              //ajax to load the div to be updated after user follows/unfollows noticeboard
             $(".subscribeForms").on("submit", function (event) {
-                event.preventDefault();
-                // show some animation 'in progress' animation here
+                event.preventDefault();               
                 var url = $(this).attr("action");
                 var formData = $(this).serialize();
                 console.log(url);
@@ -166,13 +168,9 @@
                     type: "POST",
                     data: formData,
                     dataType: "json",
-                    success: function (resp) {
-                        // stop showing the 'in progress animation' here
-                        if (resp.status == "success") {
-                            // add some text saying "you're now subscribed to this board" or something like that
-                            // var string = document.getElementById("");
-                            // alert('success');
-                            $('#mydiv').load(document.URL + " #mydiv", function () {
+                    success: function (resp) {                       
+                        if (resp.status == "success") {                           
+                            $('#updated').load(document.URL + " #updated", function () {
                                 index = 0;
                                 subscribe(".subscribeForms");
                             });
@@ -185,7 +183,6 @@
                 
             });
         }
-
         $(document).ready(function () {
             subscribe();
         });

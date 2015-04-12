@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = Model.Title;
 }
-
+@*Index page for all notices to be displayed on a noticeboard*@
 @{var Title = Html.DisplayFor(model => model.Title); }
 <div class="jumbotron">
     <div class="container">
@@ -31,8 +31,7 @@
                     @using (Html.BeginForm("Post", "Boards", new { id = Model.Id }))
                     {
                         <button type="submit" value="Post Notice" class="btn btn-default">Post</button>
-                    }
-                    
+                    }                    
                 </div>
                 }
                 <div class="btn-group" id="mydiv">
@@ -83,7 +82,7 @@
                     <div class="btn-group">
                         @if (User.Identity.IsModerator())
                         {
-                            <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="thirdFunction(@notice.Id)">
+                            <a title="Delete Notice" data-toggle="modal" data-target="#confirmDelete" onclick="getID(@notice.Id)">
                                 <i class="glyphicon glyphicon-trash" title="Delete Notice Board"></i>
                             </a>
                         }
@@ -143,14 +142,13 @@
                         Close
                     </button>
                     <input type="hidden" name="noticeId" id="deleteFormId" value="-1" />
-                    <button class="btn btn-primary" onclick="secondFunction()">Delete</button>
+                    <button class="btn btn-primary" onclick="confirmSubmit()">Delete</button>
                 </div>
             </div>
         </div>
     }
 </div>
 <div id="fb-root"></div>
-
 <p>
     @if (User.Identity.IsModerator())
     {
@@ -158,27 +156,26 @@
     }
     @Html.ActionLink("Back to Notice Boards", "Index")
 </p>
-
 @section scripts{
 @Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/jquery")
 
     <script>
         var id = -1;
-        function secondFunction() {
+        function confirmSubmit() {
             if (id > -1) {
                 $('#deleteFormId').val(id);
                 document.getElementById("deleteform").submit();
             }
         }
-        function thirdFunction(i) {
+        function getID(i) {
             id = i;
         }
 
         function subscribe() {
             $("#formSubscribe").on("submit", function (event) {
                 event.preventDefault();
-                // show some animation 'in progress' animation here
+                
                 var url = $(this).attr("action");
                 var formData = $(this).serialize();
                 console.log(url);
@@ -188,14 +185,10 @@
                     type: "POST",
                     data: formData,
                     dataType: "json",
-                    success: function (resp) {
-
-                        // stop showing the 'in progress animation' here
+                    success: function (resp) {              
 
                         if (resp.status == "success") {
-                            // add some text saying "you're now subscribed to this board" or something like that
-
-                            //alert('success');
+                           
                             $('#mydiv').load(document.URL + " #mydiv", function () {
                                 subscribe();
                             });
@@ -220,9 +213,5 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
    
-    
-
-   
-
     </script>
 }

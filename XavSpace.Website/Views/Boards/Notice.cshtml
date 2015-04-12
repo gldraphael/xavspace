@@ -20,35 +20,8 @@
     <meta property="og:site_name" content="XavSpace" />
     <meta property="og:image" content="~/Content/images/LOGO.png">
 }
-@*<div>
-        <div class="panel panel-success">
-            <div class="panel-heading" style="display:flex">
-                <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:left">
-                    @Html.DisplayFor(model => model.NoticeBoardId)
-                    @if (Model.isHighPriority)
-                    {
-                        <i class="glyphicon glyphicon-exclamation-sign" title="High Priority"> </i>
-                    }
-                    &nbsp;@Html.DisplayFor(model => model.Title, "Title")
-                </div>
-                <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8" style="text-align:right">
-                    Created on @Html.DisplayFor(model => model.DateCreated)
 
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="col-md-12">
-
-
-                    @Html.Raw(System.Web.HttpUtility.HtmlDecode(Model.Description))
-                </div>
-            </div>
-        </div>
-
-    </div>*@
-
-
-
+@*Displays Notice as seen in college*@
 <div class="body-content">
     <div class="row">
         <div class="col-md-12">
@@ -78,8 +51,6 @@
                     }
                     <br>
                     <br>
-
-
                     <div class="btn-toolbar">
                         <div class="btn-group">
                             <div class="fb-share-button" data-href="@Url.Action("Notice", "Boards", new { id = Model.Id })" data-layout="button"></div>
@@ -108,8 +79,6 @@
         <div class="col-md-12">
             <div class="linkBelloeNotice">
                 <p>
-
-
                     @if (Model.IsOfficial)
                     {
                         @Html.ActionLink("Back to Notice Board", "View", new { id = Model.NoticeBoardId })
@@ -159,17 +128,8 @@
         function confirmSelection() {
             document.getElementById("deleteNoticeForm").submit();
         }
-        //var id = -1;
-        //function secondFunction() {
-        //    if (id > -1) {
-        //        $('#deleteNoticeId').val(id);
-        //        document.getElementById("deleteNoticeForm").submit();
-        //    }
-        //}
-        //function thirdFunction(i) {
-        //    id = i;
-        //}
-        function printContent(el) {
+        
+        function printContent(el) {     //prints data within the div
             var restorepage = document.body.innerHTML;
             var printcontent = document.getElementById(el).innerHTML;
             document.body.innerHTML = printcontent;
