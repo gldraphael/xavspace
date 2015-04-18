@@ -214,6 +214,7 @@
     <Content Include="Content\font-awesome-4.3.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\AboutPageSM.jpg" />
+    <Content Include="Content\images\corridor.jpg" />
     <Content Include="Content\images\devices-white.png" />
     <Content Include="Content\images\devices.png" />
     <Content Include="Content\images\facebook icon3.png" />
@@ -382,6 +383,8 @@
     <Content Include="Content\bootstrap\mixins.less" />
     <Content Include="Content\bootstrap\alerts.less" />
     <Content Include="Content\bootstrap\badges.less" />
+    <Content Include="Content\PDF\ConceptNote.pdf" />
+    <None Include="Properties\PublishProfiles\College.pubxml" />
     <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\XavSpace Test Site.pubxml" />
     <Content Include="Scripts\blur.dev.js" />

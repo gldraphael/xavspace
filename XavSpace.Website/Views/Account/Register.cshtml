@@ -8,8 +8,8 @@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account</h4>
-    <p class="text-info">Add something here to encourage users to use facebook log in rather than a local account.</p>
+    @*<h4>Create a new account</h4>*@
+    @*<p class="text-info">Add something here to encourage users to use facebook log in rather than a local account.</p>*@
     <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">

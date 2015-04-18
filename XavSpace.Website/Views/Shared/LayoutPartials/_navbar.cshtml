@@ -8,7 +8,7 @@
             </button>
 
             <a class="navbar-brand" href="@Url.Action("Index", "Home")">
-                <img alt="XavSpace" src="~/Content/images/LOGOxs.png" style="height:100%; width:100%">
+                <img alt="XavSpace" src="~/Content/images/LOGOxs.png" @*style="height:100%; width:100%"*@>
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -33,14 +33,9 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="@Url.Action("Index", "MyPosts")">My Posts</a></li>
                                 <li><a href="@Url.Action("Index", "Pending")">Pending Approvals</a></li>
-                               
                             </ul>
                         </li>
                     }
-
-
-
-
                 }
             </ul>
 
@@ -48,17 +43,12 @@
             {
                 using (Html.BeginForm("Results", "Search", FormMethod.Get, new { @class = "navbar-form navbar-left" }))
                 {
-
                     <div class="input-group">
                         @Html.TextBox("q", value: null, htmlAttributes: new { @placeholder = "Search", @type = "search", @class = "typeahead searchBar", @id = "search" })
                         <div class="input-group-btn">
-
                             <button class="btn btn-sm btn-default" type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
-
-
-
                 }
             }
             @Html.Partial("_LoginPartial")

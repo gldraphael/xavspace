@@ -28,5 +28,10 @@ namespace XavSpace.Website.Controllers
         {
             return "This is a test";
         }
+
+        public FileResult ConceptNote()
+        {
+            return File("~/Content/PDF/ConceptNote.pdf", "application/pdf", "Concept Note - XavSpace.pdf");
+        }
     }
 }

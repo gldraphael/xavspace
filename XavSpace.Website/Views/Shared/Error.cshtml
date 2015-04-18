@@ -8,8 +8,8 @@
     <div class="alert alert-danger">
         Error 500. An unexpected error occured. 
     </div>
-    @*@if (Model != null && (HttpContext.Current.IsDebuggingEnabled || User.IsInRole("Tester")))
-    {*@
+    @if (Model != null && (HttpContext.Current.IsDebuggingEnabled || User.IsInRole("Tester")))
+    {
         <div>
             <div>
                 @if (Model.Exception.InnerException == null)
@@ -35,5 +35,5 @@
 @Model.Exception.StackTrace
                 </pre>
         </div>
-    @*}*@
+    }
 </div>

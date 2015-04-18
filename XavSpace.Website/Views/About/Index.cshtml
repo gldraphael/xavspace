@@ -10,13 +10,13 @@
             <div class="row">
                 <div class="col-md-5 col-md-offset-7">
                     <div class="aboutbody3inner" >
-                        <h2>Log in to your XavSpace Account!</h2>
-
+                        <h2>Log in to XavSpace</h2>
                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                         {
                             @Html.AntiForgeryToken()
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
@@ -24,6 +24,7 @@
                                     @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                                 <div class="col-md-10">
@@ -31,6 +32,7 @@
                                     @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <div class="checkbox-ctm">
@@ -39,34 +41,54 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
-
-                                <div class="col-md-offset-2 col-md-10">
+                                <div class="col-md-offset-2 col-xs-3">
                                     <div class="btn-toolbar">
-                                        <div class="btn-group">
+                                        <div class="btn-group pull-right">
                                             <input type="submit" value="Log in" class="btn btn-primary" />
                                         </div>
-                                        @*<div class="btn-group">
-                                            @Html.ActionLink("Sign Up", "Register", "Account", null, new { @class = "btn btn-primary" })
-                                        </div>*@
                                     </div>
-                                    <br>
-                                    @Html.ActionLink("Sign Up", "Register", "Account", null, new { @style = "color:white;" })<br>
-                                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account", null, new { @style = "color:white;" })<br>
-                                   
+                                </div>
+                                <div class="col-xs-7" style="padding:8px">
+                                    @Html.ActionLink("Sign Up", "Register", "Account", null, new { @style = "color:white" })
                                 </div>
                             </div>
-
+                            
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account", null, new { @style = "color:white;" })<br>
+                                </div>
+                            </div>
                         }
-                        <hr>
-                        @*@Html.Partial("~/Views/Account/_ExternalLoginsListPartial.chtml",new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
+                        @*<hr>*@
+                        @*@Html.Partial("~/Views/Account/_ExternalLoginsListPartial.cshtml",new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })*@
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="aboutbody1" style="display:table;  text-align:center">
+
+<div class="jumbotron">
+    <div class="container">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-md-offset-2 col-md-8 text-center">
+                    <h1>XavSpace</h1>
+                    <p class="text-primary">XavSpace is a <abbr title="Proof of Concept">POC</abbr> of an Online Notification System that replaces conventional notice boards with a Virtual Notice Board System</p>
+                    @*<a class="btn btn-default">Download Concept Note</a>*@
+                    @Html.ActionLink("Download Concept Note", "ConceptNote", null, new { @class="btn btn-default" })
+                    <hr/>
+                    <p>This is a project undertaken by Galdin Raphael and Joshua Dias</p>
+                    <p>Images by Muktai Kuwalekar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="aboutbody1" style="display:table;  text-align:center">
     <div style="vertical-align:middle; display:table-cell ; padding-left:5%; padding-right:5%">
         <h1 style="color:white;">XavSpace keeps Xavier's notified. Get Notified and Post whatever you want, whenever you want. </h1>
         <br>
@@ -85,18 +107,15 @@
 <div class="aboutbody1" style="background-color:#f55050; display:table;  text-align:center; ">
     <h1 style="color:white; display:table-cell; vertical-align:middle">Get XavSpace on your Phone </h1>
     <br>
-</div>
+</div>*@
 
-
-@section Scripts{
+@*@section Scripts{
     <script>
-        //$('aboutboddddy3').blurjs({
-        //    source: '.aboutbody3',
-        //    radius: 0,
-        //    overlay: 'rgba(255,255,255,0.4)',
-        //    border: 10
-
-
-        //});
+        $('aboutboddddy3').blurjs({
+            source: '.aboutbody3',
+            radius: 0,
+            overlay: 'rgba(255,255,255,0.4)',
+            border: 10
+        });
     </script>
-}
+}*@

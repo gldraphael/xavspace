@@ -7,38 +7,26 @@
 
 @foreach (var item in Model.Item2)
 {
-
-   <div class="well">
-       
-   <h2>@item.Title</h2>
-   <h3>@Html.Raw(item.Description)</h3>
-       <a href="@Url.Action("Notice", "Boards", new { id = item.Id })">
-           <i class="glyphicon glyphicon-list " title="Details"></i>
-       </a>
-
-   </div>
-
-
-
-
-
+    <div class="well">
+        <h2>@item.Title</h2>
+        <h3>@Html.Raw(item.Description)</h3>
+        <a href="@Url.Action("Notice", "Boards", new { id = item.Id })">
+            <i class="glyphicon glyphicon-list " title="Details"></i>
+        </a>
+    </div>
 }
 
 @foreach (var item in Model.Item1)
 {
     <div class="well">
-
         <h2>@item.Title</h2>
         <h3>@Html.Raw(@item.Description)</h3>
         <a href="@Url.Action("View", "Boards", new { id = item.Id })">
             <i class="glyphicon glyphicon-list " title="Details"></i>
         </a>
-
     </div>
-
-
 }
-@if (Model.Item1.Count == 0 && Model.Item2.Count==0)
-{ 
-<p>Sorry, we couldn't find any results for this search.</p>
+@if (Model.Item1.Count == 0 && Model.Item2.Count == 0)
+{
+    <p>Sorry, we couldn't find any results for this search.</p>
 }

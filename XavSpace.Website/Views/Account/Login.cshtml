@@ -5,15 +5,18 @@
     //Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
 
-
-<h2>@ViewBag.Title</h2>
 <div class="loginbody">
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7 hidden-sm hidden-xs">
+        <div>
+            <img src="~/Content/images/corridor.jpg" class="img-responsive" />
+        </div>
+    </div>
+    <div class="col-md-5">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
                 @Html.AntiForgeryToken()
-                <h4>Log in using your XavSpace account</h4>
+                <h2>Log into XavSpace</h2>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -39,21 +42,25 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
+                    <div class="col-md-offset-2 col-xs-3">
+                        <div class="btn-toolbar">
+                            <div class="btn-group pull-right">
+                                <input type="submit" value="Log in" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-7" style="padding:8px">
+                        or @Html.ActionLink("Sign Up", "Register", "Account")
                     </div>
                 </div>
-                <p>
-                    @Html.ActionLink("Sign Up?", "Register")
-                </p>
                 <p>
                     @Html.ActionLink("Forgot your password?", "ForgotPassword")
                 </p>
             }
         </section>
-        <section id="socialLoginForm">
+        @*<section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new XavSpace.Website.ViewModels.Account.ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        </section>*@
     </div>
     @*<div class="col-md-4">
         <section>
@@ -89,7 +96,6 @@
                 <p><strong>Password:</strong> testerpassword</p>
             </div>
         </section>
-
     </div>*@
 </div>
     </div>
